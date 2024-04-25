@@ -9,7 +9,7 @@ import retrofit2.http.Path
 interface MusclesAPI {
 
     @Headers(
-        "X-RapidAPI-Key: c7de494d29msh11c396e17354e22p1d1ee5jsn71bfc00fa0e2",
+        "X-RapidAPI-Key: 7fec0813f2msh8f893d8b05d8a34p1c4932jsna0768d26404a",
         "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
     )
     @GET("exercises/bodyPart/{bodyPart}")
