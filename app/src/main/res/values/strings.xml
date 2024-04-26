@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_account">Create Account</string>
     <string name="username">Username</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
     <string name="contiune">Contiune</string>
     <string name="take_the_first_step_towards_a_healthy_life_join_us_to_reach_your_goals">Take the first step towards a healthy life. Join us to reach your goals!</string>
@@ -33,20 +33,20 @@
     <string name="train_and_live_the_new_experience_of_exercising_at_home">Train and live the new experience of exercising at home</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="buttonlogin">Login</string>
-    <string name="or_ncreate_account">or\nCreate Account</string>
+    <string name="or_ncreate_account" translatable="false">or\nCreate Account</string>
     <string name="complete_profile">Complete Profile</string>
 
     <!-- Bottom Sheet Layout -->
     <string name="please_enter_the_email_of_the_account_for_which_you_want_to_reset_the_password">Please enter the email of the account for which you want to reset the password.</string>
     <string name="reset_password">RESET PASSWORD</string>
     <string name="reset">RESET</string>
-    <string name="home">Home</string>
+    <string name="home" translatable="false">Home</string>
     <string name="profile">Profile</string>
     <string name="article">Article</string>
     <string name="remember_me">Remember Me</string>
     <string name="motivation_2">Taking a small step every day leads to big achievements over time.</string>
-    <string name="wave_hand">👋</string>
-    <string name="streak">Streak</string>
+    <string name="wave_hand" translatable="false">👋</string>
+    <string name="streak" translatable="false">Streak</string>
     <string name="count">count</string>
     <string name="calendar">Calendar</string>
     <string name="workout">Workout</string>
@@ -66,7 +66,7 @@
     <string name="exercise_name">Exercise Name</string>
     <string name="instructions">Instructions</string>
     <string name="let_s_do_it">Let\'s do it!</string>
-    <string name="sets_amp_reps"><![CDATA[Sets & Reps]]></string>
+    <string name="sets_amp_reps" translatable="false"><![CDATA[Sets & Reps]]></string>
     <string name="sets">Sets</string>
     <string name="reps">Reps</string>
     <string name="time">Time</string>
@@ -86,23 +86,23 @@
     <string name="invalid_body_weight_must_be_between_30_and_250kgs">Invalid body weight : must be between 30 and 250kgs</string>
     <string name="type">Type</string>
     <string name="elapsed_time">Elapsed Time</string>
-    <string name="mm_ss">MM:SS</string>
+    <string name="mm_ss" translatable="false">MM:SS</string>
     <string name="break_and_next_set">Break and Next Set</string>
 
     <string name="finish_workout">Finish Workout</string>
-    <string name="zero">0</string>
+    <string name="zero" translatable="false">0</string>
     <string name="search">Search</string>
     <string name="todo_list_is_empty_for_current_day">Todo List is empty for current day</string>
     <string name="category">Category</string>
     <string name="reading_time">Reading Time</string>
     <string name="no_results_found_according_to_your_search">No results found according to your search</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text" translatable="false">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
     <string name="days">days</string>
     <string name="start_weight">Start Weight</string>
     <string name="differences">Differences</string>
-    <string name="_8kg">8KG</string>
+    <string name="_8kg" translatable="false">8KG</string>
     <string name="weight_gain">Weight Gain</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="notification">Notification</string>

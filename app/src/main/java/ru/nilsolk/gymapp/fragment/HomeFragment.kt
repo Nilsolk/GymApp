@@ -142,20 +142,15 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeArticle() {
-        mainViewModel.articleLiveData.observe(requireActivity(), Observer { resultArticle ->
+        mainViewModel.articleLiveData.observe(requireActivity()) { resultArticle ->
             if (resultArticle != null) {
-                if (resultArticle.isNotEmpty()) {
-                    article.clear()
-                    article.addAll(resultArticle)
-                    articleAdapter.notifyDataSetChanged()
-                    val categories = resultArticle.map { it.category }.distinct()
-                    chips(categories as ArrayList)
-                } else {
-                    // Если список статей пуст, обновите адаптер без добавления новых данных
-                    articleAdapter.notifyDataSetChanged()
-                }
+                article.clear()
+                article.addAll(resultArticle)
+                articleAdapter.notifyDataSetChanged()
+                val categories = resultArticle.map { it.category }.distinct()
+                chips(ArrayList(categories))
             }
-        })
+        }
     }
 
 }
