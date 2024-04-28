@@ -50,8 +50,8 @@
                 android:id="@+id/bodyFatPercentageImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/yagorani"
-                android:backgroundTint="#1D1E20"
+                android:src="@drawable/baseline_percent_24"
+                android:backgroundTint="@color/red"
                 android:padding="50dp"
                 android:importantForAccessibility="no">
             </ImageButton>
@@ -211,7 +211,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <!-- TODO changeIcons -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
