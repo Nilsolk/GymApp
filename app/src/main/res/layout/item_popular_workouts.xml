@@ -25,7 +25,8 @@
             <ImageView
                 android:layout_width="250dp"
                 android:layout_height="175dp"
-                android:getImage="@{workout.imageURL}"/>
+                android:getImage="@{workout.imageURL}"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:layout_width="match_parent"

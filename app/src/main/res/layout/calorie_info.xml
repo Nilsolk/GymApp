@@ -1,51 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/info_background">
+    android:background="@drawable/info_background"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Explanation"
             android:gravity="center"
-            android:textSize="24dp"
+            android:text="@string/explanation"
             android:textColor="@color/white"
-            ></TextView>
+            android:textSize="24sp" />
+
         <TextView
             android:id="@+id/explanationId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\tYour BMR and calorie needs are calculated with the fat
-percentage and body weight you enter. Katch-
-McArdle Formula is used for this"
-            android:textSize="18dp"
+            android:text="@string/tyour_bmr_and_calorie_needs_are_calculated_with_the_fat_percentage_and_body_weight_you_enter_katch_mcardle_formula_is_used_for_this"
             android:textColor="@color/white"
-            ></TextView>
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="calculation."
-            android:textColor="@color/white"
-            android:textSize="18dp"
             android:gravity="center"
-            ></TextView>
+            android:text="@string/calculation"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <View
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/line"
-            android:backgroundTint="#0C0C0C"
-            ></View>
-
+            android:backgroundTint="#0C0C0C" />
     </LinearLayout>
 
 
@@ -58,10 +52,9 @@ McArdle Formula is used for this"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:text="Got It"
+            android:text="@string/got_it"
             android:textColor="@color/red"
-            android:textSize="17dp"
-            ></Button>
+            android:textSize="17sp" />
 
     </LinearLayout>
 

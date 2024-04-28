@@ -8,5 +8,5 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/silver"
-        android:textSize="18dp"
+        android:textSize="18sp"
         />

@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:src="@drawable/left_arrow" />
+            android:src="@drawable/left_arrow"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/text_date_month"
@@ -27,16 +28,17 @@
             android:layout_weight="1"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:gravity="center"
-            android:text="December 2020"
+            tools:text="December 2020"
             android:textColor="#FF0010"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/iv_calendar_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:src="@drawable/right_arrow" />
+            android:src="@drawable/right_arrow"
+            android:importantForAccessibility="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:text="TODO"
+            android:text="@string/todo"
             android:textColor="#FF0010"
             android:textSize="24sp" />
 
@@ -86,7 +88,8 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textColor="@color/white"
-            android:textColorHint="@color/light_gray" />
+            android:textColorHint="@color/light_gray"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 

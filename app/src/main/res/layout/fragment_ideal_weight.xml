@@ -1,115 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.IdealWeightFragment"
     android:background="@color/gray"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragment.IdealWeightFragment">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:id="@+id/goBackImage"
-                android:layout_marginStart="15dp"
-                android:layout_alignParentStart="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/calculators_left"
-                android:background="@color/gray"
+                android:layout_alignParentStart="true"
                 android:layout_marginVertical="5dp"
-                ></ImageButton>
+                android:layout_marginStart="15dp"
+                android:background="@color/gray"
+                android:importantForAccessibility="no"
+                android:src="@drawable/calculators_left" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="15dp"
-                android:text="Ideal Weight Calculator"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:textColor="@color/white"
-                android:textSize="25dp"
+                android:backgroundTint="@color/light_gray"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:cursorVisible="false"
-                android:backgroundTint="@color/light_gray"
-                ></TextView>
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:text="@string/ideal_weight_calculator"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
             <ImageButton
                 android:id="@+id/infoImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@color/gray"
-                android:src="@drawable/icon_info"
                 android:layout_marginEnd="15dp"
-                ></ImageButton>
+                android:background="@color/gray"
+                android:importantForAccessibility="no"
+                android:src="@drawable/icon_info" />
         </RelativeLayout>
+
         <View
-            android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="7dp"
             android:background="@drawable/line"
-            android:backgroundTint="@color/light_gray"
-            ></View>
+            android:backgroundTint="@color/light_gray" />
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose your gender"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:textColor="@color/silver"
-            android:textSize="22dp"></TextView>
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
-            android:textSize="22dp"
             android:fontFamily="@font/revolutiongothic_light"
-            android:textColor="#008EFF"
+            android:text="@string/choose_your_gender"
+            android:textColor="@color/silver"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            ></TextView>
-        <Switch
+            android:fontFamily="@font/revolutiongothic_light"
+            android:text="@string/male"
+            android:textColor="#008EFF"
+            android:textSize="24sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/genderSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"></Switch>
+            android:layout_marginStart="10dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"
-            android:textSize="22dp"
-            android:fontFamily="@font/revolutiongothic_light"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/revolutiongothic_light"
+            android:text="@string/female"
             android:textColor="#FB2B72"
-            ></TextView>
+            android:textSize="24sp" />
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
@@ -118,59 +118,60 @@
             android:id="@+id/personHeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/silver"
-            android:paddingBottom="28dp"
-            android:textSize="23dp"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:textColor="@color/white"
-            android:hint="Enter your height in cm"
             android:ems="10"
-            />
+            android:fontFamily="@font/revolutiongothic_light"
+            android:hint="@string/enter_your_height_in_cm"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingBottom="28dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver"
+            android:textSize="24sp" />
+
         <TextView
             android:id="@+id/falseHeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid height : must be between 150 and 200cm"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textColor="@color/red"
             android:layout_marginStart="3dp"
-            android:visibility="invisible"
-            android:textSize="16dp"
-            ></TextView>
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="@string/invalid_height_must_be_between_150_and_200cm"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/personWeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your weight in kg"
-            android:textColorHint="@color/silver"
-            android:paddingBottom="28dp"
             android:fontFamily="@font/revolutiongothic_light"
+            android:hint="@string/enter_your_weight_in_kg"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingBottom="28dp"
             android:textColor="@color/white"
-            android:textSize="23dp"
-            ></EditText>
+            android:textColorHint="@color/silver"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/falseWeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid body weight : must be 30 and 250kgs"
-            android:textColor="@color/red"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
             android:layout_marginStart="3dp"
-            android:visibility="invisible"
-            android:textSize="16dp"
-            ></TextView>
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="@string/invalid_body_weight_must_be_30_and_250kgs"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
@@ -178,19 +179,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
         android:layout_marginTop="5dp"
-        >
+        android:layout_marginEnd="70dp">
 
         <Button
             android:id="@+id/calculateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculate"
-            android:textColor="@color/gray"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="20dp"
-            ></Button>
+            android:text="@string/calculate"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -203,39 +202,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/aboveBelowLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="invisible"
-            >
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/aboveBelowLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="You are"
-                android:textSize="18dp"
-                android:fontFamily="@font/revolutiongothic_light"
-                android:textColor="@color/white"
-                ></TextView>
-            <TextView
-                android:id="@+id/aboveBelowText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" BELOW"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:textSize="22dp"
-                android:textColor="@color/red"
-                ></TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" your ideal weight"
-                android:textSize="18dp"
-                android:fontFamily="@font/revolutiongothic_light"
-                android:textColor="@color/white"
-                ></TextView>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/revolutiongothic_light"
+                    android:text="@string/you_are"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/aboveBelowText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/revolutiongothic_extra_bold"
+                    android:text="@string/below"
+                    android:textColor="@color/red"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/revolutiongothic_light"
+                    android:text="@string/your_ideal_weight"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/idealWeightTextLayuot"
@@ -243,49 +241,50 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="invisible">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="You are at your ideal weight"
-                    android:textSize="18dp"
                     android:fontFamily="@font/revolutiongothic_light"
+                    android:text="@string/you_are_at_your_ideal_weight"
                     android:textColor="@color/white"
-                    ></TextView>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" CONGRATS"
                     android:fontFamily="@font/revolutiongothic_extra_bold"
-                    android:textSize="22dp"
+                    android:text="@string/congrats"
                     android:textColor="@color/red"
-                    ></TextView>
+                    android:textSize="22sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/obeseTextLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="invisible">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="You are"
-                    android:textSize="18dp"
                     android:fontFamily="@font/revolutiongothic_light"
+                    android:text="@string/you_are"
                     android:textColor="@color/white"
-                    ></TextView>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" OBESE"
                     android:fontFamily="@font/revolutiongothic_extra_bold"
-                    android:textSize="22dp"
+                    android:text="@string/obese"
                     android:textColor="@color/red"
-                    ></TextView>
+                    android:textSize="22sp" />
 
             </LinearLayout>
-            </RelativeLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -295,38 +294,38 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
-        >
+        android:layout_marginEnd="20dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/mixImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/malefemale_solid"
-                ></ImageView>
+                android:importantForAccessibility="no"
+                android:src="@drawable/malefemale_solid" />
 
             <ImageView
                 android:id="@+id/maleImage"
                 android:layout_width="match_parent"
-                android:visibility="invisible"
                 android:layout_height="match_parent"
+                android:importantForAccessibility="no"
                 android:src="@drawable/male_solid"
-                ></ImageView>
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/femaleImage"
-                android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:importantForAccessibility="no"
                 android:src="@drawable/female_solid"
-                ></ImageView>
+                android:visibility="invisible" />
 
         </RelativeLayout>
-       </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

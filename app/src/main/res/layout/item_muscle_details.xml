@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:getImage="@{exercise.gifUrl}"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:importantForAccessibility="no" />
 
         </androidx.cardview.widget.CardView>
 
@@ -64,7 +65,7 @@
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:orientation="horizontal">
@@ -112,7 +113,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/baseline_chevron_right_24"
-            android:backgroundTint="@color/white" />
+            android:backgroundTint="@color/white"
+            android:importantForAccessibility="no" />
 
     </LinearLayout>
 

@@ -10,29 +10,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Explanation"
+            android:text="@string/explanation"
             android:gravity="center"
-            android:textSize="24dp"
-            android:textColor="@color/white"
-            ></TextView>
+            android:textSize="24sp"
+            android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/explanationId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="18dp"
-            android:textColor="@color/white"
-            ></TextView>
+            android:textSize="18sp"
+            android:textColor="@color/white" />
+
         <View
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@drawable/line"
-            android:backgroundTint="#0C0C0C"
-            ></View>
+            android:backgroundTint="#0C0C0C" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,10 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:text="Got It"
+            android:text="@string/got_it"
             android:textColor="@color/red"
-            android:textSize="17dp"
-            ></Button>
+            android:textSize="17sp" />
 
     </LinearLayout>
 

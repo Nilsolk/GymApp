@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -10,28 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingVertical="8dp"
         android:background="@drawable/todo_background"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="8dp"
             android:orientation="vertical"
-            android:padding="5dp"
-            android:layout_gravity="center">
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/itemDay"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Fri"
-                android:textSize="24dp"
                 android:fontFamily="@font/revolutiongothic_light"
                 android:gravity="start"
                 android:textColor="#FF0010"
-                />
+                android:textSize="24sp"
+                tools:text="Fri" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,11 +41,11 @@
                 android:id="@+id/itemDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="23.11.2023"
-                android:textSize="18dp"
-                android:textColor="#FF0010"
                 android:fontFamily="@font/revolutiongothic_light"
-                android:gravity="top"/>
+                android:gravity="top"
+                android:textColor="#FF0010"
+                android:textSize="18sp"
+                tools:text="23.11.2023" />
 
             <TextView
                 android:id="@+id/toDoText"
@@ -55,13 +53,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/revolutiongothic_light"
                 android:paddingEnd="5dp"
                 android:textAlignment="textStart"
-                android:fontFamily="@font/revolutiongothic_light"
-                android:text="Triceps bastım, birde üst göğüs ile beraber omuz su da var "
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry"
+                tools:text="Triceps" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,28 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculators"
-            android:textSize="25dp"
+            android:text="@string/calculators"
+            android:textSize="25sp"
             android:textColor="@color/white"
             android:gravity="center"
             android:paddingBottom="13dp"
             android:clickable="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:cursorVisible="false"
-            ></TextView>
+            android:fontFamily="@font/revolutiongothic_extra_bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@drawable/line"
-            android:backgroundTint="@color/light_gray"
-            ></View>
+            android:backgroundTint="@color/light_gray" />
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,8 +44,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/calculators_background"
-            >
+            android:background="@drawable/calculators_background">
 
             <ImageButton
                 android:id="@+id/bodyFatPercentageImage"
@@ -57,7 +53,7 @@
                 android:src="@drawable/yagorani"
                 android:backgroundTint="#1D1E20"
                 android:padding="50dp"
-                >
+                android:importantForAccessibility="no">
             </ImageButton>
 
             <TextView
@@ -66,11 +62,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/bodyFatPercentageImage"
                 android:gravity="center"
-                android:text="Body Fat Percentage"
+                android:text="@string/body_fat_percentage"
                 android:textColor="@color/white"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:textSize="20dp"
-                android:paddingBottom="15dp"></TextView>
+                android:textSize="20sp"
+                android:paddingBottom="15dp" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -79,7 +75,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-       >
+       android:baselineAligned="false">
 
 
        <LinearLayout
@@ -103,20 +99,19 @@
                    android:src="@drawable/half_apple"
                    android:backgroundTint="#1D1E20"
                    android:padding="50dp"
-                   >
+                   android:importantForAccessibility="no">
                </ImageButton>
 
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Calorie"
+                   android:text="@string/calorie"
                    android:textColor="@color/white"
                    android:fontFamily="@font/revolutiongothic_extra_bold"
-                   android:textSize="20dp"
+                   android:textSize="20sp"
                    android:layout_alignBottom="@+id/calorieImage"
                    android:gravity="center"
-                   android:paddingBottom="10dp"
-                   ></TextView>
+                   android:paddingBottom="10dp" />
 
 
            </RelativeLayout>
@@ -143,20 +138,19 @@
                    android:src="@drawable/idealkilo"
                    android:backgroundTint="#1D1E20"
                    android:padding="50dp"
-                   >
+                   android:importantForAccessibility="no">
                </ImageButton>
 
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Ideal Weight"
+                   android:text="@string/ideal_weight"
                    android:textColor="@color/white"
                    android:fontFamily="@font/revolutiongothic_extra_bold"
-                   android:textSize="20dp"
+                   android:textSize="20sp"
                    android:layout_alignBottom="@+id/idealWeightImage"
                    android:gravity="center"
-                   android:paddingBottom="10dp"
-                   ></TextView>
+                   android:paddingBottom="10dp" />
 
 
            </RelativeLayout>
@@ -170,7 +164,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        android:baselineAligned="false">
 
 
         <LinearLayout
@@ -194,20 +188,19 @@
                     android:src="@drawable/jump_rope__1_"
                     android:backgroundTint="#1D1E20"
                     android:padding="50dp"
-                    >
+                    android:importantForAccessibility="no">
                 </ImageButton>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jumping Rope"
+                    android:text="@string/jumping_rope"
                     android:textColor="@color/white"
                     android:fontFamily="@font/revolutiongothic_extra_bold"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_alignBottom="@+id/jumpingRopeImage"
                     android:gravity="center"
-                    android:paddingBottom="10dp"
-                    ></TextView>
+                    android:paddingBottom="10dp" />
 
 
             </RelativeLayout>
@@ -218,7 +211,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-
+            <!-- TODO changeIcons -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,7 +219,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/calculators_background">
-
                 <ImageButton
                     android:id="@+id/oneRmImage"
                     android:layout_width="match_parent"
@@ -234,26 +226,21 @@
                     android:src="@drawable/onerm"
                     android:backgroundTint="#1D1E20"
                     android:padding="50dp"
-                    >
+                    android:importantForAccessibility="no">
                 </ImageButton>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1RM"
+                    android:text="@string/_1rm"
                     android:textColor="@color/white"
                     android:fontFamily="@font/revolutiongothic_extra_bold"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_alignBottom="@+id/oneRmImage"
                     android:gravity="center"
-                    android:paddingBottom="10dp"
-                    ></TextView>
-
+                    android:paddingBottom="10dp" />
 
             </RelativeLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
 </LinearLayout>

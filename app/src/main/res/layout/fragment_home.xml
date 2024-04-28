@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/revolutiongothic_light"
-                    android:text="Good morning,"
+                    android:text="@string/good_morning"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/revolutiongothic_regular"
-            android:text="Today's effort makes you who you'll be tomorrow.\nGive it your best."
+            android:text="@string/today_s_effort_makes_you_who_you_ll_be_tomorrow_give_it_your_best"
             android:textColor="@color/silver"
             android:textSize="18sp"
             tools:ignore="HardcodedText" />
@@ -96,7 +96,7 @@
             android:background="@drawable/round_6dp_background"
             android:backgroundTint="@color/light_gray"
             android:orientation="horizontal"
-            android:padding="15dp">
+            android:padding="24dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.RopeCalorieBurnedFragment"
     android:background="@color/gray"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragment.RopeCalorieBurnedFragment">
 
 
     <LinearLayout
@@ -27,22 +26,22 @@
                 android:layout_marginVertical="5dp"
                 android:layout_marginStart="15dp"
                 android:background="@color/gray"
-                android:src="@drawable/calculators_left"/>
+                android:importantForAccessibility="no"
+                android:src="@drawable/calculators_left" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/light_gray"
                 android:clickable="false"
-                android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:gravity="center"
                 android:paddingBottom="15dp"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:text="Jumping Rope Calculator"
+                android:text="@string/jumping_rope_calculator"
                 android:textColor="@color/white"
-                android:textSize="25dp"/>
+                android:textSize="23sp" />
 
             <ImageButton
                 android:id="@+id/infoImage"
@@ -51,7 +50,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="15dp"
                 android:background="@color/gray"
-                android:src="@drawable/icon_info"/>
+                android:importantForAccessibility="no"
+                android:src="@drawable/icon_info" />
         </RelativeLayout>
 
         <View
@@ -59,7 +59,7 @@
             android:layout_height="2dp"
             android:layout_marginTop="7dp"
             android:background="@drawable/line"
-            android:backgroundTint="@color/light_gray"/>
+            android:backgroundTint="@color/light_gray" />
     </LinearLayout>
 
 
@@ -77,13 +77,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Weight in kg"
             android:fontFamily="@font/revolutiongothic_light"
-            android:paddingBottom="28dp"
+            android:hint="@string/weight_in_kg"
+            android:importantForAutofill="no"
             android:inputType="number"
+            android:paddingBottom="28dp"
             android:textColor="@color/white"
             android:textColorHint="@color/silver"
-            android:textSize="23dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/falseWeightText"
@@ -91,240 +92,239 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="16dp"
-            android:visibility="invisible"
-            android:text="Invalid weight : must be lower than and 500"
-            android:textColor="@color/red"/>
+            android:text="@string/invalid_weight_must_be_lower_than_and_500"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/hoursEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Hours"
                 android:fontFamily="@font/revolutiongothic_light"
+                android:hint="@string/hours"
+                android:importantForAutofill="no"
+                android:inputType="number"
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
-                android:inputType="number"
-                android:textSize="23dp" />
+                android:textSize="23sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/minutesEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Minutes"
                 android:fontFamily="@font/revolutiongothic_light"
+                android:hint="@string/minutes"
+                android:importantForAutofill="no"
+                android:inputType="number"
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
-                android:inputType="number"
-                android:textSize="23dp" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
 
-   <TableLayout
-       android:layout_marginTop="25dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="20dp"
-       android:layout_marginEnd="20dp"
-       >
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp">
 
-    <TableRow>
+        <TableRow>
 
-        <TextView
-            android:layout_column="1"
-            android:padding="10dp"
-            android:text="Type of Activity"
-            android:layout_gravity="start"
-            android:textColor="@color/white"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="22dp" />
+            <TextView
+                android:layout_column="1"
+                android:layout_gravity="start"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:padding="10dp"
+                android:text="@string/type_of_activity"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-        <TextView
-            android:text="MET"
-            android:layout_column="2"
-            android:padding="10dp"
-            android:layout_marginStart="18dp"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="22dp"
-            />
+            <TextView
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:padding="10dp"
+                android:text="@string/met"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="77dp"
-            android:layout_column="3"
-            android:padding="10dp"
-            android:layout_gravity="end"
-            android:text="Burned"
-            android:layout_marginStart="15dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="22dp" />
-    </TableRow>
+            <TextView
+                android:layout_width="77dp"
+                android:layout_column="3"
+                android:layout_gravity="end"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:padding="10dp"
+                android:text="@string/burned"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </TableRow>
 
-       <TableRow>
+        <TableRow>
 
-           <TextView
-               android:layout_column="1"
-               android:layout_gravity="start"
-               android:padding="10dp"
-               android:text="Slow pace&#10; &lt; 100 skips/min &#10; 2 foot skip &#10;rhythm bounce"
-               android:textColor="@color/white"
-               android:textSize="15dp" ></TextView>
+            <TextView
+                android:layout_column="1"
+                android:layout_gravity="start"
+                android:padding="10dp"
+                android:text="@string/slow_pace_10_lt_100_skips_min_10_2_foot_skip_10_rhythm_bounce"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
-           <TextView
-               android:layout_column="2"
-               android:padding="10dp"
-               android:text="8.8"
-               android:layout_marginStart="18dp"
-               android:layout_gravity="center"
-               android:gravity="center"
-               android:textColor="@color/white"
-               android:textSize="20dp" ></TextView>
+            <TextView
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="8.8" />
 
-           <TextView
-               android:id="@+id/slowPaceBurned"
-               android:layout_column="3"
-               android:layout_gravity="center|end"
-               android:padding="10dp"
-               android:text="NaN"
-               android:layout_marginStart="15dp"
-               android:textColor="@color/red"
-               android:textSize="18dp" ></TextView>
-       </TableRow>
+            <TextView
+                android:id="@+id/slowPaceBurned"
+                android:layout_column="3"
+                android:layout_gravity="center|end"
+                android:layout_marginStart="15dp"
+                android:padding="10dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                tools:text="NaN" />
+        </TableRow>
 
-       <TableRow>
+        <TableRow>
 
-           <TextView
-               android:layout_column="1"
-               android:layout_gravity="start"
-               android:padding="10dp"
-               android:text="Moderate pace,&#10;100-120 skips/min,&#10;2 foot skip,&#10;plain bounce"
-               android:textColor="@color/white"
-               android:textSize="15dp" ></TextView>
+            <TextView
+                android:layout_column="1"
+                android:layout_gravity="start"
+                android:padding="10dp"
+                android:text="@string/moderate_pace_10_100_120_skips_min_10_2_foot_skip_10_plain_bounce"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
-           <TextView
-               android:layout_column="2"
-               android:padding="10dp"
-               android:text="11.8"
-               android:layout_marginStart="18dp"
-               android:layout_gravity="center"
-               android:gravity="center"
-               android:textColor="@color/white"
-               android:textSize="20dp" ></TextView>
+            <TextView
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                tools:text="11.8"
+                tools:textSize="20sp" />
 
-           <TextView
-               android:id="@+id/moderatePaceBurned"
-               android:layout_column="3"
-               android:layout_gravity="center|end"
-               android:padding="10dp"
-               android:text="NaN"
-               android:layout_marginStart="15dp"
-               android:textColor="@color/red"
-               android:textSize="18dp" ></TextView>
-       </TableRow>
+            <TextView
+                android:id="@+id/moderatePaceBurned"
+                android:layout_column="3"
+                android:layout_gravity="center|end"
+                android:layout_marginStart="15dp"
+                android:padding="10dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                tools:text="NaN" />
+        </TableRow>
 
-       <TableRow>
+        <TableRow>
 
-           <TextView
-               android:layout_column="1"
-               android:layout_gravity="start|center"
-               android:padding="10dp"
-               android:text="Rope skipping, general"
-               android:textColor="@color/white"
-               android:textSize="15dp" ></TextView>
+            <TextView
+                android:layout_column="1"
+                android:layout_gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/rope_skipping_general"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
-           <TextView
-               android:layout_column="2"
-               android:padding="10dp"
-               android:text="12.3"
-               android:layout_marginStart="18dp"
-               android:layout_gravity="center"
-               android:gravity="center"
-               android:textColor="@color/white"
-               android:textSize="20dp"  ></TextView>
+            <TextView
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="12.3" />
 
 
-           <TextView
-               android:id="@+id/generalBurned"
-               android:layout_column="3"
-               android:layout_gravity="center|end"
-               android:padding="10dp"
-               android:text="NaN"
-               android:layout_marginStart="15dp"
-               android:textColor="@color/red"
-               android:textSize="18dp"  ></TextView>
+            <TextView
+                android:id="@+id/generalBurned"
+                android:layout_column="3"
+                android:layout_gravity="center|end"
+                android:layout_marginStart="15dp"
+                android:padding="10dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                tools:text="NaN" />
 
-       </TableRow>
+        </TableRow>
 
-       <TableRow>
+        <TableRow>
 
-           <TextView
-               android:layout_column="1"
-               android:layout_gravity="start|center"
-               android:padding="10dp"
-               android:text="Fast pace,&#10;120-160 skips/min"
-               android:textColor="@color/white"
-               android:textSize="15dp"  ></TextView>
-
-
-           <TextView
-               android:layout_column="2"
-               android:padding="10dp"
-               android:text="12.3"
-               android:layout_marginStart="18dp"
-               android:layout_gravity="center"
-               android:gravity="center"
-               android:textColor="@color/white"
-               android:textSize="20dp"  ></TextView>
+            <TextView
+                android:layout_column="1"
+                android:layout_gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/fast_pace_10_120_160_skips_min"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
 
-           <TextView
-               android:id="@+id/fastPaceBurned"
-               android:layout_column="3"
-               android:layout_gravity="center|end"
-               android:padding="10dp"
-               android:text="NaN"
-               android:layout_marginStart="15dp"
-               android:textColor="@color/red"
-               android:textSize="18dp"  ></TextView>
+            <TextView
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="12.3" />
 
-       </TableRow>
 
-   </TableLayout>
+            <TextView
+                android:id="@+id/fastPaceBurned"
+                android:layout_column="3"
+                android:layout_gravity="center|end"
+                android:layout_marginStart="15dp"
+                android:padding="10dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                tools:text="NaN" />
+
+        </TableRow>
+
+    </TableLayout>
 
 
 </LinearLayout>

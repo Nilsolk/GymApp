@@ -131,7 +131,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:text="Gender"
+            android:text="@string/gender"
             android:textColor="@color/white"
             android:textSize="21sp" />
 

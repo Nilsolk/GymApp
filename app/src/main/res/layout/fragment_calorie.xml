@@ -27,22 +27,22 @@
                 android:layout_marginVertical="5dp"
                 android:layout_marginStart="15dp"
                 android:background="@color/gray"
-                android:src="@drawable/calculators_left"/>
+                android:importantForAccessibility="no"
+                android:src="@drawable/calculators_left" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/light_gray"
                 android:clickable="false"
-                android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
                 android:gravity="center"
                 android:paddingBottom="15dp"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:text="Calorie Calculator"
+                android:text="@string/calorie_calculator"
                 android:textColor="@color/white"
-                android:textSize="25dp"/>
+                android:textSize="25sp" />
 
             <ImageButton
                 android:id="@+id/infoImage"
@@ -51,7 +51,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="15dp"
                 android:background="@color/gray"
-                android:src="@drawable/icon_info"/>
+                android:importantForAccessibility="no"
+                android:src="@drawable/icon_info" />
         </RelativeLayout>
 
         <View
@@ -59,7 +60,7 @@
             android:layout_height="2dp"
             android:layout_marginTop="7dp"
             android:background="@drawable/line"
-            android:backgroundTint="@color/light_gray"/>
+            android:backgroundTint="@color/light_gray" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,12 +77,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Fat Percentage"
             android:fontFamily="@font/revolutiongothic_light"
+            android:hint="@string/fat_percentage_calc"
+            android:importantForAutofill="no"
+            android:inputType="number"
             android:paddingBottom="28dp"
             android:textColor="@color/white"
             android:textColorHint="@color/silver"
-            android:textSize="23dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/falseFatPercentageText"
@@ -89,10 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="16dp"
-            android:visibility="invisible"
-            android:text="Invalid body fat : must be between 2 and 60"
-            android:textColor="@color/red"/>
+            android:text="@string/invalid_body_fat_must_be_between_2_and_60"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
@@ -108,12 +111,14 @@
             android:id="@+id/bodyWeightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Body Weight"
             android:fontFamily="@font/revolutiongothic_light"
+            android:hint="@string/body_weight"
+            android:importantForAutofill="no"
+            android:inputType="number"
             android:paddingBottom="28dp"
             android:textColor="@color/white"
             android:textColorHint="@color/silver"
-            android:textSize="23dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/falsebodyWeightText"
@@ -121,13 +126,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="16dp"
-            android:visibility="invisible"
             android:text="@string/invalid_body_weight_must_be_between_30_and_250kgs"
-            android:textColor="@color/red" />
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -149,15 +153,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:focusable="false"
-                android:gravity="center|start"
-                android:paddingStart="10dp"
-                android:textSize="22dp"
-                android:hint="@string/choose_your_activity_level"
+                android:focusable="true"
                 android:fontFamily="@font/revolutiongothic_light"
+                android:gravity="center|start"
+                android:hint="@string/choose_your_activity_level"
                 android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:popupBackground="#2D2F33"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="22sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,10 +179,10 @@
             android:id="@+id/calculateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculate"
-            android:textColor="@color/gray"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="20dp"/>
+            android:text="@string/calculate"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
     </LinearLayout>
 
 
@@ -192,21 +197,21 @@
             android:id="@+id/yourBmrText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your BMR is "
             android:fontFamily="@font/revolutiongothic_light"
+            android:text="@string/your_bmr_is"
             android:textColor="@color/white"
-            android:visibility="invisible"
-            android:textSize="18dp"/>
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/bmrCalculateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 1818kcal "
-            android:visibility="invisible"
-            android:textColor="@color/red"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="21dp"/>
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            tools:text=" 1818kcal " />
     </LinearLayout>
 
     <LinearLayout
@@ -220,22 +225,22 @@
             android:id="@+id/yourCalorieText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your calorie need is "
-            android:textColor="@color/white"
-            android:visibility="invisible"
             android:fontFamily="@font/revolutiongothic_light"
-            android:textSize="18dp"/>
+            android:text="@string/your_calorie_need_is"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <TextView
 
             android:id="@+id/calorieCalculateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 1818kcal "
-            android:visibility="invisible"
-            android:textColor="@color/red"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textSize="21dp"/>
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            tools:text=" 1818kcal " />
     </LinearLayout>
 
 

@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.OneRmFragment"
     android:background="@color/gray"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragment.OneRmFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:id="@+id/goBackImage"
-                android:layout_marginStart="15dp"
-                android:layout_alignParentStart="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/calculators_left"
-                android:background="@color/gray"
+                android:layout_alignParentStart="true"
                 android:layout_marginVertical="5dp"
-                ></ImageButton>
+                android:layout_marginStart="15dp"
+                android:background="@color/gray"
+                android:importantForAccessibility="no"
+                android:src="@drawable/calculators_left" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="15dp"
-                android:text="1 RM Calculator"
-                android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:textColor="@color/white"
-                android:textSize="25dp"
+                android:backgroundTint="@color/light_gray"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:cursorVisible="false"
-                android:backgroundTint="@color/light_gray"
-                ></TextView>
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:text="@string/_1_rm_calculator"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
             <ImageButton
                 android:id="@+id/infoImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@color/gray"
-                android:src="@drawable/icon_info"
                 android:layout_marginEnd="15dp"
-                ></ImageButton>
+                android:background="@color/gray"
+                android:importantForAccessibility="no"
+                android:src="@drawable/icon_info" />
         </RelativeLayout>
+
         <View
-            android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="7dp"
             android:background="@drawable/line"
-            android:backgroundTint="@color/light_gray"
-            ></View>
+            android:backgroundTint="@color/light_gray" />
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
@@ -76,34 +76,34 @@
             android:id="@+id/weightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/silver"
-            android:paddingBottom="28dp"
-            android:textSize="23dp"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:textColor="@color/white"
-            android:hint="Enter your weight in kgs"
             android:ems="10"
-            />
+            android:fontFamily="@font/revolutiongothic_light"
+            android:hint="@string/enter_your_weight_in_kgs"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingBottom="28dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver"
+            android:textSize="24sp" />
+
         <TextView
             android:id="@+id/falseWeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid weight : must be 0 and 500"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textColor="@color/red"
             android:layout_marginStart="3dp"
-            android:visibility="invisible"
-            android:textSize="16dp"
-            android:inputType="number"
-            ></TextView>
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="@string/invalid_weight_must_be_0_and_500"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
@@ -111,47 +111,43 @@
             android:id="@+id/repsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/silver"
-            android:paddingBottom="28dp"
-            android:textSize="23dp"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:textColor="@color/white"
-            android:hint="Enter your number of reps"
             android:ems="10"
-            />
+            android:fontFamily="@font/revolutiongothic_light"
+            android:hint="@string/enter_your_number_of_reps"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingBottom="28dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver"
+            android:textSize="24sp" />
+
         <TextView
             android:id="@+id/falseRepText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Invalid reps : must be between 0 and 10"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:textColor="@color/red"
             android:layout_marginStart="3dp"
-            android:visibility="invisible"
-            android:textSize="16dp"
-            android:inputType="number"
-            ></TextView>
-
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:text="@string/invalid_reps_must_be_between_0_and_10"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="40dp"
             android:id="@+id/repResultRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_rep"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
+            tools:listitem="@layout/item_rep" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>
