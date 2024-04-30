@@ -27,16 +27,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentProfileBinding
 import kotlin.math.abs
+
 class ProfileFragment : Fragment() {
 
     private lateinit var firebaseAuthService: FirebaseAuthService
-    private lateinit var fragmentProfileBinding : FragmentProfileBinding
-    private lateinit var appPreferences : AppPreferences
+    private lateinit var fragmentProfileBinding: FragmentProfileBinding
+    private lateinit var appPreferences: AppPreferences
     private lateinit var mainViewModel: MainViewModel
     private lateinit var customProgress: CustomProgress
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.VISIBLE
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility =
+            View.VISIBLE
         fragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater)
         appPreferences = AppPreferences(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
@@ -52,11 +58,11 @@ class ProfileFragment : Fragment() {
         customProgress.show()
 
         observeProfileDetail()
-        var backgroundDrawable = applyAlphaToDrawableWithDelay(requireContext(),R.drawable.kilogram_background,0.7,1.0,200)
+        var backgroundDrawable: Drawable?
         with(fragmentProfileBinding) {
 
             editProfileLayout.setOnClickListener {
-                    backgroundDrawable = applyAlphaToDrawableWithDelay(
+                backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -64,12 +70,13 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
-                val editProfileAction = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
+                val editProfileAction =
+                    ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
                 Navigation.findNavController(requireView()).navigate(editProfileAction)
             }
 
-            notificationLayout.setOnClickListener {
-                    backgroundDrawable = applyAlphaToDrawableWithDelay(
+            statisticLayout.setOnClickListener {
+                backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -77,9 +84,12 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
+
+                val action = ProfileFragmentDirections.actionProfileFragmentToStatisticFragment()
+                Navigation.findNavController(requireView()).navigate(action)
             }
             calculatorsLayout.setOnClickListener {
-                    backgroundDrawable = applyAlphaToDrawableWithDelay(
+                backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -93,7 +103,7 @@ class ProfileFragment : Fragment() {
             }
 
             languageLayout.setOnClickListener {
-                    backgroundDrawable = applyAlphaToDrawableWithDelay(
+                backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -105,7 +115,7 @@ class ProfileFragment : Fragment() {
 
             logoutLayout.setOnClickListener {
 
-                    backgroundDrawable = applyAlphaToDrawableWithDelay(
+                backgroundDrawable = applyAlphaToDrawableWithDelay(
                     requireContext(),
                     R.drawable.kilogram_background,
                     0.7,
@@ -116,7 +126,7 @@ class ProfileFragment : Fragment() {
 
                 firebaseAuthService.signOut()
                 appPreferences.removeKey("rememberMe")
-                val intent = Intent(requireActivity(),AuthenticationActivity::class.java)
+                val intent = Intent(requireActivity(), AuthenticationActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
 
@@ -125,9 +135,10 @@ class ProfileFragment : Fragment() {
     }
 
 
-
-    private fun applyAlphaToDrawableWithDelay(context: Context, drawableResId: Int, initialAlpha: Double, finalAlpha: Double,
-                                              delayMillis: Long): Drawable? {
+    private fun applyAlphaToDrawableWithDelay(
+        context: Context, drawableResId: Int, initialAlpha: Double, finalAlpha: Double,
+        delayMillis: Long
+    ): Drawable? {
         val backgroundDrawable = ContextCompat.getDrawable(context, drawableResId)?.mutate()
         backgroundDrawable?.colorFilter = PorterDuffColorFilter(
             Color.parseColor("#232529"),
@@ -146,19 +157,23 @@ class ProfileFragment : Fragment() {
             if (userProfileDetails != null) {
                 fragmentProfileBinding.rootLinearForProfile.visibility = View.VISIBLE
                 fragmentProfileBinding.profileImage.downloadImageFromURL(userProfileDetails.profileImageURL.toString())
-                fragmentProfileBinding.usernameAndAgeText.text = "${userProfileDetails.username} , ${userProfileDetails.age}"
+                fragmentProfileBinding.usernameAndAgeText.text =
+                    "${userProfileDetails.username} , ${userProfileDetails.age}"
                 fragmentProfileBinding.userEmailText.text = "${userProfileDetails.email}"
                 fragmentProfileBinding.startWeightText.text = "${userProfileDetails.weight}"
                 fragmentProfileBinding.targetWeightText.text = "${userProfileDetails.targetWeight}"
-                fragmentProfileBinding.weightDifferencesText.text = "${calculateWeightDifference(userProfileDetails.targetWeight!!,userProfileDetails.weight!!)}"
+                fragmentProfileBinding.weightDifferencesText.text = calculateWeightDifference(
+                    userProfileDetails.targetWeight!!,
+                    userProfileDetails.weight!!
+                )
                 fragmentProfileBinding.goalText.text = "${userProfileDetails.goal}"
             }
         })
     }
 
-    private fun calculateWeightDifference(targetWeight : Double, startWeight : Double) : String {
-        val differences = abs(targetWeight-startWeight)
-        return formatDoubleUsingSplit(differences,2)
+    private fun calculateWeightDifference(targetWeight: Double, startWeight: Double): String {
+        val differences = abs(targetWeight - startWeight)
+        return formatDoubleUsingSplit(differences, 2)
     }
 
     private fun formatDoubleUsingSplit(doubleValue: Double, decimalPlaces: Int): String {

@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_profileFragment_to_profileEditFragment"
             app:destination="@id/profileEditFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_statisticFragment"
+            app:destination="@id/statisticFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutFragment"
@@ -188,6 +191,15 @@
         <action
             android:id="@+id/action_ropeCalorieBurnedFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="ru.nilsolk.gymapp.fragment.StatisticFragment"
+        android:label="fragment_statistic"
+        tools:layout="@layout/fragment_statistic" >
+        <action
+            android:id="@+id/action_statisticFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
 </navigation>

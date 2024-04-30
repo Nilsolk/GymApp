@@ -15,10 +15,10 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
     private val firestoreService = FirebaseFirestoreService(application.applicationContext)
     private val firebaseAuthService = FirebaseAuthService(application.applicationContext)
     private val currentEmail = firebaseAuthService.getCurrentUserEmail()
-    private val userDocumentReference = firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
+    private val userDocumentReference =
+        firestoreService.firestore.collection("toDoRecyclerViewItems").document(currentEmail)
 
-    fun addToDoItem(todoArray : ToDoModel, callback: (Boolean) -> Unit) {
-
+    fun addToDoItem(todoArray: ToDoModel, callback: (Boolean) -> Unit) {
         val currentTimeStamp = System.currentTimeMillis()
         val dataMap = hashMapOf(
             "selectedDay" to todoArray.selectedDay,
@@ -38,6 +38,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                 }
             }
     }
+
     fun getToDoItems(callback: (List<ToDoModel>) -> Unit) {
         userDocumentReference.collection("toDoRecyclerViewItems")
             .get()
@@ -51,7 +52,16 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                         val todoText = document.getString("todoText") ?: ""
                         val todoId = document.getString("todoId") ?: ""
                         val createdAt = document.getLong("createdAt")
-                        val toDoItem = ToDoModel(selectedDay, selectedDate, todoText, todoId,createdAt)
+                        val muscleGroup = document.getString("muscleGroup") ?: ""
+                        val toDoItem =
+                            ToDoModel(
+                                selectedDay,
+                                selectedDate,
+                                todoText,
+                                todoId,
+                                createdAt,
+                                muscleGroup
+                            )
                         toDoList.add(toDoItem)
                     }
 
@@ -62,10 +72,11 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                 }
             }
     }
+
     fun deleteToDoItem(todoId: String?) {
         if (todoId != null) {
             userDocumentReference.collection("toDoRecyclerViewItems")
-                .whereEqualTo("todoId" ,todoId)
+                .whereEqualTo("todoId", todoId)
                 .get()
                 .addOnCompleteListener { querySnapshot ->
                     if (querySnapshot.isSuccessful) {
@@ -73,14 +84,11 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                             document.reference.delete()
                         }
 
-                    } else {
-
                     }
                 }
-        } else {
-
         }
     }
+
     private fun showErrorToastMessage(error: String) {
         Toast.makeText(application.applicationContext, error, Toast.LENGTH_LONG).show()
     }

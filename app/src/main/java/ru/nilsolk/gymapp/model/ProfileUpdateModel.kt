@@ -6,5 +6,4 @@ data class ProfileUpdateModel(
     var age: String?,
     var weight: Double?,
     var targetWeight: Double?
- // diğerleri null dönmeyecek mi n nasıl update yapiyz bazi belli verilerde digerleri etkilenmez
     )

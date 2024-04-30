@@ -19,6 +19,13 @@
     <string name="back_to_sign_up">Back to Sign Up</string>
     <string name="age">Age</string>
     <string name="weightLoss">Weight Loss</string>
+    <string name="week">Week</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="three_day">Three days</string>
+    <string name="three_month">Three months</string>
+    <string name="six_month">Six months</string>
+
     <string name="weightGain">Weight Gain</string>
     <string name="increaseEndurance">Increase Endurance</string>
     <string name="buildMuscleMass">Build Muscle Mass</string>
@@ -183,4 +190,6 @@
     <string name="to_do_box">To-Do Box</string>
     <string name="i_ll_make_20_push_up">I\'ll make 20 push up</string>
     <string name="cancel">Cancel</string>
+    <string name="choose_date">Choose date</string>
+    <string name="total_exercises">Total exercises = </string>
 </resources>

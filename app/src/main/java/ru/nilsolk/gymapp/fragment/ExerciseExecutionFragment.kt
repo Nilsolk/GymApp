@@ -47,7 +47,11 @@ class ExerciseExecutionFragment : Fragment() {
     private val executionViewModel: ExecutionViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentExerciseExecutionBinding.inflate(inflater)
         customProgress = CustomProgress(requireContext())
         countDownDialog = CountDownDialog(requireContext())
@@ -96,7 +100,11 @@ class ExerciseExecutionFragment : Fragment() {
                 }
             }
         } else {
-            Toast.makeText(requireContext(), "Please enter the number and sets of repetitions.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Please enter the number and sets of repetitions.",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -151,14 +159,26 @@ class ExerciseExecutionFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveExerciseData() {
-        val currentYear: String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
-        val exerciseData = ExecutionModel(exerciseItem.name, enteredWeight.toDouble(), enteredType, enteredSets.toInt(), enteredReps.toInt(), currentYear)
+        val currentYear: String = SimpleDateFormat(
+            "dd MMMM yyyy",
+            Locale.getDefault()
+        ).format(Calendar.getInstance().time)
+        val exerciseData = ExecutionModel(
+            exerciseItem.name,
+            enteredWeight.toDouble(),
+            enteredType,
+            enteredSets.toInt(),
+            enteredReps.toInt(),
+            currentYear,
+            exerciseItem.bodyPart
+        )
         customProgress.show()
         executionViewModel.saveWorkout(exerciseData) { result, message ->
             customProgress.dismiss()
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             if (result) {
-                val action = ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
+                val action =
+                    ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
                 findNavController().navigate(action)
             }
         }
@@ -220,8 +240,18 @@ class ExerciseExecutionFragment : Fragment() {
             enteredSets = setsEditText.text.toString()
             enteredReps = repsEditText.text.toString()
 
-            if (listOf(enteredWeight, enteredSets, enteredReps, selectedType).any { it.isNullOrEmpty() }) {
-                Toast.makeText(requireContext(), getString(R.string.please_fill_in_the_empty_fields), Toast.LENGTH_SHORT).show()
+            if (listOf(
+                    enteredWeight,
+                    enteredSets,
+                    enteredReps,
+                    selectedType
+                ).any { it.isNullOrEmpty() }
+            ) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.please_fill_in_the_empty_fields),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 binding.selectedWeight.text = "$enteredWeight $selectedType"
                 binding.selectedSets.text = "$enteredSets SET"

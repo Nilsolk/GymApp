@@ -136,9 +136,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
                 toDoAdapter.todoArray.addAll(arrayListToDoList)
                 toDoAdapter.notifyDataSetChanged()
             } else {
-                //There is not item current day is null can be shown
-                //if user uses search bar currenday has to be remove and if items show up
-                //emptyText should be viewGone otherwise show empty text
                 toDoAdapter.todoArray.clear()
                 fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
                 fragmentCalenderBinding.emptyText.visibility = View.GONE
@@ -170,13 +167,14 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     private fun setUpAdapter() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
-        adapter = CalendarAdapter(fragmentCalenderBinding.recyclerView) { calendarDateModel: CalendarDateModel, position: Int ->
-            calendarList2.forEachIndexed { index, calendarModel ->
-                calendarModel.isSelected = index == position
+        adapter =
+            CalendarAdapter(fragmentCalenderBinding.recyclerView) { calendarDateModel: CalendarDateModel, position: Int ->
+                calendarList2.forEachIndexed { index, calendarModel ->
+                    calendarModel.isSelected = index == position
+                }
+                adapter.setData(calendarList2)
+                adapter.setOnItemClickListener(this@CalendarFragment)
             }
-            adapter.setData(calendarList2)
-            adapter.setOnItemClickListener(this@CalendarFragment)
-        }
         recyclerView.adapter = adapter
     }
 
@@ -192,6 +190,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             calendarList.add(CalendarDateModel(monthCalendar.time))
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
+
         calendarList2.clear()
         calendarList2.addAll(calendarList)
         adapter.setOnItemClickListener(this@CalendarFragment)
@@ -243,7 +242,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             val uniqueId = UUID.randomUUID().toString().substring(0, 12)
             val currentTimeStamp = System.currentTimeMillis()
             val newTodoItem =
-                ToDoModel(selectedDay, selectedDate, dialogEditText, uniqueId, currentTimeStamp)
+                ToDoModel(selectedDay, selectedDate, dialogEditText, uniqueId, currentTimeStamp, "")
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
                     fragmentCalenderBinding.isEmptyText.visibility = View.GONE
@@ -260,9 +259,9 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
 
     private fun calendarSearch() = with(fragmentCalenderBinding) {
         calendarSearchView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             @SuppressLint("NotifyDataSetChanged")
             override fun afterTextChanged(p0: Editable?) {
@@ -271,7 +270,12 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
                 if (searchText.isNotEmpty()) {
                     calendarViewModel.getToDoItems { toDoList ->
                         val filteredToDoText = if (isSelected)
-                            toDoList.filter { it.todoText!!.contains(searchText, ignoreCase = true) }
+                            toDoList.filter {
+                                it.todoText!!.contains(
+                                    searchText,
+                                    ignoreCase = true
+                                )
+                            }
                         else arrayListOf()
 
                         if (filteredToDoText.isNotEmpty()) {
@@ -309,21 +313,19 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     }
 
 
-
     private fun observeIndexExists() {
         calendarViewModel.indexExists.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { indexExists ->
-                if (!indexExists){
+                if (!indexExists) {
                     fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
-                }
-                else fragmentCalenderBinding.isEmptyText.visibility = View.GONE
+                } else fragmentCalenderBinding.isEmptyText.visibility = View.GONE
             })
     }
 
-    private fun todoTextAnimation()
-    {
-        val blinkAnimForToDoText = AlphaAnimation(1f,0f)
+
+    private fun todoTextAnimation() {
+        val blinkAnimForToDoText = AlphaAnimation(1f, 0f)
         blinkAnimForToDoText.duration = 500
         blinkAnimForToDoText.repeatMode = Animation.REVERSE
         blinkAnimForToDoText.repeatCount = Animation.INFINITE
