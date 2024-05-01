@@ -8,15 +8,38 @@
     android:orientation="vertical"
     tools:context=".fragment.ChosenProgramFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/revolutiongothic_regular"
-        android:text="your_training plan is"
-        android:textColor="@color/silver"
-        android:textSize="18sp" />
+        android:layout_marginTop="12dp"
+        android:background="@drawable/round_6dp_background"
+        android:backgroundTint="@color/light_gray"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/revolutiongothic_regular"
+            android:text="@string/your_training_plan_is"
+            android:textColor="@color/silver"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/training_program_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/revolutiongothic_regular"
+            android:textColor="@color/silver"
+            android:textSize="18sp"
+            tools:text="@string/your_training_plan_is" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,14 +74,13 @@
             app:progressView_labelColorOuter="@color/black"
             app:progressView_labelSize="13sp"
             app:progressView_labelSpace="10dp"
-            app:progressView_labelText="achieve 65%"
+            app:progressView_labelText="your progress"
             app:progressView_labelTypeface="bold"
             app:progressView_max="100"
-            app:progressView_min="15"
             app:progressView_padding="1dp"
-            app:progressView_progress="40"
+            app:progressView_progress="0"
             app:progressView_progressFromPrevious="true"
-            app:progressView_radius="12dp" />
+            app:progressView_radius="8dp" />
 
     </LinearLayout>
 
@@ -68,7 +90,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="12dp"
         android:fontFamily="@font/revolutiongothic_extra_bold"
-        android:text="Exercises for today"
+        android:text="@string/exercises_for_today"
         android:textColor="@color/streak"
         android:textSize="21sp" />
 

@@ -177,4 +177,14 @@
     <string name="start_program">Начать программу</string>
     <string name="program">Программа</string>
     <string name="your_progress_in_chosen_training_program">Ваш прогресс выполнения программы</string>
+    <string name="your_body_fat_percentage">Процент жира в организме можно оценить с помощью таких измерений, как окружность талии, масса тела и рост.</string>
+    <string name="your_bmr_and_calorie">Ваш BMR и потребности в калориях рассчитываются на основе введенного вами процентного содержания жира и массы тела. Для этого используется формула Кэтча-Макардла.</string>
+    <string name="please_choose_your_gender">Пожалуйста, выберите свой пол</string>
+    <string name="invalid_number_format">Неверный формат номера</string>
+    <string name="above">" Выше"</string>
+    <string name="your_ideal_weight_can_be_determined_by_considering_your_body_weight_and_fat_percentage_the_hamwi_formula_is_employed_in_this_calculation">Ваш идеальный вес можно определить, учитывая массу тела и процент жира. В этом расчете используется формула Хамви</string>
+    <string name="your_1_repetition_maximum">Ваш максимум 1 повторения (1ПМ) рассчитывается на основе введенного вами веса и количества повторений. Для этого расчета используется формула Уотена.</string>
+    <string name="invalid_username_must_be_different_than_before">Неверное имя пользователя: должно быть другим</string>
+    <string name="exercises_for_today">Упражнения на сегодня</string>
+    <string name="your_training_plan_is">Ваша тренировочная программа</string>
 </resources>

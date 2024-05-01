@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
 import ru.nilsolk.gymapp.fragment.ChosenProgramFragmentDirections
-import ru.nilsolk.gymapp.fragment.MusclesDetailFragmentDirections
 import ru.nilsolk.gymapp.model.BodyPartExercisesItem
 
 class ChosenProgramAdapter(private val exercises: List<BodyPartExercisesItem>) :

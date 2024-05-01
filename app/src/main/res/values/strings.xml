@@ -203,4 +203,6 @@
     <string name="your_ideal_weight_can_be_determined_by_considering_your_body_weight_and_fat_percentage_the_hamwi_formula_is_employed_in_this_calculation">"Your ideal weight can be determined by considering your body weight and fat percentage. The Hamwi Formula is employed in this calculation. "</string>
     <string name="your_1_repetition_maximum">Your 1 Repetition Maximum (1RM) is calculated based on the weight and repetition count you enter. The Wathen Formula is employed for this calculation</string>
     <string name="invalid_username_must_be_different_than_before">Invalid username :  must be different than before</string>
+    <string name="exercises_for_today">Exercises for today</string>
+    <string name="your_training_plan_is">Your training plan is</string>
 </resources>

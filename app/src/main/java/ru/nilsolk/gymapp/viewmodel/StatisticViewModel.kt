@@ -5,7 +5,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.model.ToDoModel
 import ru.nilsolk.gymapp.service.FirebaseAuthService
 import ru.nilsolk.gymapp.service.FirebaseFirestoreService

@@ -9,23 +9,22 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.nilsolk.gymapp.R
+import ru.nilsolk.gymapp.databinding.FragmentProfileBinding
 import ru.nilsolk.gymapp.service.FirebaseAuthService
 import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
 import ru.nilsolk.gymapp.view.AuthenticationActivity
 import ru.nilsolk.gymapp.viewmodel.MainViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import ru.nilsolk.gymapp.R
-import ru.nilsolk.gymapp.databinding.FragmentProfileBinding
 import kotlin.math.abs
 
 class ProfileFragment : Fragment() {

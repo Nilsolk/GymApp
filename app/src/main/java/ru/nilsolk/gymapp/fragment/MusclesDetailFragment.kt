@@ -2,20 +2,19 @@ package ru.nilsolk.gymapp.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.adapter.ExercisesAdapter
+import ru.nilsolk.gymapp.databinding.FragmentMusclesDetailBinding
 import ru.nilsolk.gymapp.model.BodyPartExercises
 import ru.nilsolk.gymapp.model.MuscleGroupModel
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
 import ru.nilsolk.gymapp.viewmodel.MuscleExercisesViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import ru.nilsolk.gymapp.R
-import ru.nilsolk.gymapp.databinding.FragmentMusclesDetailBinding
 
 class MusclesDetailFragment : Fragment() {
 
@@ -24,9 +23,14 @@ class MusclesDetailFragment : Fragment() {
     private lateinit var binding: FragmentMusclesDetailBinding
     private val muscleExercisesViewModel: MuscleExercisesViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentMusclesDetailBinding.inflate(layoutInflater)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility =
+            View.VISIBLE
 
         bodyPartExercises = BodyPartExercises()
         exercisesAdapter = ExercisesAdapter(bodyPartExercises)
@@ -58,7 +62,6 @@ class MusclesDetailFragment : Fragment() {
             }
         }
     }
-
 
 
 }
