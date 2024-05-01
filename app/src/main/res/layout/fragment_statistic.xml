@@ -118,9 +118,9 @@
             android:backgroundTint="@color/light_gray"
             android:focusableInTouchMode="false"
             android:fontFamily="@font/revolutiongothic_light"
-            android:text="@string/zero"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            tools:text="@string/zero" />
 
     </LinearLayout>
 

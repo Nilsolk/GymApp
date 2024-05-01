@@ -41,7 +41,7 @@
                 android:paddingBottom="15dp"
                 android:text="@string/ideal_weight_calculator"
                 android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <ImageButton
                 android:id="@+id/infoImage"
@@ -77,7 +77,7 @@
             android:fontFamily="@font/revolutiongothic_light"
             android:text="@string/choose_your_gender"
             android:textColor="@color/silver"
-            android:textSize="22sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
             android:fontFamily="@font/revolutiongothic_light"
             android:text="@string/male"
             android:textColor="#008EFF"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/genderSwitch"
@@ -101,7 +101,7 @@
             android:fontFamily="@font/revolutiongothic_light"
             android:text="@string/female"
             android:textColor="#FB2B72"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 

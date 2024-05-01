@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.github.skydoves:progressview:1.1.3")
     implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("com.google.firebase:firebase-firestore:24.11.1")
     implementation("com.google.firebase:firebase-storage:20.3.0")

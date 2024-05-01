@@ -40,7 +40,7 @@
                 android:paddingBottom="15dp"
                 android:text="@string/body_fat_calculator"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/infoImage"
@@ -75,7 +75,7 @@
             android:fontFamily="@font/revolutiongothic_light"
             android:text="@string/choose_your_gender"
             android:textColor="@color/silver"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             android:fontFamily="@font/revolutiongothic_light"
             android:text="@string/male"
             android:textColor="#008EFF"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/genderSwitch"
@@ -131,7 +131,7 @@
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/falseHeightText"
@@ -166,7 +166,7 @@
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 android:visibility="gone" />
 
             <TextView
@@ -214,7 +214,7 @@
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/falseNeckSizeText"
@@ -249,7 +249,7 @@
                 android:paddingBottom="28dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/silver"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/falseWaistSizeText"

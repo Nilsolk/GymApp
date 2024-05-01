@@ -1,6 +1,7 @@
 package ru.nilsolk.gymapp.viewmodel
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -50,37 +51,35 @@ class StatisticViewModel(private val application: Application) : AndroidViewMode
     }
 
     fun updateRecyclerViewByGoal(choiceNumber: String) {
-        val targetDate = calculateTargetDate(choiceNumber)
-        val filteredToDoList = toDoList.filter { (it.createdAt ?: 0) < targetDate }
+        Log.d("StatisticViewModel", "Selected goal: $choiceNumber")
+        val currentTimeMillis = System.currentTimeMillis()
+        val millisecondsInDay: Long = 24 * 60 * 60 * 1000L
+        val filteredToDoList = when (choiceNumber) {
+            "1" -> toDoList.filter {
+                (currentTimeMillis - (it.createdAt ?: 0)) <= 3 * millisecondsInDay
+            }
+
+            "2" -> toDoList.filter {
+                (currentTimeMillis - (it.createdAt ?: 0)) <= 7 * millisecondsInDay
+            }
+
+            "3" -> toDoList.filter {
+                (currentTimeMillis - (it.createdAt ?: 0)) <= 30 * millisecondsInDay
+            }
+
+            "4" -> toDoList.filter {
+                (currentTimeMillis - (it.createdAt ?: 0)) <= 6 * 30 * millisecondsInDay
+            }
+
+            "5" -> toDoList.filter {
+                (currentTimeMillis - (it.createdAt ?: 0)) <= 365 * millisecondsInDay
+            }
+
+            else -> toDoList
+        }
         statisticLiveData.value = ArrayList(filteredToDoList)
     }
 
-
-    private fun calculateTargetDate(choiceNumber: String): Long {
-        var targetDate = System.currentTimeMillis()
-        when (choiceNumber) {
-            "1" -> {
-                targetDate -= (7L * 24 * 60 * 60 * 1000)
-            }
-
-            "2" -> {
-                targetDate -= (3L * 24 * 60 * 60 * 1000)
-            }
-
-            "3" -> {
-                targetDate -= (3L * 30.44 * 24 * 60 * 60 * 1000).toLong()
-            }
-
-            "4" -> {
-                targetDate -= (6L * 30.44 * 24 * 60 * 60 * 1000).toLong()
-            }
-
-            "5" -> {
-                targetDate -= (365.24 * 24 * 60 * 60 * 1000).toLong()
-            }
-        }
-        return targetDate
-    }
 
     private fun showErrorToastMessage(error: String) {
         Toast.makeText(application.applicationContext, error, Toast.LENGTH_LONG).show()

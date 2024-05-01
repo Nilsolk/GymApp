@@ -4,23 +4,25 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/baseline_home_24"
-        android:title="@string/home"/>
+        android:title="@string/home" />
 
     <item
         android:id="@+id/workoutFragment"
         android:icon="@drawable/baseline_fitness_center_24"
-        android:title="@string/workout"/>
+        android:title="@string/workout" />
 
     <item
         android:id="@+id/calendarFragment"
         android:icon="@drawable/baseline_calendar_month_24"
-        android:title="@string/calendar"/>
+        android:title="@string/calendar" />
+    <item
+        android:id="@+id/chosenProgramFragment"
+        android:icon="@drawable/baseline_add_task_24"
+        android:title="@string/program" />
 
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/baseline_person_24"
-        android:title="@string/profile"/>
-
-
+        android:title="@string/profile" />
 
 </menu>

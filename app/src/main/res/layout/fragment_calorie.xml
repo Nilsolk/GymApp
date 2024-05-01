@@ -162,7 +162,7 @@
                 android:paddingEnd="10dp"
                 android:popupBackground="#2D2F33"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -12,6 +12,14 @@ class AppPreferences(context: Context) {
         sharedPreferences.edit().putString(key, value).apply()
     }
 
+    fun saveInt(key: String, value: Int) {
+        sharedPreferences.edit().putInt(key, value).apply()
+    }
+
+    fun getInt(key: String, defaultValue: Int): Int {
+        return sharedPreferences.getInt(key, defaultValue)
+    }
+
     fun getString(key: String, defaultValue: String): String {
         return sharedPreferences.getString(key, defaultValue) ?: defaultValue
     }

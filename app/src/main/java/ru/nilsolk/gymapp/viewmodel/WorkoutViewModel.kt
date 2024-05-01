@@ -72,7 +72,6 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
                         workoutsTempList.add(popularWorkouts)
                     }
                     popularWorkoutsLiveData.value = workoutsTempList
-                    //workoutsTempList.clear()
                 } else popularWorkoutsLiveData.value = null
             }.addOnFailureListener {
                 popularWorkoutsLiveData.value = null

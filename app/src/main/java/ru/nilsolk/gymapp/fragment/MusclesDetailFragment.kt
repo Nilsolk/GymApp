@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.app.ebfitapp.adapter.ExercisesAdapter
+import ru.nilsolk.gymapp.adapter.ExercisesAdapter
 import ru.nilsolk.gymapp.model.BodyPartExercises
 import ru.nilsolk.gymapp.model.MuscleGroupModel
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
@@ -49,15 +49,14 @@ class MusclesDetailFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeBodyPartExercises() = with(binding) {
-        muscleExercisesViewModel.bodyPartExercises.observe(viewLifecycleOwner, Observer { result ->
+        muscleExercisesViewModel.bodyPartExercises.observe(viewLifecycleOwner) { result ->
             if (result != null) {
-                // Toast.makeText(requireContext(), "Data: ${result[0]}", Toast.LENGTH_LONG).show()
                 bodyPartExercises.clear()
                 bodyPartExercises.addAll(result)
                 exerciseRecycler.adapter = exercisesAdapter
                 exerciseRecycler.adapter?.notifyDataSetChanged()
             }
-        })
+        }
     }
 
 

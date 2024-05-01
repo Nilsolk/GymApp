@@ -53,7 +53,7 @@
     <string name="remember_me">Remember Me</string>
     <string name="motivation_2">Taking a small step every day leads to big achievements over time.</string>
     <string name="wave_hand" translatable="false">👋</string>
-    <string name="streak" translatable="false">Streak</string>
+    <string name="streak">Streak</string>
     <string name="count">count</string>
     <string name="calendar">Calendar</string>
     <string name="workout">Workout</string>
@@ -73,7 +73,7 @@
     <string name="exercise_name">Exercise Name</string>
     <string name="instructions">Instructions</string>
     <string name="let_s_do_it">Let\'s do it!</string>
-    <string name="sets_amp_reps" translatable="false"><![CDATA[Sets & Reps]]></string>
+    <string name="sets_amp_reps"><![CDATA[Sets & Reps]]></string>
     <string name="sets">Sets</string>
     <string name="reps">Reps</string>
     <string name="time">Time</string>
@@ -180,7 +180,7 @@
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
     <string name="type_of_activity">Type of Activity</string>
-    <string name="met" translatable="false">MET</string>
+    <string name="met">MET</string>
     <string name="burned">Burned</string>
     <string name="slow_pace_10_lt_100_skips_min_10_2_foot_skip_10_rhythm_bounce"><![CDATA[Slow pace\n < 100 skips/min \n 2 foot skip \nrhythm bounce]]></string>
     <string name="moderate_pace_10_100_120_skips_min_10_2_foot_skip_10_plain_bounce">Moderate pace,\n100-120 skips/min,\n2 foot skip,\nplain bounce</string>
@@ -192,4 +192,7 @@
     <string name="cancel">Cancel</string>
     <string name="choose_date">Choose date</string>
     <string name="total_exercises">Total exercises = </string>
+    <string name="start_program">Start program</string>
+    <string name="program">Program</string>
+    <string name="your_progress_in_chosen_training_program">Your progress in chosen training program</string>
 </resources>

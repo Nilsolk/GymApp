@@ -35,7 +35,6 @@ class BodyFatPercentageFragment : Fragment() {
     private var resultBodyFatPercentage : Double? = null
     private val decimalFormat = DecimalFormat("#.##")
 
-    //Düzenleme gerekli
     private lateinit var bodyFatPercentageBinding: FragmentBodyFatPercentageBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

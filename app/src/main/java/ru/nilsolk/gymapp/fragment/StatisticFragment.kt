@@ -41,8 +41,8 @@ class StatisticFragment : Fragment() {
         statisticViewModel = ViewModelProvider(this)[StatisticViewModel::class.java]
         statisticViewModel.getAllExercises()
 
-        observeExercise()
         goalsDropDownSettings()
+        observeExercise()
 
         return fragmentStatisticBinding.root
     }
@@ -106,6 +106,7 @@ class StatisticFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun goalsDropDownSettings() {
         val goalItems = listOf(
             getString(R.string.week),
@@ -117,9 +118,8 @@ class StatisticFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, goalItems)
         fragmentStatisticBinding.goalDropDownStatistic.setAdapter(adapter)
 
-        fragmentStatisticBinding.goalDropDownStatistic.setOnItemClickListener { parent, _, position, _ ->
-            val selectedGoal = parent.getItemAtPosition(position).toString()
-            statisticViewModel.updateRecyclerViewByGoal(selectedGoal)
+        fragmentStatisticBinding.goalDropDownStatistic.setOnItemClickListener { _, _, position, _ ->
+            statisticViewModel.updateRecyclerViewByGoal(position.toString())
         }
     }
 

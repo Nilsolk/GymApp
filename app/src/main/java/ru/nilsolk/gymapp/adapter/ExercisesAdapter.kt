@@ -1,4 +1,4 @@
-package com.app.ebfitapp.adapter
+package ru.nilsolk.gymapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,12 +10,19 @@ import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
 import ru.nilsolk.gymapp.fragment.MusclesDetailFragmentDirections
 import ru.nilsolk.gymapp.model.BodyPartExercises
 
-class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) : RecyclerView.Adapter<ExercisesAdapter.ItemHolder>() {
+class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) :
+    RecyclerView.Adapter<ExercisesAdapter.ItemHolder>() {
 
-    inner class ItemHolder(val itemMuscleDetailsBinding: ItemMuscleDetailsBinding) : RecyclerView.ViewHolder(itemMuscleDetailsBinding.root) {}
+    inner class ItemHolder(val itemMuscleDetailsBinding: ItemMuscleDetailsBinding) :
+        RecyclerView.ViewHolder(itemMuscleDetailsBinding.root) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        val view = DataBindingUtil.inflate<ItemMuscleDetailsBinding>(LayoutInflater.from(parent.context), R.layout.item_muscle_details, parent, false)
+        val view = DataBindingUtil.inflate<ItemMuscleDetailsBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_muscle_details,
+            parent,
+            false
+        )
         return ItemHolder(view)
     }
 
@@ -23,13 +30,18 @@ class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) : Recyc
         return bodyPartExercises.size
     }
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.itemMuscleDetailsBinding) {
-        exercise = bodyPartExercises[position]
-        muscleDetailLinear.setOnClickListener {
-            val action = MusclesDetailFragmentDirections.actionMusclesDetailFragmentToExerciseOverviewFragment(bodyPartExercises[position])
-            it.findNavController().navigate(action)
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) =
+        with(holder.itemMuscleDetailsBinding) {
+
+            exercise = bodyPartExercises[position]
+            muscleDetailLinear.setOnClickListener {
+                val action =
+                    MusclesDetailFragmentDirections.actionMusclesDetailFragmentToExerciseOverviewFragment(
+                        bodyPartExercises[position]
+                    )
+                it.findNavController().navigate(action)
+            }
         }
-    }
 
 
 }
