@@ -107,25 +107,18 @@ class ProfileEditFragment() : Fragment() {
                 override fun afterTextChanged(s: Editable?) {
                     if(mainViewModel.profileDetails.value?.username != usernameText.text.toString() && getLength())
                     {
-                        //Farklı bir değer girilmiş ve 2 ile 20 arasında
-                        if(usernameText!=null)
-                        {
-                            newUsername = usernameText.text.toString()
-                            setButtonBackground(true)
-                        }else{
-                            newUsername = mainViewModel.profileDetails.value?.username
-                        }
+                        newUsername = usernameText.text.toString()
+                        setButtonBackground(true)
                         falseUsernameText.visibility = View.INVISIBLE
                     }else if (mainViewModel.profileDetails.value?.username != usernameText.text.toString() &&!getLength()){
-                        //Farklı bir değer ama 2 ile 20 arasında değil
                         falseUsernameText.visibility = View.VISIBLE
-                        falseUsernameText.text = "Invalid name : must be between 2 and 20 characters"
+                        falseUsernameText.text = getString(R.string.invalid_name_must_be_between_2_and_20_characters)
                         usernameText.backgroundTintList = ColorStateList.valueOf(underlineColor)
                         setButtonBackground(false)
                     }else{
-                        //2 ile 20 arasında ama farklı değer değil
                         falseUsernameText.visibility = View.VISIBLE
-                        falseUsernameText.text = "Invalid username :  must be different than before"
+                        falseUsernameText.text =
+                            getString(R.string.invalid_username_must_be_different_than_before)
                         usernameText.backgroundTintList = ColorStateList.valueOf(underlineColor)
                         setButtonBackground(false)
                     }
@@ -195,7 +188,6 @@ class ProfileEditFragment() : Fragment() {
         }
         updateProfile(updateData)
     }
-            //Targetweight ve weight neden 180 amına koyim?
     private fun setupEditTextValidation(editText: EditText, falseTextView: TextView, minValue: Double, maxValue: Double, initialColor: Int, underlineColor: Int
     ) {
         editText.addTextChangedListener(object : TextWatcher {

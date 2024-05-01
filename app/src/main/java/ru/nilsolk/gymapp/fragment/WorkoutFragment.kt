@@ -32,7 +32,7 @@ class WorkoutFragment : Fragment() {
     private val workoutViewModel: WorkoutViewModel by viewModels()
     private lateinit var fragmentWorkoutBinding: FragmentWorkoutBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentWorkoutBinding = FragmentWorkoutBinding.inflate(layoutInflater)
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.VISIBLE
 
@@ -55,35 +55,35 @@ class WorkoutFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeMuscleGroups() = with(fragmentWorkoutBinding) {
-        workoutViewModel.muscleGroupLiveData.observe(viewLifecycleOwner, Observer { liveMuscleGroups ->
+        workoutViewModel.muscleGroupLiveData.observe(viewLifecycleOwner) { liveMuscleGroups ->
             if (liveMuscleGroups != null) {
                 muscleGroups.clear()
                 muscleGroups.addAll(liveMuscleGroups)
                 muscleGroupsRecycler.adapter?.notifyDataSetChanged()
             }
-        })
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeBestTrainers() = with(fragmentWorkoutBinding) {
-        workoutViewModel.bestTrainersLiveData.observe(viewLifecycleOwner, Observer { liveBestTrainers ->
+        workoutViewModel.bestTrainersLiveData.observe(viewLifecycleOwner) { liveBestTrainers ->
             if (liveBestTrainers != null) {
                 bestTrainers.clear()
                 bestTrainers.addAll(liveBestTrainers)
                 bestTrainersRecycler.adapter?.notifyDataSetChanged()
             }
-        })
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observePopularWorkouts() = with(fragmentWorkoutBinding) {
-        workoutViewModel.popularWorkoutsLiveData.observe(viewLifecycleOwner, Observer { livePopularWorkouts ->
+        workoutViewModel.popularWorkoutsLiveData.observe(viewLifecycleOwner) { livePopularWorkouts ->
             if (livePopularWorkouts != null) {
                 popularWorkouts.clear()
                 popularWorkouts.addAll(livePopularWorkouts)
                 popularWorkoutsRecycler.adapter?.notifyDataSetChanged()
             }
-        })
+        }
     }
 
     private fun getWorkoutAllData() {

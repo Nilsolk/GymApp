@@ -38,7 +38,7 @@ class ProfileDetailFragment : Fragment() {
     private lateinit var firebaseStorageService: FirebaseStorageService
     private lateinit var firebaseFirestoreService: FirebaseFirestoreService
     private lateinit var fragmentProfileDetailBinding: FragmentProfileDetailBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentProfileDetailBinding = FragmentProfileDetailBinding.inflate(layoutInflater)
 
         customProgress = CustomProgress(requireContext())

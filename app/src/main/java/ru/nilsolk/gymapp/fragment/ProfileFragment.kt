@@ -152,7 +152,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun observeProfileDetail() {
-        mainViewModel.profileDetails.observe(requireActivity(), Observer { userProfileDetails ->
+        mainViewModel.profileDetails.observe(requireActivity()) { userProfileDetails ->
             customProgress.dismiss()
             if (userProfileDetails != null) {
                 fragmentProfileBinding.rootLinearForProfile.visibility = View.VISIBLE
@@ -168,7 +168,7 @@ class ProfileFragment : Fragment() {
                 )
                 fragmentProfileBinding.goalText.text = "${userProfileDetails.goal}"
             }
-        })
+        }
     }
 
     private fun calculateWeightDifference(targetWeight: Double, startWeight: Double): String {

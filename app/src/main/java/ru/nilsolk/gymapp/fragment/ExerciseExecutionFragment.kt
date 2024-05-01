@@ -146,7 +146,7 @@ class ExerciseExecutionFragment : Fragment() {
             isRunning = false
             if (elapsedSet > 1) {
                 elapsedSet--
-                elapsedSetText.text = "$elapsedSet x Elapsed Set"
+                elapsedSetText.text = "$elapsedSet x Осталось сетов"
             }
         }
     }
@@ -254,10 +254,10 @@ class ExerciseExecutionFragment : Fragment() {
                 ).show()
             } else {
                 binding.selectedWeight.text = "$enteredWeight $selectedType"
-                binding.selectedSets.text = "$enteredSets SET"
-                binding.selectedReps.text = "$enteredReps REP"
+                binding.selectedSets.text = "$enteredSets Сетов"
+                binding.selectedReps.text = "$enteredReps Повторов"
                 elapsedSet = enteredSets.toInt()
-                binding.elapsedSetText.text = "$elapsedSet x Elapsed Set"
+                binding.elapsedSetText.text = "$elapsedSet x Осталось сетов"
                 bottomSheetDialog.dismiss()
             }
         }

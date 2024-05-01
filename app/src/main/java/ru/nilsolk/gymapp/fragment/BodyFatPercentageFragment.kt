@@ -186,7 +186,7 @@ class BodyFatPercentageFragment : Fragment() {
 
         val redColorSpan = ForegroundColorSpan(Color.RED)
         val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
-        val spannableString = SpannableString("Your body fat percentage can be estimated using measurements such as waist circumference, body weight, and height. The US Navy Body Fat Formula is employed for this calculation ")
+        val spannableString = SpannableString(getString(R.string.your_body_fat_percentage))
         spannableString.setSpan(redColorSpan, 115, 143, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         explanationId.text = spannableString
         dialog.show()

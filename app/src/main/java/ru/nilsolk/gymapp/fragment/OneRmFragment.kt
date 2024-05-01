@@ -127,7 +127,7 @@ class OneRmFragment : Fragment() {
 
         val redColorSpan = ForegroundColorSpan(Color.RED)
         val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
-        val spannableString = SpannableString("Your 1 Repetition Maximum (1RM) is calculated based on the weight and repetition count you enter. The Wathen Formula is employed for this calculation")
+        val spannableString = SpannableString(getString(R.string.your_1_repetition_maximum))
         spannableString.setSpan(redColorSpan, 97, 116, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         explanationId.text = spannableString
         dialog.show()

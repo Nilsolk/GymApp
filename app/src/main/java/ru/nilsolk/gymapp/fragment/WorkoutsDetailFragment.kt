@@ -20,11 +20,11 @@ class WorkoutsDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWorkoutsDetailBinding.inflate(layoutInflater)
 
         arguments.let {
-            val model: PopularWorkoutsModel =
+            @Suppress("DEPRECATION") val model: PopularWorkoutsModel =
                 it!!.getSerializable("workout") as PopularWorkoutsModel
             binding.programImage.downloadImageFromURL(model.imageURL)
             binding.programText.text = model.workoutName

@@ -195,4 +195,12 @@
     <string name="start_program">Start program</string>
     <string name="program">Program</string>
     <string name="your_progress_in_chosen_training_program">Your progress in chosen training program</string>
+    <string name="your_body_fat_percentage">"Your body fat percentage can be estimated using measurements such as waist circumference, body weight, and height. The US Navy Body Fat Formula is employed for this calculation "</string>
+    <string name="your_bmr_and_calorie">Your BMR and calorie needs are calculated with the fat percentage and body weight you enter. Katch- McArdle Formula is used for this</string>
+    <string name="please_choose_your_gender">Please choose your gender</string>
+    <string name="invalid_number_format">Invalid number format</string>
+    <string name="above">" ABOVE"</string>
+    <string name="your_ideal_weight_can_be_determined_by_considering_your_body_weight_and_fat_percentage_the_hamwi_formula_is_employed_in_this_calculation">"Your ideal weight can be determined by considering your body weight and fat percentage. The Hamwi Formula is employed in this calculation. "</string>
+    <string name="your_1_repetition_maximum">Your 1 Repetition Maximum (1RM) is calculated based on the weight and repetition count you enter. The Wathen Formula is employed for this calculation</string>
+    <string name="invalid_username_must_be_different_than_before">Invalid username :  must be different than before</string>
 </resources>

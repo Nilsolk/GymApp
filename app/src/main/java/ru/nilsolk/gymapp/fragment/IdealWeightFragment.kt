@@ -27,9 +27,9 @@ import ru.nilsolk.gymapp.databinding.FragmentIdealWeightBinding
 
 class IdealWeightFragment : Fragment() {
     private lateinit var idealWeightBinding: FragmentIdealWeightBinding
-    private var personHeight : Double? = null
-    private var personWeight : Double? = null
-    private var gender : Boolean? = null
+    private var personHeight: Double? = null
+    private var personWeight: Double? = null
+    private var gender: Boolean? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,24 +47,25 @@ class IdealWeightFragment : Fragment() {
         with(idealWeightBinding)
         {
             goBackImage.setOnClickListener {
-                val goBackAction = IdealWeightFragmentDirections.actionIdealWeightFragmentToCalculatorFragment()
+                val goBackAction =
+                    IdealWeightFragmentDirections.actionIdealWeightFragmentToCalculatorFragment()
                 Navigation.findNavController(requireView()).navigate(goBackAction)
             }
             infoImage.setOnClickListener {
                 showIdealWeightInfo()
             }
             genderSwitch.setOnCheckedChangeListener { _, isChecked ->
-                if(isChecked){
+                if (isChecked) {
                     //For woman
                     this@IdealWeightFragment.gender = false
-                    genderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.pink)
+                    genderSwitch.thumbTintList =
+                        ContextCompat.getColorStateList(requireContext(), R.color.pink)
                     femaleImageVisible()
-                }
-                else
-                {
+                } else {
                     //For man
                     this@IdealWeightFragment.gender = true
-                    genderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.blue)
+                    genderSwitch.thumbTintList =
+                        ContextCompat.getColorStateList(requireContext(), R.color.blue)
                     maleImageVisible()
                 }
             }
@@ -87,64 +88,67 @@ class IdealWeightFragment : Fragment() {
             )
 
             calculateButton.setOnClickListener {
-                    try {
-                        if (gender != null) {
-                            calculateIdealWeight(personHeight!!, gender!!)
-                            val bmi = calculateBMI(personWeight!!, personHeight!!)
-                            displayBMICategory(bmi)
-                        }
-                        else{
-                            Toast.makeText(requireContext(),"Please choose your gender",Toast.LENGTH_SHORT).show()
-                        }
-                    } catch (e: NumberFormatException) {
-                        println("Invalid number format")
+                try {
+                    if (gender != null) {
+                        calculateIdealWeight(personHeight!!, gender!!)
+                        val bmi = calculateBMI(personWeight!!, personHeight!!)
+                        displayBMICategory(bmi)
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.please_choose_your_gender), Toast.LENGTH_SHORT
+                        ).show()
                     }
+                } catch (e: NumberFormatException) {
+                    println(getString(R.string.invalid_number_format))
+                }
             }
 
         }
     }
-    private fun calculateIdealWeight(height : Double,gender : Boolean) : Double
-    {
+
+    private fun calculateIdealWeight(height: Double, gender: Boolean): Double {
         val idealWeightForMale = (height - 100) * 0.9
         val idealWeightForFemale = (height - 100) * 0.85
 
-        return if(gender) {
+        return if (gender) {
             idealWeightForMale
         } else {
             idealWeightForFemale
         }
     }
+
     private fun calculateBMI(weight: Double, heightCm: Double): Double {
         val heightM = heightCm / 100.0
         return weight / (heightM * heightM)
     }
-    private fun femaleImageVisible()
-    {
+
+    private fun femaleImageVisible() {
         idealWeightBinding.femaleImage.visibility = View.VISIBLE
         idealWeightBinding.mixImage.visibility = View.GONE
         idealWeightBinding.maleImage.visibility = View.GONE
     }
-    private fun maleImageVisible()
-    {
+
+    private fun maleImageVisible() {
         idealWeightBinding.femaleImage.visibility = View.GONE
         idealWeightBinding.mixImage.visibility = View.GONE
         idealWeightBinding.maleImage.visibility = View.VISIBLE
     }
-    private fun showIdealText()
-    {
+
+    private fun showIdealText() {
         idealWeightBinding.aboveBelowLayout.visibility = View.INVISIBLE
         idealWeightBinding.idealWeightTextLayuot.visibility = View.VISIBLE
         idealWeightBinding.obeseTextLayout.visibility = View.INVISIBLE
 
     }
-    private fun showHighLowText()
-    {
+
+    private fun showHighLowText() {
         idealWeightBinding.aboveBelowLayout.visibility = View.VISIBLE
         idealWeightBinding.obeseTextLayout.visibility = View.INVISIBLE
         idealWeightBinding.idealWeightTextLayuot.visibility = View.INVISIBLE
     }
-    private fun showObeseText()
-    {
+
+    private fun showObeseText() {
         idealWeightBinding.obeseTextLayout.visibility = View.VISIBLE
         idealWeightBinding.aboveBelowLayout.visibility = View.INVISIBLE
         idealWeightBinding.idealWeightTextLayuot.visibility = View.INVISIBLE
@@ -196,22 +200,23 @@ class IdealWeightFragment : Fragment() {
             }
         })
     }
+
     private fun displayBMICategory(bmi: Double) {
         when {
             bmi < 18.5 -> {
                 // Below
-                idealWeightBinding.aboveBelowText.text = " BELOW"
+                idealWeightBinding.aboveBelowText.text = getString(R.string.below)
                 showHighLowText()
             }
 
-            bmi in 18.5 .. 24.9 -> {
+            bmi in 18.5..24.9 -> {
                 // Ideal weight
                 showIdealText()
             }
 
-            bmi in 25.0 .. 29.9 -> {
+            bmi in 25.0..29.9 -> {
                 // Above
-                idealWeightBinding.aboveBelowText.text = " ABOVE"
+                idealWeightBinding.aboveBelowText.text = getString(R.string.above)
                 showHighLowText()
             }
 
@@ -222,8 +227,7 @@ class IdealWeightFragment : Fragment() {
         }
     }
 
-    private fun showIdealWeightInfo()
-    {
+    private fun showIdealWeightInfo() {
         val dialog = Dialog(requireActivity())
         dialog.setContentView(R.layout.ideal_weight_info)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -235,7 +239,8 @@ class IdealWeightFragment : Fragment() {
 
         val redColorSpan = ForegroundColorSpan(Color.RED)
         val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
-        val spannableString = SpannableString("Your ideal weight can be determined by considering your body weight and fat percentage. The Hamwi Formula is employed in this calculation. ")
+        val spannableString =
+            SpannableString(getString(R.string.your_ideal_weight_can_be_determined_by_considering_your_body_weight_and_fat_percentage_the_hamwi_formula_is_employed_in_this_calculation))
         spannableString.setSpan(redColorSpan, 88, 105, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         explanationId.text = spannableString
         dialog.show()

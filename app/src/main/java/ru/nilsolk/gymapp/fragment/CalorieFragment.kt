@@ -127,7 +127,7 @@ class CalorieFragment : Fragment() {
 
         val redColorSpan = ForegroundColorSpan(Color.RED)
         val explanationId = dialog.findViewById<TextView>(R.id.explanationId)
-        val spannableString = SpannableString("Your BMR and calorie needs are calculated with the fat percentage and body weight you enter. Katch- McArdle Formula is used for this")
+        val spannableString = SpannableString(getString(R.string.your_bmr_and_calorie))
         spannableString.setSpan(redColorSpan, 93, 115, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         explanationId.text = spannableString
         dialog.show()
