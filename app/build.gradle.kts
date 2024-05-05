@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
     implementation("com.google.mlkit:language-id:17.0.5")
     implementation("com.google.mlkit:translate:17.0.2")
     implementation("com.github.skydoves:progressview:1.1.3")

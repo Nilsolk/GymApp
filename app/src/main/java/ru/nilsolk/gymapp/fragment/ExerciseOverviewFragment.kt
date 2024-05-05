@@ -16,7 +16,7 @@ import ru.nilsolk.gymapp.utils.TextTranslator
 import ru.nilsolk.gymapp.utils.TranslationCallback
 import java.util.Locale
 
-class ExerciseOverviewFragment : Fragment(){
+class ExerciseOverviewFragment : Fragment() {
 
     private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var exerciseOverviewBinding: FragmentExerciseOverviewBinding
@@ -53,6 +53,7 @@ class ExerciseOverviewFragment : Fragment(){
                     exerciseItem
                 )
             findNavController().navigate(action)
+
         }
 
     }

@@ -178,7 +178,7 @@ class ExerciseExecutionFragment : Fragment() {
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             if (result) {
                 val action =
-                    ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
+                    ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToChosenProgramFragment()
                 findNavController().navigate(action)
             }
         }
@@ -284,7 +284,5 @@ class ExerciseExecutionFragment : Fragment() {
 
 }
 
-interface ChosenProgramCallback{
-    fun deleteItemFromRecycler()
-}
+
 

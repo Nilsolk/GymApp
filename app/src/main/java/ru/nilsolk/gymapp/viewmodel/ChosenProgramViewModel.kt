@@ -20,58 +20,71 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
     private val disposable = CompositeDisposable()
     val exercisesResult = MutableLiveData<List<BodyPartExercisesItem>?>()
     private var resultProgramModelList = mutableListOf<ExerciseProgramModel>()
+    var isDataLoaded = false
 
     fun getProgramExercises(programName: String, programDay: Int) {
-        getProgramExercisesId { programList ->
-            resultProgramModelList = programList.toMutableList()
-            Log.d("count", resultProgramModelList.size.toString())
-            val program = resultProgramModelList.firstOrNull { it.programName == programName }
-            Log.d("count", program?.programName ?: "empty")
-            Log.d("count", "$programName inner")
-            if (program != null) {
-                val idsList = when (programDay) {
-                    1 -> program.firstDayIds.split(" ")
-                    2 -> program.secondDayIds.split(" ")
-                    3 -> program.thirdDayIds.split(" ")
-                    4 -> program.fourthDayIds.split(" ")
-                    5 -> program.fifthDayIds.split(" ")
-                    6 -> program.sixthDayIds.split(" ")
-                    else -> {
-                        emptyList()
+        if (!isDataLoaded) {
+            getProgramExercisesId { programList ->
+                resultProgramModelList = programList.toMutableList()
+                Log.d("count", resultProgramModelList.size.toString())
+                val program = resultProgramModelList.firstOrNull { it.programName == programName }
+                Log.d("count", program?.programName ?: "empty")
+                Log.d("count", "$programName inner")
+                if (program != null) {
+                    val idsList = when (programDay) {
+                        1 -> program.firstDayIds.split(" ")
+                        2 -> program.secondDayIds.split(" ")
+                        3 -> program.thirdDayIds.split(" ")
+                        4 -> program.fourthDayIds.split(" ")
+                        5 -> program.fifthDayIds.split(" ")
+                        6 -> program.sixthDayIds.split(" ")
+                        else -> {
+                            emptyList()
+                        }
                     }
-                }
-                Log.d("count", idsList.joinToString { it })
-                val tempList = mutableListOf<BodyPartExercisesItem>()
-                val observables = idsList.map { id ->
-                    musclesAPIService.getExerciseById(id)
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                }
+                    Log.d("count", idsList.joinToString { it })
+                    val tempList = mutableListOf<BodyPartExercisesItem>()
+                    val observables = idsList.map { id ->
+                        musclesAPIService.getExerciseById(id)
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                    }
 
-                disposable.addAll(
-                    *observables.map { observable ->
-                        observable.subscribeWith(object :
-                            DisposableSingleObserver<BodyPartExercisesItem>() {
-                            override fun onSuccess(t: BodyPartExercisesItem) {
-                                tempList.add(t)
-                                exercisesResult.value = tempList.toList()
-                                Log.d(
-                                    "count",
-                                    tempList.joinToString { it.id + it.gifUrl + it.name })
-                            }
+                    disposable.addAll(
+                        *observables.map { observable ->
+                            observable.subscribeWith(object :
+                                DisposableSingleObserver<BodyPartExercisesItem>() {
+                                override fun onSuccess(t: BodyPartExercisesItem) {
+                                    tempList.add(t)
+                                    exercisesResult.value = tempList.toList()
+                                    Log.d(
+                                        "count",
+                                        tempList.joinToString { it.id + it.gifUrl + it.name })
+                                }
 
-                            override fun onError(e: Throwable) {
-                                Log.d(
-                                    "count",
-                                    e.message.toString()
-                                )
-                                exercisesResult.value = null
-                            }
-                        })
-                    }.toTypedArray()
-                )
-            } else {
+                                override fun onError(e: Throwable) {
+                                    Log.d(
+                                        "count",
+                                        e.message.toString()
+                                    )
+                                    exercisesResult.value = null
+                                }
+                            })
+                        }.toTypedArray()
+                    )
+                }
             }
+            isDataLoaded = true
+        }
+    }
+
+    fun removeExercise(exercise: BodyPartExercisesItem) {
+        val currentList = exercisesResult.value?.toMutableList()
+        if (currentList != null) {
+            currentList.remove(exercise)
+            Log.d("Removed Current list", currentList.toString())
+            exercisesResult.value = currentList
+            Log.d("Current listLive Data", exercisesResult.value.toString())
         }
     }
 

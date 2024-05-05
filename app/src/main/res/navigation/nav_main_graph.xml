@@ -113,6 +113,9 @@
         <action
             android:id="@+id/action_exerciseExecutionFragment_to_workoutFragment"
             app:destination="@id/workoutFragment" />
+        <action
+            android:id="@+id/action_exerciseExecutionFragment_to_chosenProgramFragment"
+            app:destination="@id/chosenProgramFragment" />
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"

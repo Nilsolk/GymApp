@@ -2,6 +2,7 @@ package ru.nilsolk.gymapp.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,14 +30,17 @@ class ChosenProgramFragment : Fragment() {
             View.VISIBLE
 
         exercises = arrayListOf()
-        programExercisesAdapter = ChosenProgramAdapter(exercises)
+        programExercisesAdapter = ChosenProgramAdapter(exercises, chosenProgramViewModel)
 
         binding.chosenProgramRecycler.adapter = programExercisesAdapter
 
         val programName = AppPreferences(requireContext()).getString("programName", "")
         if (programName.isNotEmpty()) {
             val programDay = AppPreferences(requireContext()).getInt("programDay", 1)
-            chosenProgramViewModel.getProgramExercises(programName, programDay)
+            if (!chosenProgramViewModel.isDataLoaded) {
+                Log.d("Load", "LoadData")
+                chosenProgramViewModel.getProgramExercises(programName, programDay)
+            }
             observeBodyPartExercises()
             binding.progressViewStats.progress = programDay.toFloat()
             binding.trainingProgramName.text = programName

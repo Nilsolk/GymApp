@@ -1,5 +1,6 @@
 package ru.nilsolk.gymapp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -12,8 +13,12 @@ import ru.nilsolk.gymapp.utils.TextTranslator
 import ru.nilsolk.gymapp.utils.TranslationCallback
 import ru.nilsolk.gymapp.utils.TranslationConstants
 import ru.nilsolk.gymapp.utils.getImage
+import ru.nilsolk.gymapp.viewmodel.ChosenProgramViewModel
 
-class ChosenProgramAdapter(private val exercises: List<BodyPartExercisesItem>) :
+class ChosenProgramAdapter(
+    private val exercises: ArrayList<BodyPartExercisesItem>,
+    private val viewModel: ChosenProgramViewModel
+) :
     RecyclerView.Adapter<ChosenProgramAdapter.ItemHolder>() {
     class ItemHolder(val binding: ItemMuscleDetailsBinding) : ViewHolder(binding.root)
 
@@ -46,11 +51,14 @@ class ChosenProgramAdapter(private val exercises: List<BodyPartExercisesItem>) :
                     ?: exercise.equipment
         }
         muscleDetailLinear.setOnClickListener {
+            val exerciseItem = exercises[position]
             val action =
                 ChosenProgramFragmentDirections.actionChosenProgramFragmentToExerciseOverviewFragment(
-                    exercises[position]
+                    exerciseItem
                 )
             it.findNavController().navigate(action)
+            viewModel.removeExercise(exerciseItem)
         }
     }
+
 }
