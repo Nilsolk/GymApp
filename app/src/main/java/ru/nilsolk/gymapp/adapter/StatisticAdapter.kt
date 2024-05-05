@@ -3,8 +3,10 @@ package ru.nilsolk.gymapp.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.ItemStatisticBinding
 import ru.nilsolk.gymapp.model.ToDoModel
 

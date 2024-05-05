@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation("com.google.mlkit:language-id:17.0.5")
+    implementation("com.google.mlkit:translate:17.0.2")
     implementation("com.github.skydoves:progressview:1.1.3")
     implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("com.google.firebase:firebase-firestore:24.11.1")

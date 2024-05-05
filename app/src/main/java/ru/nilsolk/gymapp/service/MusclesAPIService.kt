@@ -1,10 +1,10 @@
 package ru.nilsolk.gymapp.service
 
-import ru.nilsolk.gymapp.model.BodyPartExercises
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.nilsolk.gymapp.model.BodyPartExercises
 import ru.nilsolk.gymapp.model.BodyPartExercisesItem
 
 class MusclesAPIService {
@@ -18,8 +18,8 @@ class MusclesAPIService {
         .build()
         .create(MusclesAPI::class.java)
 
-    fun getExercises(bodyPart: String): Single<BodyPartExercises> {
-        return api.getBodyPartExercises(bodyPart)
+    fun getExercises(bodyPart: String, limit: String): Single<BodyPartExercises> {
+        return api.getBodyPartExercises(bodyPart, limit)
     }
 
     fun getExerciseById(id: String): Single<BodyPartExercisesItem> {

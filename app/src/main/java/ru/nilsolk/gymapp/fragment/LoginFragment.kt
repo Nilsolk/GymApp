@@ -66,7 +66,7 @@ class LoginFragment : Fragment() {
                 }
             }
 
-            forgotPasswordText.setOnClickListener() {
+            forgotPasswordText.setOnClickListener {
                 showDialog()
             }
             createAccountText.setOnClickListener()

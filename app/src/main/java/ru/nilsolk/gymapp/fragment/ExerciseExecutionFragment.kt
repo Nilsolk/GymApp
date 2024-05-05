@@ -3,7 +3,6 @@ package ru.nilsolk.gymapp.fragment
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,13 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.textfield.TextInputEditText
+import ru.nilsolk.gymapp.R
+import ru.nilsolk.gymapp.databinding.FragmentExerciseExecutionBinding
 import ru.nilsolk.gymapp.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.model.ExecutionModel
 import ru.nilsolk.gymapp.utils.CountDownDialog
@@ -21,10 +25,6 @@ import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.utils.downloadGifFromURL
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
 import ru.nilsolk.gymapp.viewmodel.ExecutionViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.textfield.TextInputEditText
-import ru.nilsolk.gymapp.R
-import ru.nilsolk.gymapp.databinding.FragmentExerciseExecutionBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -102,7 +102,7 @@ class ExerciseExecutionFragment : Fragment() {
         } else {
             Toast.makeText(
                 requireContext(),
-                "Please enter the number and sets of repetitions.",
+                getString(R.string.num_of_sets_and_reps),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -225,7 +225,7 @@ class ExerciseExecutionFragment : Fragment() {
 
         var selectedType: String? = null
 
-        val weightTypes = listOf("kg", "lbs")
+        val weightTypes = listOf("кг", "фунты")
         val typeAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, weightTypes)
         val typeDropDown = view.findViewById<AutoCompleteTextView>(R.id.typeDropDown)
         typeDropDown.setAdapter(typeAdapter)
@@ -283,3 +283,8 @@ class ExerciseExecutionFragment : Fragment() {
     }
 
 }
+
+interface ChosenProgramCallback{
+    fun deleteItemFromRecycler()
+}
+

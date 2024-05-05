@@ -11,7 +11,7 @@ import ru.nilsolk.gymapp.model.ArticleModel
 class ArticleDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentArticleDetailBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentArticleDetailBinding.inflate(layoutInflater)
 
         arguments.let {

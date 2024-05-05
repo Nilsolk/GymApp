@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,15 +17,16 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.adapter.CalendarAdapter
 import ru.nilsolk.gymapp.adapter.CalendarToDoAdapter
-import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentCalendarBinding
 import ru.nilsolk.gymapp.model.CalendarDateModel
 import ru.nilsolk.gymapp.model.ToDoModel
@@ -35,7 +35,6 @@ import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.viewmodel.CalendarViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
 
@@ -314,13 +313,11 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
 
 
     private fun observeIndexExists() {
-        calendarViewModel.indexExists.observe(
-            viewLifecycleOwner,
-            androidx.lifecycle.Observer { indexExists ->
-                if (!indexExists) {
-                    fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
-                } else fragmentCalenderBinding.isEmptyText.visibility = View.GONE
-            })
+        calendarViewModel.indexExists.observe(viewLifecycleOwner) { indexExists ->
+            if (!indexExists) {
+                fragmentCalenderBinding.isEmptyText.visibility = View.VISIBLE
+            } else fragmentCalenderBinding.isEmptyText.visibility = View.GONE
+        }
     }
 
 

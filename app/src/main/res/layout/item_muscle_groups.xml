@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-        <variable
-            name="muscle"
-            type="ru.nilsolk.gymapp.model.MuscleGroupModel" />
-    </data>
 
     <FrameLayout
         android:id="@+id/muscleRootFrame"
@@ -26,7 +19,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:foreground="@color/transparent_2"
-                android:getImage="@{muscle.muscleImageURL}"
                 android:importantForAccessibility="no" />
 
             <TextView
@@ -36,9 +28,9 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="15dp"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:text=""
                 android:textColor="@color/red"
-                android:textSize="24sp"
-                android:text="@{muscle.muscleName}"/>
+                android:textSize="24sp" />
 
         </androidx.cardview.widget.CardView>
 

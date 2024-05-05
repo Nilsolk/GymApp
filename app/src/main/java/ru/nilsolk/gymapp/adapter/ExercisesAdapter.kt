@@ -9,12 +9,19 @@ import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
 import ru.nilsolk.gymapp.fragment.MusclesDetailFragmentDirections
 import ru.nilsolk.gymapp.model.BodyPartExercises
+import ru.nilsolk.gymapp.utils.TextTranslator
+import ru.nilsolk.gymapp.utils.TranslationCallback
+import ru.nilsolk.gymapp.utils.TranslationConstants
+import ru.nilsolk.gymapp.utils.TranslationConstants.englishEquipmentToRussianMap
+import ru.nilsolk.gymapp.utils.TranslationConstants.englishMusclesTextMap
+import ru.nilsolk.gymapp.utils.getImage
 
 class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) :
     RecyclerView.Adapter<ExercisesAdapter.ItemHolder>() {
+    private val textTranslator = TextTranslator()
 
     inner class ItemHolder(val itemMuscleDetailsBinding: ItemMuscleDetailsBinding) :
-        RecyclerView.ViewHolder(itemMuscleDetailsBinding.root) {}
+        RecyclerView.ViewHolder(itemMuscleDetailsBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val view = DataBindingUtil.inflate<ItemMuscleDetailsBinding>(
@@ -32,8 +39,24 @@ class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) :
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) =
         with(holder.itemMuscleDetailsBinding) {
+            val exercise = bodyPartExercises[position]
+            getImage(itemMuscleGif, exercise.gifUrl)
 
-            exercise = bodyPartExercises[position]
+            textTranslator.translate(
+                TranslationConstants.SOURCE,
+                TranslationConstants.TARGET,
+                exercise.name,
+                object : TranslationCallback {
+                    override fun onTranslationComplete(translatedText: String) {
+                        itemMuscleName.text = translatedText
+                    }
+                })
+            if (TranslationConstants.TARGET == "ru") {
+                itemMuscleTarget.text = englishMusclesTextMap[exercise.target] ?: exercise.target
+                itemMuscleEquipment.text =
+                    englishEquipmentToRussianMap[exercise.equipment] ?: exercise.equipment
+            }
+
             muscleDetailLinear.setOnClickListener {
                 val action =
                     MusclesDetailFragmentDirections.actionMusclesDetailFragmentToExerciseOverviewFragment(

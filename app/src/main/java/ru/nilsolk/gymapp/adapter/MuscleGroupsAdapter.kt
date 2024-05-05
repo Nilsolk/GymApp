@@ -9,13 +9,23 @@ import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.ItemMuscleGroupsBinding
 import ru.nilsolk.gymapp.fragment.WorkoutFragmentDirections
 import ru.nilsolk.gymapp.model.MuscleGroupModel
+import ru.nilsolk.gymapp.utils.TranslationConstants
+import ru.nilsolk.gymapp.utils.getImage
+import java.util.Locale
 
-class MuscleGroupsAdapter(private val muscleGroups: ArrayList<MuscleGroupModel>) : RecyclerView.Adapter<MuscleGroupsAdapter.ItemHolder>() {
+class MuscleGroupsAdapter(private val muscleGroups: ArrayList<MuscleGroupModel>) :
+    RecyclerView.Adapter<MuscleGroupsAdapter.ItemHolder>() {
 
-    inner class ItemHolder(val itemMuscleGroupsBinding: ItemMuscleGroupsBinding) : RecyclerView.ViewHolder(itemMuscleGroupsBinding.root)
+    inner class ItemHolder(val itemMuscleGroupsBinding: ItemMuscleGroupsBinding) :
+        RecyclerView.ViewHolder(itemMuscleGroupsBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        val view = DataBindingUtil.inflate<ItemMuscleGroupsBinding>(LayoutInflater.from(parent.context), R.layout.item_muscle_groups, parent, false)
+        val view = DataBindingUtil.inflate<ItemMuscleGroupsBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_muscle_groups,
+            parent,
+            false
+        )
         return ItemHolder(view)
     }
 
@@ -23,12 +33,24 @@ class MuscleGroupsAdapter(private val muscleGroups: ArrayList<MuscleGroupModel>)
         return muscleGroups.size
     }
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) = with(holder.itemMuscleGroupsBinding) {
-        muscle = muscleGroups[position]
-        muscleRootFrame.setOnClickListener {
-            val action = WorkoutFragmentDirections.actionWorkoutFragmentToMusclesDetailFragment(muscleGroups[position])
-            it.findNavController().navigate(action)
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) =
+        with(holder.itemMuscleGroupsBinding) {
+            val muscle = muscleGroups[position]
+            getImage(muscleImage, muscle.muscleImageURL)
+            val muscleNameText = if (Locale.getDefault().language == "ru") {
+                TranslationConstants.mapEnglishToRussianMuscleGroups[muscle.muscleName]
+                    ?: muscle.muscleName
+            } else {
+                muscle.muscleName
+            }
+            muscleName.text = muscleNameText
+            muscleRootFrame.setOnClickListener {
+                val action = WorkoutFragmentDirections.actionWorkoutFragmentToMusclesDetailFragment(
+                    muscleGroups[position]
+                )
+                it.findNavController().navigate(action)
+            }
         }
-    }
+
 
 }

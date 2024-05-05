@@ -171,7 +171,7 @@ class IdealWeightFragment : Fragment() {
             override fun afterTextChanged(editable: Editable?) {
                 val inputText = editable.toString()
 
-                if (inputText.isNullOrEmpty()) {
+                if (inputText.isEmpty()) {
                     falseTextView.visibility = View.INVISIBLE
                     editText.backgroundTintList = ColorStateList.valueOf(initialColor)
                     return

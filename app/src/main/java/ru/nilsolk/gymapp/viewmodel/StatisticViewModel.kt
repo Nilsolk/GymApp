@@ -26,7 +26,7 @@ class StatisticViewModel(private val application: Application) : AndroidViewMode
                         val todoText = document.getString("todoText") ?: ""
                         val todoId = document.getString("todoId") ?: ""
                         val createdAt = document.getLong("createdAt")
-                        val muscleGroup = document.getString("muscleGroup") ?: "Активность"
+                        val muscleGroup = document.getString("muscleGroup") ?: "Занятие"
                         val toDoItem =
                             ToDoModel(
                                 selectedDay,

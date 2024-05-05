@@ -36,7 +36,7 @@ class CalorieFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
         calorieBinding = FragmentCalorieBinding.inflate(layoutInflater)
         ActivityLevelSettings()
@@ -160,7 +160,7 @@ class CalorieFragment : Fragment() {
             override fun afterTextChanged(editable: Editable?) {
                 val inputText = editable.toString()
 
-                if (inputText.isNullOrEmpty()) {
+                if (inputText.isEmpty()) {
                     falseTextView.visibility = View.INVISIBLE
                     editText.backgroundTintList = ColorStateList.valueOf(initialColor)
                     return

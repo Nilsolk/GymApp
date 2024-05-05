@@ -1,42 +1,63 @@
 package ru.nilsolk.gymapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.nilsolk.gymapp.model.BodyPartExercises
-import ru.nilsolk.gymapp.service.MusclesAPIService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import ru.nilsolk.gymapp.model.BodyPartExercises
+import ru.nilsolk.gymapp.model.BodyPartExercisesItem
+import ru.nilsolk.gymapp.service.MusclesAPIService
 
 class MuscleExercisesViewModel : ViewModel() {
 
     private val musclesAPIService = MusclesAPIService()
     private val disposable = CompositeDisposable()
-    val bodyPartExercises = MutableLiveData<BodyPartExercises?>()
+    private val _filteredBodyPartExercises = MutableLiveData<List<BodyPartExercisesItem>?>()
+    val bodyPartExercises: LiveData<List<BodyPartExercisesItem>?> = _filteredBodyPartExercises
 
-    fun getExercises(bodyPart: String) {
+    private var originalBodyPartExercises: List<BodyPartExercisesItem>? = null
 
+    fun getExercises(bodyPart: String, limit: String) {
         disposable.add(
-            musclesAPIService.getExercises(bodyPart)
+            musclesAPIService.getExercises(bodyPart, limit)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<BodyPartExercises>() {
                     override fun onSuccess(t: BodyPartExercises) {
-                        bodyPartExercises.value = t
+                        originalBodyPartExercises = t
+                        _filteredBodyPartExercises.value = t
                     }
 
                     override fun onError(e: Throwable) {
-                        bodyPartExercises.value = null
+                        _filteredBodyPartExercises.value = null
                     }
                 })
         )
+    }
 
+    fun updateRecyclerByEquipment(equipment: String?) {
+        val updatedList = if (equipment.isNullOrEmpty()) {
+            originalBodyPartExercises
+        } else {
+            originalBodyPartExercises?.filter { it.equipment == equipment }
+        }
+        _filteredBodyPartExercises.value = updatedList
+    }
+
+    fun updateRecyclerByTarget(target: String) {
+        val updatedList = if (target.isEmpty()) {
+            originalBodyPartExercises
+        } else {
+            originalBodyPartExercises?.filter { it.target == target }
+        }
+        _filteredBodyPartExercises.value = updatedList
     }
 
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
     }
-
 }

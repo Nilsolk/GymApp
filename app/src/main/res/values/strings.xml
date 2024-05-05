@@ -205,4 +205,7 @@
     <string name="invalid_username_must_be_different_than_before">Invalid username :  must be different than before</string>
     <string name="exercises_for_today">Exercises for today</string>
     <string name="your_training_plan_is">Your training plan is</string>
+    <string name="choose_target_muscle">Choose target muscle</string>
+    <string name="choose_your_equipment">Choose your equipment</string>
+    <string name="num_of_sets_and_reps">Please enter the number and sets of repetitions.</string>
 </resources>

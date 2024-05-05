@@ -5,22 +5,22 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.chip.Chip
+import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.adapter.ArticleAdapter
+import ru.nilsolk.gymapp.databinding.FragmentHomeBinding
 import ru.nilsolk.gymapp.model.ArticleModel
 import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.utils.StreakManager
+import ru.nilsolk.gymapp.utils.TextTranslator
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
 import ru.nilsolk.gymapp.viewmodel.MainViewModel
-import com.google.android.material.chip.Chip
-import ru.nilsolk.gymapp.R
-import ru.nilsolk.gymapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
@@ -32,7 +32,11 @@ class HomeFragment : Fragment() {
     private lateinit var customProgress: CustomProgress
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         fragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
         customProgress = CustomProgress(requireActivity())
@@ -75,15 +79,19 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun disableSeekBar() {
-        fragmentHomeBinding.circularSeekBar.setOnTouchListener { view, motionEvent -> true }
+        fragmentHomeBinding.circularSeekBar.setOnTouchListener { _, _ -> true }
     }
 
     private fun chips(categories: ArrayList<String>) = with(fragmentHomeBinding) {
+
+        val textTranslator = TextTranslator()
         for (chipText in categories) {
             val chip = Chip(requireContext())
+
             chip.text = chipText
             chip.isCheckable = true
-            chip.chipBackgroundColor = ContextCompat.getColorStateList(requireContext(), R.color.chip_background)
+            chip.chipBackgroundColor =
+                ContextCompat.getColorStateList(requireContext(), R.color.chip_background)
             chip.setChipStrokeColorResource(R.color.light_gray)
             chip.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
             chipGroup.addView(chip)
@@ -109,12 +117,13 @@ class HomeFragment : Fragment() {
 
     private fun search() = with(fragmentHomeBinding) {
         searchView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val searchText = p0.toString().trim()
 
-                val filteredArticles = article.filter { it.title.contains(searchText, ignoreCase = true) }
+                val filteredArticles =
+                    article.filter { it.title.contains(searchText, ignoreCase = true) }
                 articleAdapter.setData(filteredArticles)
 
                 chipAll.isChecked = true
@@ -123,21 +132,22 @@ class HomeFragment : Fragment() {
                 else View.GONE
             }
 
-            override fun afterTextChanged(p0: Editable?) { }
+            override fun afterTextChanged(p0: Editable?) {}
 
         })
     }
 
     private fun observeProfileDetail() = with(fragmentHomeBinding) {
-        mainViewModel.profileDetails.observe(requireActivity(), Observer { userProfileDetails ->
+        mainViewModel.profileDetails.observe(requireActivity()) { userProfileDetails ->
             customProgress.dismiss()
             if (userProfileDetails != null) {
                 homeRootLinear.visibility = View.VISIBLE
                 profileImage.downloadImageFromURL(userProfileDetails.profileImageURL.toString())
-                nicknameText.text = "${userProfileDetails.username} ${getString(R.string.wave_hand)}"
-                Log.d("dal",profileImage.toString())
+                nicknameText.text =
+                    "${userProfileDetails.username} ${getString(R.string.wave_hand)}"
+                Log.d("dal", profileImage.toString())
             }
-        })
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

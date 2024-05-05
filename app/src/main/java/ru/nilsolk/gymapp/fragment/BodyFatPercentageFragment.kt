@@ -39,7 +39,7 @@ class BodyFatPercentageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
         bodyFatPercentageBinding = FragmentBodyFatPercentageBinding.inflate(layoutInflater)
         return bodyFatPercentageBinding.root
