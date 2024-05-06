@@ -208,4 +208,5 @@
     <string name="choose_target_muscle">Choose target muscle</string>
     <string name="choose_your_equipment">Choose your equipment</string>
     <string name="num_of_sets_and_reps">Please enter the number and sets of repetitions.</string>
+    <string name="only_your_program_exercises">Only your program exercises</string>
 </resources>

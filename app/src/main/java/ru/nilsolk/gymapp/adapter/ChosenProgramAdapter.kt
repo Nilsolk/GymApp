@@ -70,8 +70,7 @@ class ChosenProgramAdapter(
                         ),
                         ChosenProgramFragment::class.java.name
                     )
-                viewModel.removeExercise(exerciseItem)
-                exercises = exercises.filterNot { it.id == exerciseItem.id }
+                viewModel.removeExercise(exerciseItem, exerciseItem.programName)
                 notifyDataSetChanged()
                 it.findNavController().navigate(action)
             }

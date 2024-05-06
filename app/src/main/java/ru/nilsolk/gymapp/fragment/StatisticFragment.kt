@@ -2,12 +2,12 @@ package ru.nilsolk.gymapp.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.android.material.chip.Chip
@@ -43,6 +43,15 @@ class StatisticFragment : Fragment() {
 
         goalsDropDownSettings()
         observeExercise()
+        fragmentStatisticBinding.chosenProgramCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val filteredStatistic = statistic.filter { it.programName.isNotEmpty() }
+                statisticAdapter.setData(ArrayList(filteredStatistic))
+            } else {
+                statisticAdapter.setData(statistic)
+            }
+
+        }
 
         return fragmentStatisticBinding.root
     }
@@ -87,22 +96,30 @@ class StatisticFragment : Fragment() {
             chipGroup.addView(chip)
         }
 
-        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            val selectedChip = group.findViewById<Chip>(group.checkedChipId)
+        chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            val selectedChip = group.findViewById<Chip>(checkedId)
             if (selectedChip != null) {
                 if (selectedChip.id == R.id.chipAll) {
-                    statisticAdapter.setData(statistic)
+                    if (fragmentStatisticBinding.chosenProgramCheckbox.isChecked) {
+                        val filteredStatistic = statistic.filter { it.programName.isNotEmpty() }
+                        statisticAdapter.setData(ArrayList(filteredStatistic))
+                    } else {
+                        statisticAdapter.setData(statistic)
+                    }
                     fragmentStatisticBinding.exerciseCount.text = statistic.size.toString()
                 } else {
                     val muscleGroup = selectedChip.text.toString()
-                    val filteredStatistic = statistic.filter { it.muscleGroup == muscleGroup }
+                    val filteredStatistic = if (fragmentStatisticBinding.chosenProgramCheckbox.isChecked) {
+                        statistic.filter { it.muscleGroup == muscleGroup && it.programName.isNotEmpty() }
+                    } else {
+                        statistic.filter { it.muscleGroup == muscleGroup }
+                    }
                     statisticAdapter.setData(filteredStatistic)
                     fragmentStatisticBinding.exerciseCount.text = filteredStatistic.size.toString()
                 }
             } else {
                 chipAll.isChecked = true
             }
-
         }
     }
 

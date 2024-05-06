@@ -12,5 +12,6 @@ data class Exercise(
     val equipment: String,
     val instructions: List<String>,
     val secondaryMuscles: List<String>,
-    val target: String
+    val target: String,
+    val programName: String
 )

@@ -8,8 +8,12 @@ import androidx.room.Query
 
 @Dao
 interface ExerciseDAO {
-    @Query("SELECT * FROM exercises")
-    suspend fun getAllExercises(): List<Exercise>
+//    @Query("SELECT * FROM exercises")
+//    suspend fun getAllExercises(): List<Exercise>
+
+    @Query("SELECT * FROM exercises WHERE programName = :programName")
+    suspend fun getAllExercises(programName: String): List<Exercise>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(exercise: Exercise)

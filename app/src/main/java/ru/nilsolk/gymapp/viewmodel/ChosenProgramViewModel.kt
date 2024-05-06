@@ -29,7 +29,7 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
     fun getProgramExercises(programName: String, programDay: Int) {
         if (!isDataLoaded) {
             Log.d("LoadDataFromNetwork", "")
-            getProgramExercisesId { programList ->
+            getProgramExercisesId(programName) { programList ->
                 resultProgramModelList = programList.toMutableList()
                 val program = resultProgramModelList.firstOrNull { it.programName == programName }
                 if (program != null) {
@@ -58,7 +58,9 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
                                         newExercise.bodyPart,
                                         newExercise.equipment,
                                         newExercise.instructions,
-                                        newExercise.secondaryMuscles, newExercise.target
+                                        newExercise.secondaryMuscles,
+                                        newExercise.target,
+                                        programName
                                     )
                                     tempList.add(exercise)
                                     exercisesResult.value = tempList.toList()
@@ -80,15 +82,18 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
-    fun removeExercise(exercise: Exercise) {
+    fun removeExercise(exercise: Exercise, programName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             exerciseDao.delete(exercise)
-            exercisesResult.postValue(exerciseDao.getAllExercises())
-            Log.d("AfterRemoveExercise", exerciseDao.getAllExercises().toString())
+            exercisesResult.postValue(exerciseDao.getAllExercises(programName))
+            Log.d("AfterRemoveExercise", exerciseDao.getAllExercises(programName).toString())
         }
     }
 
-    private fun getProgramExercisesId(callback: (List<ExerciseProgramModel>) -> Unit) {
+    private fun getProgramExercisesId(
+        programName: String,
+        callback: (List<ExerciseProgramModel>) -> Unit,
+    ) {
         viewModelScope.launch {
             val tempList = arrayListOf<ExerciseProgramModel>()
             firestoreService.firestore.collection("popularPrograms").get()
@@ -116,7 +121,7 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
                         )
                     }
                 }
-            val exercises = exerciseDao.getAllExercises()
+            val exercises = exerciseDao.getAllExercises(programName)
             Log.d("Load data", exercises.toString())
             exercisesResult.value = exercises
         }

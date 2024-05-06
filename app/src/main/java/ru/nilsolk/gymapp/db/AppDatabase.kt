@@ -9,8 +9,8 @@ import androidx.room.TypeConverters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-@Database(entities = [Exercise::class], version = 1, exportSchema = false)
-@TypeConverters(ListStringConverter::class) // Добавляем конвертер
+@Database(entities = [Exercise::class], version = 2, exportSchema = false)
+@TypeConverters(ListStringConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun exerciseDao(): ExerciseDAO
 }
