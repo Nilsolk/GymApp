@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
 import ru.nilsolk.gymapp.db.Exercise
+import ru.nilsolk.gymapp.fragment.ChosenProgramFragment
 import ru.nilsolk.gymapp.fragment.ChosenProgramFragmentDirections
 import ru.nilsolk.gymapp.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.utils.TextTranslator
@@ -66,7 +67,8 @@ class ChosenProgramAdapter(
                             exerciseItem.name,
                             exerciseItem.secondaryMuscles,
                             exerciseItem.target
-                        )
+                        ),
+                        ChosenProgramFragment::class.java.name
                     )
                 viewModel.removeExercise(exerciseItem)
                 exercises = exercises.filterNot { it.id == exerciseItem.id }

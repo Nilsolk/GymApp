@@ -31,6 +31,7 @@ import ru.nilsolk.gymapp.databinding.FragmentCalendarBinding
 import ru.nilsolk.gymapp.model.CalendarDateModel
 import ru.nilsolk.gymapp.model.ToDoModel
 import ru.nilsolk.gymapp.service.FirebaseAuthService
+import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.viewmodel.CalendarViewModel
 import java.text.SimpleDateFormat
@@ -64,7 +65,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         customProgress = CustomProgress(requireContext())
         firebaseAuthService = FirebaseAuthService(requireContext())
         fragmentCalenderBinding = FragmentCalendarBinding.inflate(layoutInflater)
@@ -241,7 +242,15 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             val uniqueId = UUID.randomUUID().toString().substring(0, 12)
             val currentTimeStamp = System.currentTimeMillis()
             val newTodoItem =
-                ToDoModel(selectedDay, selectedDate, dialogEditText, uniqueId, currentTimeStamp, "")
+                ToDoModel(
+                    selectedDay,
+                    selectedDate,
+                    dialogEditText,
+                    uniqueId,
+                    currentTimeStamp,
+                    "",
+                    AppPreferences(requireContext()).getString("programName", "")
+                )
             calendarViewModel.addToDoItem(newTodoItem) { isSuccess ->
                 if (isSuccess) {
                     fragmentCalenderBinding.isEmptyText.visibility = View.GONE

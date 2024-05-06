@@ -20,6 +20,7 @@ import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentExerciseExecutionBinding
 import ru.nilsolk.gymapp.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.model.ExecutionModel
+import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.CountDownDialog
 import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.utils.downloadGifFromURL
@@ -40,6 +41,7 @@ class ExerciseExecutionFragment : Fragment() {
     private var enteredWeight = "0"
     private var enteredType = ""
 
+    private lateinit var fragmentType: String
     private lateinit var binding: FragmentExerciseExecutionBinding
     private lateinit var customProgress: CustomProgress
     private lateinit var countDownDialog: CountDownDialog
@@ -58,6 +60,7 @@ class ExerciseExecutionFragment : Fragment() {
 
         arguments?.let {
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
+            fragmentType = it.getString("fragmentType")!!
 
             with(binding) {
                 exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
@@ -163,6 +166,14 @@ class ExerciseExecutionFragment : Fragment() {
             "dd MMMM yyyy",
             Locale.getDefault()
         ).format(Calendar.getInstance().time)
+
+        val exerciseProgram =
+            if (fragmentType == ChosenProgramFragment::class.java.name) AppPreferences(
+                requireActivity()
+            ).getString("programName", "None")
+            else ""
+
+
         val exerciseData = ExecutionModel(
             exerciseItem.name,
             enteredWeight.toDouble(),
@@ -170,15 +181,22 @@ class ExerciseExecutionFragment : Fragment() {
             enteredSets.toInt(),
             enteredReps.toInt(),
             currentYear,
-            exerciseItem.bodyPart
+            exerciseItem.bodyPart,
+            exerciseProgram
         )
+
         customProgress.show()
         executionViewModel.saveWorkout(exerciseData) { result, message ->
             customProgress.dismiss()
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             if (result) {
-                val action =
-                    ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToChosenProgramFragment()
+                val action = when (fragmentType) {
+                    ChosenProgramFragment::class.java.name -> ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToChosenProgramFragment()
+                    MusclesDetailFragment::class.java.name -> ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToWorkoutFragment()
+                    else -> {
+                        ExerciseExecutionFragmentDirections.actionExerciseExecutionFragmentToHomeFragment()
+                    }
+                }
                 findNavController().navigate(action)
             }
         }

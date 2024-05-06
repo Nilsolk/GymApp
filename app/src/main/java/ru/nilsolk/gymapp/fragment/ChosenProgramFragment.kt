@@ -62,4 +62,9 @@ class ChosenProgramFragment : Fragment() {
             }
         }
     }
+
+    private fun updateProgress(day: Int, totalDaysInProgram: Int) {
+        val progress = (day.toFloat() / totalDaysInProgram.toFloat()) * 100
+        binding.progressViewStats.progress = progress
+    }
 }

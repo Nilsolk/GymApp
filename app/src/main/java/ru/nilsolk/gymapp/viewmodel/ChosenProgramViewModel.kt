@@ -82,7 +82,6 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
 
     fun removeExercise(exercise: Exercise) {
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("BeforeRemoveExercise", exerciseDao.getAllExercises().toString())
             exerciseDao.delete(exercise)
             exercisesResult.postValue(exerciseDao.getAllExercises())
             Log.d("AfterRemoveExercise", exerciseDao.getAllExercises().toString())
@@ -127,4 +126,6 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
         super.onCleared()
         disposables.dispose()
     }
+
+
 }

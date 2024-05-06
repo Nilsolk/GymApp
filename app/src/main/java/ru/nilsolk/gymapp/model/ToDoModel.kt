@@ -6,6 +6,7 @@ data class ToDoModel(
     val todoText: String?,
     val todoId: String?,
     val createdAt: Long?,
-    val muscleGroup: String
+    val muscleGroup: String,
+    val programName: String
 )
 

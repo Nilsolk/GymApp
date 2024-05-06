@@ -25,7 +25,9 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
             "selectedDate" to todoArray.selectedDate,
             "todoText" to todoArray.todoText,
             "todoId" to todoArray.todoId,
-            "createdAt" to currentTimeStamp
+            "createdAt" to currentTimeStamp,
+            "programName" to todoArray.programName,
+            "muscleGroup" to todoArray.muscleGroup
         )
 
         userDocumentReference.collection("toDoRecyclerViewItems")
@@ -38,6 +40,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                 }
             }
     }
+
 
     fun getToDoItems(callback: (List<ToDoModel>) -> Unit) {
         userDocumentReference.collection("toDoRecyclerViewItems")
@@ -53,6 +56,7 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                         val todoId = document.getString("todoId") ?: ""
                         val createdAt = document.getLong("createdAt")
                         val muscleGroup = document.getString("muscleGroup") ?: ""
+                        val programName = document.getString("programName") ?: ""
                         val toDoItem =
                             ToDoModel(
                                 selectedDay,
@@ -60,7 +64,8 @@ class CalendarViewModel(private val application: Application) : AndroidViewModel
                                 todoText,
                                 todoId,
                                 createdAt,
-                                muscleGroup
+                                muscleGroup,
+                                programName
                             )
                         toDoList.add(toDoItem)
                     }

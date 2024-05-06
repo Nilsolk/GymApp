@@ -5,11 +5,11 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import ru.nilsolk.gymapp.model.ExecutionModel
 import ru.nilsolk.gymapp.service.FirebaseAuthService
 import ru.nilsolk.gymapp.service.FirebaseFirestoreService
 import ru.nilsolk.gymapp.utils.StreakManager
-import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
@@ -52,8 +52,9 @@ class ExecutionViewModel(private val application: Application) : AndroidViewMode
         val selectedDay =
             LocalDate.now().dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
         val todoText =
-            "${execution.exerciseName}, ${execution.weight} ${execution.type}\n${execution.set}SET x ${execution.rep}REP"
+            "${execution.exerciseName}, ${execution.weight} ${execution.type}\n${execution.set}Сетов x ${execution.rep}Повторов"
         val muscleGroup = execution.muscleGroup
+        val programName = execution.programName
 
         return hashMapOf(
             "selectedDay" to selectedDay,
@@ -62,6 +63,7 @@ class ExecutionViewModel(private val application: Application) : AndroidViewMode
             "todoText" to todoText,
             "todoId" to uuid,
             "createdAt" to currentTimeStamp,
+            "programName" to programName
         )
     }
 

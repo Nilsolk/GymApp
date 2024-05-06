@@ -20,6 +20,7 @@ class ExerciseOverviewFragment : Fragment() {
 
     private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var exerciseOverviewBinding: FragmentExerciseOverviewBinding
+    private lateinit var fragmentType: String
 
     @Suppress("DEPRECATION")
     override fun onCreateView(
@@ -36,6 +37,7 @@ class ExerciseOverviewFragment : Fragment() {
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
 
         arguments?.let {
+            fragmentType = it.getString("fragmentType")!!
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
             exerciseOverviewBinding.exercise = exerciseItem
             setInstructionsToTextView(exerciseItem.instructions)
@@ -50,10 +52,10 @@ class ExerciseOverviewFragment : Fragment() {
         exerciseOverviewBinding.letsDoItButton.setOnClickListener {
             val action =
                 ExerciseOverviewFragmentDirections.actionExerciseOverviewFragmentToExerciseExecutionFragment(
-                    exerciseItem
+                    exerciseItem,
+                    fragmentType
                 )
             findNavController().navigate(action)
-
         }
 
     }

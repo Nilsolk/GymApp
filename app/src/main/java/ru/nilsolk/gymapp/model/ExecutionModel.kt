@@ -7,5 +7,6 @@ data class ExecutionModel(
     val set: Int,
     val rep: Int,
     val date: String,
-    val muscleGroup: String
+    val muscleGroup: String,
+    val programName: String
 )

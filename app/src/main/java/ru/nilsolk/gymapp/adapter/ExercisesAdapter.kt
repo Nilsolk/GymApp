@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
+import ru.nilsolk.gymapp.fragment.MusclesDetailFragment
 import ru.nilsolk.gymapp.fragment.MusclesDetailFragmentDirections
 import ru.nilsolk.gymapp.model.BodyPartExercises
 import ru.nilsolk.gymapp.utils.TextTranslator
@@ -16,7 +17,9 @@ import ru.nilsolk.gymapp.utils.TranslationConstants.englishEquipmentToRussianMap
 import ru.nilsolk.gymapp.utils.TranslationConstants.englishMusclesTextMap
 import ru.nilsolk.gymapp.utils.getImage
 
-class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) :
+class ExercisesAdapter(
+    private val bodyPartExercises: BodyPartExercises,
+) :
     RecyclerView.Adapter<ExercisesAdapter.ItemHolder>() {
     private val textTranslator = TextTranslator()
 
@@ -60,7 +63,8 @@ class ExercisesAdapter(private val bodyPartExercises: BodyPartExercises) :
             muscleDetailLinear.setOnClickListener {
                 val action =
                     MusclesDetailFragmentDirections.actionMusclesDetailFragmentToExerciseOverviewFragment(
-                        bodyPartExercises[position]
+                        bodyPartExercises[position],
+                        MusclesDetailFragment::class.java.name
                     )
                 it.findNavController().navigate(action)
             }
