@@ -1,10 +1,10 @@
 package ru.nilsolk.gymapp.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import ru.nilsolk.gymapp.databinding.FragmentWorkoutsDetailBinding
 import ru.nilsolk.gymapp.model.PopularWorkoutsModel
@@ -30,19 +30,17 @@ class WorkoutsDetailFragment : Fragment() {
             binding.programText.text = model.workoutName
             binding.descriptionText.text = model.description
             binding.startProgramButton.setOnClickListener {
-                AppPreferences(requireContext()).saveString("programName", model.workoutName)
-                AppPreferences(requireContext()).saveInt("programDay", 1)
+
+                val appPreferences = AppPreferences(requireContext())
+                appPreferences.saveString("programName", model.workoutName)
+                appPreferences.saveInt("programDay", 1)
+                appPreferences.saveBoolean("isDataLoaded", false)
                 val action =
                     WorkoutsDetailFragmentDirections.actionWorkoutsDetailFragmentToChosenProgramFragment()
                 requireView().findNavController().navigate(action)
             }
         }
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
     }
 
 

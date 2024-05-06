@@ -187,4 +187,9 @@
     <string name="invalid_username_must_be_different_than_before">Неверное имя пользователя: должно быть другим</string>
     <string name="exercises_for_today">Упражнения на сегодня</string>
     <string name="your_training_plan_is">Ваша тренировочная программа</string>
+    <string name="choose_target_muscle">Мышца</string>
+    <string name="choose_your_equipment">Оборудование</string>
+    <string name="num_of_sets_and_reps">Пожалуйста, укажите количество и подходов повторений.</string>
+    <string name="only_your_program_exercises">Только ваша программа упражнений</string>
+    <string name="the_program_exercises_are_completed_for_today">Упражнения по программе на сегодня закончены</string>
 </resources>

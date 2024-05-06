@@ -16,6 +16,9 @@ object TranslationConstants {
         "waist" to "талия"
     )
 
+    val mapRussianToEnglishMuscleGroups =
+        mapEnglishToRussianMuscleGroups.entries.associate { (key, value) -> value to key }
+
     val englishEquipmentToRussianMap = mapOf(
         "band" to "петля",
         "body weight" to "собственный вес",
@@ -55,7 +58,7 @@ object TranslationConstants {
         "forearms" to "предплечья",
         "glutes" to "ягодицы",
         "hamstrings" to "бедра",
-        "lats" to "широчайшие мышцы спины",
+        "lats" to "широчайшие",
         "kettlebell" to "гири",
         "pectorals" to "грудные мышцы",
         "quads" to "квадрицепсы",

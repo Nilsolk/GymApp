@@ -16,12 +16,12 @@
         android:background="@drawable/round_6dp_background"
         android:backgroundTint="@color/light_gray"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
             android:fontFamily="@font/revolutiongothic_regular"
             android:text="@string/your_training_plan_is"
@@ -32,7 +32,6 @@
             android:id="@+id/training_program_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
             android:layout_weight="1"
             android:fontFamily="@font/revolutiongothic_regular"
             android:textColor="@color/silver"
@@ -101,4 +100,26 @@
         android:layout_margin="12dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_muscle_details" />
+
+    <LinearLayout
+        android:id="@+id/endItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/round_6dp_background"
+        android:backgroundTint="@color/light_gray"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/revolutiongothic_extra_bold"
+            android:gravity="center"
+            android:text="@string/the_program_exercises_are_completed_for_today"
+            android:textColor="@color/streak"
+            android:textSize="30sp" />
+    </LinearLayout>
 </LinearLayout>

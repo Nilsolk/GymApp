@@ -24,69 +24,68 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
     val exercisesResult = MutableLiveData<List<Exercise>?>()
     private var resultProgramModelList = mutableListOf<ExerciseProgramModel>()
     private val disposables = CompositeDisposable()
-    var isDataLoaded = false
+
+
 
     fun getProgramExercises(programName: String, programDay: Int) {
-        if (!isDataLoaded) {
-            Log.d("LoadDataFromNetwork", "")
-            getProgramExercisesId(programName) { programList ->
-                resultProgramModelList = programList.toMutableList()
-                val program = resultProgramModelList.firstOrNull { it.programName == programName }
-                if (program != null) {
-                    val idsList = when (programDay) {
-                        1 -> program.firstDayIds.split(" ")
-                        2 -> program.secondDayIds.split(" ")
-                        3 -> program.thirdDayIds.split(" ")
-                        4 -> program.fourthDayIds.split(" ")
-                        5 -> program.fifthDayIds.split(" ")
-                        6 -> program.sixthDayIds.split(" ")
-                        else -> emptyList()
-                    }
-
-                    val tempList = mutableListOf<Exercise>()
-
-                    disposables.addAll(
-                        *idsList.map { id ->
-                            musclesAPIService.getExerciseById(id)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({ newExercise ->
-                                    val exercise = Exercise(
-                                        newExercise.id,
-                                        newExercise.name,
-                                        newExercise.gifUrl,
-                                        newExercise.bodyPart,
-                                        newExercise.equipment,
-                                        newExercise.instructions,
-                                        newExercise.secondaryMuscles,
-                                        newExercise.target,
-                                        programName
-                                    )
-                                    tempList.add(exercise)
-                                    exercisesResult.value = tempList.toList()
-                                    viewModelScope.launch {
-                                        exerciseDao.insert(exercise)
-                                    }
-                                }, { error ->
-                                    Log.e(
-                                        "ChosenProgramViewModel",
-                                        "Error loading exercise: ${error.message}"
-                                    )
-                                    exercisesResult.value = null
-                                })
-                        }.toTypedArray()
-                    )
+        Log.d("LoadDataFromNetwork", "")
+        getProgramExercisesId(programName) { programList ->
+            resultProgramModelList = programList.toMutableList()
+            val program = resultProgramModelList.firstOrNull { it.programName == programName }
+            if (program != null) {
+                val idsList = when (programDay) {
+                    1 -> program.firstDayIds.split(" ")
+                    2 -> program.secondDayIds.split(" ")
+                    3 -> program.thirdDayIds.split(" ")
+                    4 -> program.fourthDayIds.split(" ")
+                    5 -> program.fifthDayIds.split(" ")
+                    6 -> program.sixthDayIds.split(" ")
+                    else -> emptyList()
                 }
+
+                val tempList = mutableListOf<Exercise>()
+
+                disposables.addAll(
+                    *idsList.map { id ->
+                        musclesAPIService.getExerciseById(id)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ newExercise ->
+                                val exercise = Exercise(
+                                    newExercise.id,
+                                    newExercise.name,
+                                    newExercise.gifUrl,
+                                    newExercise.bodyPart,
+                                    newExercise.equipment,
+                                    newExercise.instructions,
+                                    newExercise.secondaryMuscles,
+                                    newExercise.target,
+                                    programName
+                                )
+                                tempList.add(exercise)
+                                exercisesResult.value = tempList.toList()
+                                viewModelScope.launch {
+                                    exerciseDao.insert(exercise)
+                                }
+                            }, { error ->
+                                Log.e(
+                                    "ChosenProgramViewModel",
+                                    "Error loading exercise: ${error.message}"
+                                )
+                                exercisesResult.value = null
+                            })
+                    }.toTypedArray()
+                )
             }
-            isDataLoaded = true
         }
+
     }
 
     fun removeExercise(exercise: Exercise, programName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             exerciseDao.delete(exercise)
+            Log.d("Data in room", exerciseDao.getAllExercises(programName).toString())
             exercisesResult.postValue(exerciseDao.getAllExercises(programName))
-            Log.d("AfterRemoveExercise", exerciseDao.getAllExercises(programName).toString())
         }
     }
 
@@ -122,7 +121,7 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
                     }
                 }
             val exercises = exerciseDao.getAllExercises(programName)
-            Log.d("Load data", exercises.toString())
+            Log.d("Load data from getProgramExercisesId", exercises.toString())
             exercisesResult.value = exercises
         }
     }

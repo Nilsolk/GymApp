@@ -16,6 +16,7 @@ import ru.nilsolk.gymapp.adapter.StatisticAdapter
 import ru.nilsolk.gymapp.databinding.FragmentStatisticBinding
 import ru.nilsolk.gymapp.model.ToDoModel
 import ru.nilsolk.gymapp.utils.CustomProgress
+import ru.nilsolk.gymapp.utils.TranslationConstants
 import ru.nilsolk.gymapp.viewmodel.StatisticViewModel
 
 class StatisticFragment : Fragment() {
@@ -87,7 +88,7 @@ class StatisticFragment : Fragment() {
     private fun chips(categories: ArrayList<String>) = with(fragmentStatisticBinding) {
         for (chipText in categories) {
             val chip = Chip(requireContext())
-            chip.text = chipText
+            chip.text = TranslationConstants.mapEnglishToRussianMuscleGroups[chipText] ?: chipText
             chip.isCheckable = true
             chip.chipBackgroundColor =
                 ContextCompat.getColorStateList(requireContext(), R.color.chip_background)
@@ -108,12 +109,15 @@ class StatisticFragment : Fragment() {
                     }
                     fragmentStatisticBinding.exerciseCount.text = statistic.size.toString()
                 } else {
-                    val muscleGroup = selectedChip.text.toString()
-                    val filteredStatistic = if (fragmentStatisticBinding.chosenProgramCheckbox.isChecked) {
-                        statistic.filter { it.muscleGroup == muscleGroup && it.programName.isNotEmpty() }
-                    } else {
-                        statistic.filter { it.muscleGroup == muscleGroup }
-                    }
+                    val muscleGroup =
+                        TranslationConstants.mapRussianToEnglishMuscleGroups[selectedChip.text.toString()]
+                            ?: selectedChip.text.toString()
+                    val filteredStatistic =
+                        if (fragmentStatisticBinding.chosenProgramCheckbox.isChecked) {
+                            statistic.filter { it.muscleGroup == muscleGroup && it.programName.isNotEmpty() }
+                        } else {
+                            statistic.filter { it.muscleGroup == muscleGroup }
+                        }
                     statisticAdapter.setData(filteredStatistic)
                     fragmentStatisticBinding.exerciseCount.text = filteredStatistic.size.toString()
                 }

@@ -74,18 +74,22 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="12dp"
             android:layout_marginStart="16dp"
+            android:layout_weight="2"
             android:fontFamily="@font/revolutiongothic_extra_bold"
             android:text="@string/only_your_program_exercises"
             android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:textSize="20sp" />
 
         <CheckBox
+            android:layout_margin="12dp"
             android:id="@+id/chosenProgramCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/light_gray"
-            android:buttonTint="@color/light_gray"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/white"
+            android:buttonTint="@android:color/white"
             android:paddingBottom="15dp" />
     </LinearLayout>
 

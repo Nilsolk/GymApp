@@ -16,6 +16,7 @@ import ru.nilsolk.gymapp.adapter.RussianToEnglishAdapter
 import ru.nilsolk.gymapp.databinding.FragmentMusclesDetailBinding
 import ru.nilsolk.gymapp.model.BodyPartExercises
 import ru.nilsolk.gymapp.model.MuscleGroupModel
+import ru.nilsolk.gymapp.utils.TranslationConstants
 import ru.nilsolk.gymapp.viewmodel.MuscleExercisesViewModel
 import java.util.Locale
 
@@ -39,8 +40,10 @@ class MusclesDetailFragment : Fragment() {
         exercisesAdapter = ExercisesAdapter(bodyPartExercises)
 
         arguments?.let {
-            val muscleName = it. getSerializable("muscle") as MuscleGroupModel
-            binding.muscleNameText.text = muscleName.muscleName
+            val muscleName = it.getSerializable("muscle") as MuscleGroupModel
+            binding.muscleNameText.text =
+                TranslationConstants.mapEnglishToRussianMuscleGroups[muscleName.muscleName]
+                    ?: muscleName.muscleName
             muscleExercisesViewModel.getExercises(muscleName.muscleName.lowercase(), LIMIT)
         }
 

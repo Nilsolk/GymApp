@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.adapter.ChosenProgramAdapter
 import ru.nilsolk.gymapp.databinding.FragmentChosenProgramBinding
+import ru.nilsolk.gymapp.db.App
 import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.viewmodel.ChosenProgramViewModel
 
@@ -19,6 +23,9 @@ class ChosenProgramFragment : Fragment() {
     private lateinit var binding: FragmentChosenProgramBinding
     private val chosenProgramViewModel: ChosenProgramViewModel by viewModels()
     private lateinit var programExercisesAdapter: ChosenProgramAdapter
+    private lateinit var appPreferences: AppPreferences
+    private val exerciseDao = App.database.exerciseDao()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -27,27 +34,34 @@ class ChosenProgramFragment : Fragment() {
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility =
             View.VISIBLE
 
+        appPreferences = AppPreferences(requireContext())
         programExercisesAdapter = ChosenProgramAdapter(emptyList(), chosenProgramViewModel)
         binding.chosenProgramRecycler.adapter = programExercisesAdapter
 
-        // Проверяем, есть ли уже загруженные данные в списке упражнений
-        if (chosenProgramViewModel.exercisesResult.value.isNullOrEmpty()) {
-            // Если список пустой, загружаем данные из сети и базы данных
-            val programName = AppPreferences(requireContext()).getString("programName", "")
+
+        val isDataLoaded = appPreferences.getBoolean(IS_DATA_LOADED_KEY)
+        Log.d("isDataLoaded", isDataLoaded.toString())
+        val programName = appPreferences.getString("programName", "")
+        val programDay = appPreferences.getInt("programDay", 1)
+
+        binding.trainingProgramName.text = programName
+        binding.progressViewStats.progress = programDay * 10F
+        if (!isDataLoaded) {
             if (programName.isNotEmpty()) {
-                val programDay = AppPreferences(requireContext()).getInt("programDay", 1)
-                if (!chosenProgramViewModel.isDataLoaded) {
-                    Log.d("Load", "LoadData")
-                    chosenProgramViewModel.getProgramExercises(programName, programDay)
-                }
+                Log.d("Load from network or cache", "LoadData")
+                chosenProgramViewModel.getProgramExercises(programName, programDay)
                 observeBodyPartExercises()
-                binding.progressViewStats.progress = programDay.toFloat()
-                binding.trainingProgramName.text = programName
+
             }
         } else {
-            // Если список не пустой, обновляем адаптер с данными из viewModel
-            chosenProgramViewModel.exercisesResult.value?.let { programExercises ->
-                programExercisesAdapter.updateExercises(programExercises)
+            chosenProgramViewModel.viewModelScope.launch(Dispatchers.IO) {
+                val list = exerciseDao.getAllExercises(programName)
+                if (list.isEmpty()) {
+                    binding.chosenProgramRecycler.visibility = View.GONE
+                    binding.endItems.visibility = View.VISIBLE
+                } else {
+                    programExercisesAdapter.updateExercises(list)
+                }
             }
         }
 
@@ -57,14 +71,19 @@ class ChosenProgramFragment : Fragment() {
     private fun observeBodyPartExercises() {
         chosenProgramViewModel.exercisesResult.observe(viewLifecycleOwner) { result ->
             result?.let {
-                Log.d("Load Data", it.toString())
-                programExercisesAdapter.updateExercises(it)
+                activity?.runOnUiThread {
+                    programExercisesAdapter.updateExercises(it)
+                    appPreferences.saveBoolean(
+                        IS_DATA_LOADED_KEY,
+                        true
+                    )
+                }
             }
         }
     }
 
-    private fun updateProgress(day: Int, totalDaysInProgram: Int) {
-        val progress = (day.toFloat() / totalDaysInProgram.toFloat()) * 100
-        binding.progressViewStats.progress = progress
+
+    companion object {
+        private const val IS_DATA_LOADED_KEY = "isDataLoaded"
     }
 }

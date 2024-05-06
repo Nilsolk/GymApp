@@ -71,6 +71,7 @@ class ChosenProgramAdapter(
                         ChosenProgramFragment::class.java.name
                     )
                 viewModel.removeExercise(exerciseItem, exerciseItem.programName)
+                exercises = exercises.filter { it.id != exerciseItem.id }
                 notifyDataSetChanged()
                 it.findNavController().navigate(action)
             }
