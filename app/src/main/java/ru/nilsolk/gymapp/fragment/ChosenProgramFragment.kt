@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.adapter.ChosenProgramAdapter
@@ -54,7 +53,7 @@ class ChosenProgramFragment : Fragment() {
 
             }
         } else {
-            chosenProgramViewModel.viewModelScope.launch(Dispatchers.IO) {
+            chosenProgramViewModel.viewModelScope.launch {
                 val list = exerciseDao.getAllExercises(programName)
                 if (list.isEmpty()) {
                     binding.chosenProgramRecycler.visibility = View.GONE

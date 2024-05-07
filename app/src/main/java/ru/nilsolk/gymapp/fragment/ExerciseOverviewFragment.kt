@@ -14,6 +14,7 @@ import ru.nilsolk.gymapp.databinding.FragmentExerciseOverviewBinding
 import ru.nilsolk.gymapp.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.utils.TextTranslator
 import ru.nilsolk.gymapp.utils.TranslationCallback
+import ru.nilsolk.gymapp.utils.TranslationConstants
 import java.util.Locale
 
 class ExerciseOverviewFragment : Fragment() {
@@ -21,6 +22,7 @@ class ExerciseOverviewFragment : Fragment() {
     private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var exerciseOverviewBinding: FragmentExerciseOverviewBinding
     private lateinit var fragmentType: String
+    private val translator = TextTranslator()
 
     @Suppress("DEPRECATION")
     override fun onCreateView(
@@ -39,7 +41,24 @@ class ExerciseOverviewFragment : Fragment() {
         arguments?.let {
             fragmentType = it.getString("fragmentType")!!
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
-            exerciseOverviewBinding.exercise = exerciseItem
+            translator.translate(
+                SOURCE,
+                TARGET,
+                exerciseItem.name,
+                object : TranslationCallback {
+                    override fun onTranslationComplete(translatedText: String) {
+                        exerciseOverviewBinding.exerciseName.text = translatedText
+                    }
+
+                })
+            exerciseOverviewBinding.equipmentNeeded.text =
+                TranslationConstants.englishEquipmentToRussianMap[exerciseItem.equipment]
+                    ?: exerciseItem.equipment
+
+            exerciseOverviewBinding.targetMuscle.text =
+                TranslationConstants.englishMusclesTextMap[exerciseItem.target]
+                    ?: exerciseItem.target
+
             setInstructionsToTextView(exerciseItem.instructions)
         }
 
@@ -69,7 +88,6 @@ class ExerciseOverviewFragment : Fragment() {
             instructionNumber++
         }
 
-        val translator = TextTranslator()
         translator.translate(
             SOURCE,
             TARGET,
