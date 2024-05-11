@@ -5,6 +5,7 @@ import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
+import ru.nilsolk.gymapp.repository.model.ToDoModel
 import java.util.Locale
 
 class TextTranslator {
@@ -40,10 +41,12 @@ class TextTranslator {
     }
 
 
-    fun translateExercise(exercise: BodyPartExercisesItem): String {
+    fun translateExercise(
+        exercise: BodyPartExercisesItem,
+    ): String {
         return if (Locale.getDefault().language == "ru") {
             val name = exercise.name
-            val map = getMap(exercise)
+            val map = getMap(exercise.bodyPart)
             map.getOrDefault(name, name)
 
         } else {
@@ -51,8 +54,24 @@ class TextTranslator {
         }
     }
 
-    private fun getMap(exercise: BodyPartExercisesItem): Map<String, String> {
-        return when (exercise.bodyPart) {
+    fun translateToDo(toDoModel: ToDoModel): String? {
+        return if (Locale.getDefault().language == "ru") {
+            val list = toDoModel.todoText?.split(",")
+            if (list != null) {
+                val map = getMap(toDoModel.muscleGroup)
+                val value = map.getOrDefault(list[0], list[0])
+
+                return "$value ${list[1]}"
+            } else {
+                return "Error"
+            }
+        } else {
+            toDoModel.todoText
+        }
+    }
+
+    private fun getMap(bodyPart: String): Map<String, String> {
+        return when (bodyPart) {
             "waist" -> TranslationConstants.englishWaistBodyExercisesTextMap
             "back" -> TranslationConstants.englishBackExercisesTextMap
             "cardio" -> TranslationConstants.englishCardioExercisesTextMap
@@ -64,7 +83,6 @@ class TextTranslator {
             "shoulders" -> TranslationConstants.englishShouldersBodyExercisesTextMap
             else -> mapOf()
         }
-
 
     }
 }

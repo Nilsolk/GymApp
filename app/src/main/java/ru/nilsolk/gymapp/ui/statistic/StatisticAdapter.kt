@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import ru.nilsolk.gymapp.databinding.ItemStatisticBinding
 import ru.nilsolk.gymapp.repository.model.ToDoModel
 import ru.nilsolk.gymapp.translation.TextTranslator
-import ru.nilsolk.gymapp.translation.TranslationCallback
 import ru.nilsolk.gymapp.translation.TranslationConstants
 
 class StatisticAdapter(private var statistic: ArrayList<ToDoModel>) :
@@ -31,14 +30,7 @@ class StatisticAdapter(private var statistic: ArrayList<ToDoModel>) :
 
         muscleGroup.text = translatedMuscle
         statisticDate.text = statistic[position].selectedDate
-        textTranslator.translate(
-            TranslationConstants.SOURCE, TranslationConstants.TARGET,
-            statistic[position].todoText.toString(), object : TranslationCallback {
-                override fun onTranslationComplete(translatedText: String) {
-                    statisticData.text = translatedText
-                }
-
-            })
+        statisticData.text = textTranslator.translateToDo(statistic[position])
     }
 
     @SuppressLint("NotifyDataSetChanged")

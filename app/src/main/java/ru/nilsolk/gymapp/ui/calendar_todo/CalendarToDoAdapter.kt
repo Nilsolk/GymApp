@@ -10,7 +10,6 @@ import com.google.mlkit.nl.translate.TranslateLanguage
 import ru.nilsolk.gymapp.databinding.ItemCalendarToDoBinding
 import ru.nilsolk.gymapp.repository.model.ToDoModel
 import ru.nilsolk.gymapp.translation.TextTranslator
-import ru.nilsolk.gymapp.translation.TranslationCallback
 import java.util.Locale
 
 class CalendarToDoAdapter(
@@ -88,15 +87,7 @@ class CalendarToDoAdapter(
         val itemBinding = holder.bindingToDo
         val toDoModel = todoArray[holder.adapterPosition]
 
-        textTranslator.translate(
-            SOURCE,
-            TARGET,
-            toDoModel.todoText.toString(),
-            object : TranslationCallback {
-                override fun onTranslationComplete(translatedText: String) {
-                    itemBinding.toDoText.text = translatedText
-                }
-            })
+        itemBinding.toDoText.text = textTranslator.translateToDo(toDoModel)
         itemBinding.itemDate.text = toDoModel.selectedDate
         itemBinding.itemDay.text = toDoModel.selectedDay
 
