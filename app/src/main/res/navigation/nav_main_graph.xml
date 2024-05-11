@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ru.nilsolk.gymapp.fragment.HomeFragment"
+        android:name="ru.nilsolk.gymapp.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,12 +18,12 @@
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="ru.nilsolk.gymapp.fragment.CalendarFragment"
+        android:name="ru.nilsolk.gymapp.ui.calendar_todo.CalendarFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ProfileFragment"
+        android:name="ru.nilsolk.gymapp.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="ru.nilsolk.gymapp.fragment.WorkoutFragment"
+        android:name="ru.nilsolk.gymapp.ui.workout.WorkoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" >
         <action
@@ -53,30 +53,30 @@
     </fragment>
     <fragment
         android:id="@+id/workoutsDetailFragment"
-        android:name="ru.nilsolk.gymapp.fragment.WorkoutsDetailFragment"
+        android:name="ru.nilsolk.gymapp.ui.workout.WorkoutsDetailFragment"
         android:label="fragment_workouts_detail"
         tools:layout="@layout/fragment_workouts_detail" >
         <argument
             android:name="workout"
-            app:argType="ru.nilsolk.gymapp.model.PopularWorkoutsModel" />
+            app:argType="ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel" />
         <action
             android:id="@+id/action_workoutsDetailFragment_to_chosenProgramFragment"
             app:destination="@id/chosenProgramFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainersDetailFragment"
-        android:name="ru.nilsolk.gymapp.fragment.TrainersDetailFragment"
+        android:name="ru.nilsolk.gymapp.ui.home.TrainersDetailFragment"
         android:label="fragment_trainers_detail"
         tools:layout="@layout/fragment_trainers_detail" />
     <fragment
         android:id="@+id/musclesDetailFragment"
-        android:name="ru.nilsolk.gymapp.fragment.MusclesDetailFragment"
+        android:name="ru.nilsolk.gymapp.ui.workout.MusclesDetailFragment"
         android:label="fragment_muscles_detail"
         tools:layout="@layout/fragment_muscles_detail" >
 
         <argument
             android:name="muscle"
-            app:argType="ru.nilsolk.gymapp.model.MuscleGroupModel" />
+            app:argType="ru.nilsolk.gymapp.repository.model.MuscleGroupModel" />
         <action
             android:id="@+id/action_musclesDetailFragment_to_exerciseOverviewFragment"
             app:destination="@id/exerciseOverviewFragment"
@@ -88,13 +88,13 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseOverviewFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ExerciseOverviewFragment"
+        android:name="ru.nilsolk.gymapp.ui.workout.ExerciseOverviewFragment"
         android:label="fragment_exercise_overview"
         tools:layout="@layout/fragment_exercise_overview" >
 
         <argument
             android:name="exercise"
-            app:argType="ru.nilsolk.gymapp.model.BodyPartExercisesItem"/>
+            app:argType="ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem"/>
         <action
             android:id="@+id/action_exerciseOverviewFragment_to_exerciseExecutionFragment"
             app:destination="@id/exerciseExecutionFragment"
@@ -107,12 +107,12 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseExecutionFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ExerciseExecutionFragment"
+        android:name="ru.nilsolk.gymapp.ui.workout.ExerciseExecutionFragment"
         android:label="fragment_exercise_execution"
         tools:layout="@layout/fragment_exercise_execution">
         <argument
             android:name="exercise"
-            app:argType="ru.nilsolk.gymapp.model.BodyPartExercisesItem"/>
+            app:argType="ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem"/>
         <action
             android:id="@+id/action_exerciseExecutionFragment_to_workoutFragment"
             app:destination="@id/workoutFragment" />
@@ -128,7 +128,7 @@
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"
-        android:name="ru.nilsolk.gymapp.fragment.CalculatorFragment"
+        android:name="ru.nilsolk.gymapp.ui.calculators.CalculatorFragment"
         android:label="fragment_calculator"
         tools:layout="@layout/fragment_calculator" >
         <action
@@ -149,7 +149,7 @@
     </fragment>
     <fragment
         android:id="@+id/bodyFatPercentageFragment"
-        android:name="ru.nilsolk.gymapp.fragment.BodyFatPercentageFragment"
+        android:name="ru.nilsolk.gymapp.ui.calculators.body_fat_calculator.BodyFatPercentageFragment"
         android:label="fragment_body_fat_percentage"
         tools:layout="@layout/fragment_body_fat_percentage" >
         <action
@@ -158,7 +158,7 @@
     </fragment>
     <fragment
         android:id="@+id/calorieFragment"
-        android:name="ru.nilsolk.gymapp.fragment.CalorieFragment"
+        android:name="ru.nilsolk.gymapp.ui.calculators.day_calorie.CalorieFragment"
         android:label="fragment_calorie"
         tools:layout="@layout/fragment_calorie" >
         <action
@@ -167,7 +167,7 @@
     </fragment>
     <fragment
         android:id="@+id/idealWeightFragment"
-        android:name="ru.nilsolk.gymapp.fragment.IdealWeightFragment"
+        android:name="ru.nilsolk.gymapp.ui.calculators.ideal_weight.IdealWeightFragment"
         android:label="fragment_ideal_weight"
         tools:layout="@layout/fragment_ideal_weight" >
         <action
@@ -176,7 +176,7 @@
     </fragment>
     <fragment
         android:id="@+id/oneRmFragment"
-        android:name="ru.nilsolk.gymapp.fragment.OneRmFragment"
+        android:name="ru.nilsolk.gymapp.ui.calculators.one_rm.OneRmFragment"
         android:label="fragment_one_rm"
         tools:layout="@layout/fragment_one_rm" >
         <action
@@ -185,7 +185,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileEditFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ProfileEditFragment"
+        android:name="ru.nilsolk.gymapp.ui.profile.ProfileEditFragment"
         android:label="fragment_profile_edit"
         tools:layout="@layout/fragment_profile_edit" >
         <action
@@ -194,16 +194,16 @@
     </fragment>
     <fragment
         android:id="@+id/articleDetailFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ArticleDetailFragment"
+        android:name="ru.nilsolk.gymapp.ui.home.ArticleDetailFragment"
         android:label="fragment_article_detail"
         tools:layout="@layout/fragment_article_detail" >
         <argument
             android:name="article"
-            app:argType="ru.nilsolk.gymapp.model.ArticleModel" />
+            app:argType="ru.nilsolk.gymapp.repository.model.ArticleModel" />
     </fragment>
     <fragment
         android:id="@+id/ropeCalorieBurnedFragment"
-        android:name="ru.nilsolk.gymapp.fragment.RopeCalorieBurnedFragment"
+        android:name="ru.nilsolk.gymapp.ui.calculators.calorie_burned.RopeCalorieBurnedFragment"
         android:label="fragment_rope_calorie_burned"
         tools:layout="@layout/fragment_rope_calorie_burned" >
         <action
@@ -212,7 +212,7 @@
     </fragment>
     <fragment
         android:id="@+id/statisticFragment"
-        android:name="ru.nilsolk.gymapp.fragment.StatisticFragment"
+        android:name="ru.nilsolk.gymapp.ui.statistic.StatisticFragment"
         android:label="fragment_statistic"
         tools:layout="@layout/fragment_statistic" >
         <action
@@ -221,7 +221,7 @@
     </fragment>
     <fragment
         android:id="@+id/chosenProgramFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ChosenProgramFragment"
+        android:name="ru.nilsolk.gymapp.ui.training_program.ChosenProgramFragment"
         android:label="fragment_chosen_program"
         tools:layout="@layout/fragment_chosen_program" >
         <action

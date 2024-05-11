@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".db.App"
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -30,7 +30,7 @@
         </receiver>
 
         <service
-            android:name=".service.StreakTrackingService"
+            android:name=".repository.network.StreakTrackingService"
             android:foregroundServiceType="location|connectedDevice" />
 
         <meta-data
@@ -41,7 +41,7 @@
             android:resource="@color/black" />
 
         <activity
-            android:name=".view.SplashScreenActivity"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,14 +50,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.AuthenticationActivity"
+            android:name=".ui.authentication.AuthenticationActivity"
             android:exported="true" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true" />
 
         <service
-            android:name=".service.FCMService"
+            android:name=".repository.network.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />

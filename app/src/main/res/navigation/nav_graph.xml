@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="ru.nilsolk.gymapp.fragment.LoginFragment"
+        android:name="ru.nilsolk.gymapp.ui.authentication.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileDetailFragment"
-        android:name="ru.nilsolk.gymapp.fragment.ProfileDetailFragment"
+        android:name="ru.nilsolk.gymapp.ui.profile.ProfileDetailFragment"
         android:label="fragment_profile_detail"
         tools:layout="@layout/fragment_profile_detail" >
 
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="ru.nilsolk.gymapp.fragment.SignUpFragment"
+        android:name="ru.nilsolk.gymapp.ui.authentication.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="ru.nilsolk.gymapp.fragment.WelcomeFragment"
+        android:name="ru.nilsolk.gymapp.ui.authentication.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action

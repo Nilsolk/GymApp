@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/gray"
         android:orientation="vertical"
-        tools:context=".fragment.WorkoutFragment">
+        tools:context=".ui.workout.WorkoutFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

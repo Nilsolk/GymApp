@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context=".fragment.CalorieFragment">
+    tools:context=".ui.calculators.day_calorie.CalorieFragment">
 
 
     <LinearLayout

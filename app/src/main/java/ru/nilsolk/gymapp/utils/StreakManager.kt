@@ -2,7 +2,7 @@ package ru.nilsolk.gymapp.utils
 
 import android.content.Context
 import android.widget.Toast
-import ru.nilsolk.gymapp.model.StreakModel
+import ru.nilsolk.gymapp.repository.model.StreakModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.ParseException

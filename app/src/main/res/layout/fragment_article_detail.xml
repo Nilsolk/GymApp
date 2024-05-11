@@ -5,7 +5,7 @@
     <data>
         <variable
             name="article"
-            type="ru.nilsolk.gymapp.model.ArticleModel" />
+            type="ru.nilsolk.gymapp.repository.model.ArticleModel" />
     </data>
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/gray"
         android:orientation="vertical"
-        tools:context=".fragment.ArticleDetailFragment">
+        tools:context=".ui.home.ArticleDetailFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

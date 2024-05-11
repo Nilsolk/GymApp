@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context=".fragment.BodyFatPercentageFragment">
+    tools:context=".ui.calculators.body_fat_calculator.BodyFatPercentageFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

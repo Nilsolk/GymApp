@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context=".fragment.ProfileDetailFragment">
+    tools:context=".ui.profile.ProfileDetailFragment">
 
     <androidx.appcompat.widget.AppCompatSeekBar
         android:layout_width="match_parent"

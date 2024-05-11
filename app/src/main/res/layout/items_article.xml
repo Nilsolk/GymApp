@@ -5,7 +5,7 @@
     <data>
         <variable
             name="article"
-            type="ru.nilsolk.gymapp.model.ArticleModel" />
+            type="ru.nilsolk.gymapp.repository.model.ArticleModel" />
     </data>
 
     <LinearLayout
