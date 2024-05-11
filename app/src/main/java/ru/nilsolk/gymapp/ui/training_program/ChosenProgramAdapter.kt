@@ -9,7 +9,6 @@ import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
 import ru.nilsolk.gymapp.repository.db.Exercise
 import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.translation.TextTranslator
-import ru.nilsolk.gymapp.translation.TranslationCallback
 import ru.nilsolk.gymapp.translation.TranslationConstants
 import ru.nilsolk.gymapp.utils.getImage
 
@@ -37,13 +36,7 @@ class ChosenProgramAdapter(
             val exercise = exercises[position]
             getImage(itemMuscleGif, exercise.gifUrl)
             val textTranslator = TextTranslator()
-            textTranslator.translate(
-                TranslationConstants.SOURCE,
-                TranslationConstants.TARGET, exercise.name, object : TranslationCallback {
-                    override fun onTranslationComplete(translatedText: String) {
-                        itemMuscleName.text = translatedText
-                    }
-                })
+
             if (TranslationConstants.TARGET == "ru") {
                 itemMuscleTarget.text =
                     TranslationConstants.englishMusclesTextMap[exercise.target] ?: exercise.target
@@ -51,24 +44,26 @@ class ChosenProgramAdapter(
                     TranslationConstants.englishEquipmentToRussianMap[exercise.equipment]
                         ?: exercise.equipment
             }
+            val bodyPartExercisesItem = BodyPartExercisesItem(
+                exercise.bodyPart,
+                exercise.equipment,
+                exercise.gifUrl,
+                exercise.id,
+                exercise.instructions,
+                exercise.name,
+                exercise.secondaryMuscles,
+                exercise.target
+            )
+            itemMuscleName.text = textTranslator.translateExercise(bodyPartExercisesItem)
+
             muscleDetailLinear.setOnClickListener {
-                val exerciseItem = exercises[position]
                 val action =
                     ChosenProgramFragmentDirections.actionChosenProgramFragmentToExerciseOverviewFragment(
-                        BodyPartExercisesItem(
-                            exerciseItem.bodyPart,
-                            exerciseItem.equipment,
-                            exerciseItem.gifUrl,
-                            exerciseItem.id,
-                            exerciseItem.instructions,
-                            exerciseItem.name,
-                            exerciseItem.secondaryMuscles,
-                            exerciseItem.target
-                        ),
+                        bodyPartExercisesItem,
                         ChosenProgramFragment::class.java.name
                     )
-                viewModel.removeExercise(exerciseItem, exerciseItem.programName)
-                exercises = exercises.filter { it.id != exerciseItem.id }
+                viewModel.removeExercise(exercise, exercise.programName)
+                exercises = exercises.filter { it.id != exercise.id }
                 notifyDataSetChanged()
                 it.findNavController().navigate(action)
             }

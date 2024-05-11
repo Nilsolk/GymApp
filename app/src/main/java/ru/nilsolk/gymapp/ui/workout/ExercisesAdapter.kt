@@ -9,7 +9,6 @@ import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
 import ru.nilsolk.gymapp.repository.model.BodyPartExercises
 import ru.nilsolk.gymapp.translation.TextTranslator
-import ru.nilsolk.gymapp.translation.TranslationCallback
 import ru.nilsolk.gymapp.translation.TranslationConstants
 import ru.nilsolk.gymapp.translation.TranslationConstants.englishEquipmentToRussianMap
 import ru.nilsolk.gymapp.translation.TranslationConstants.englishMusclesTextMap
@@ -42,16 +41,8 @@ class ExercisesAdapter(
         with(holder.itemMuscleDetailsBinding) {
             val exercise = bodyPartExercises[position]
             getImage(itemMuscleGif, exercise.gifUrl)
+            itemMuscleName.text = textTranslator.translateExercise(exercise)
 
-            textTranslator.translate(
-                TranslationConstants.SOURCE,
-                TranslationConstants.TARGET,
-                exercise.name,
-                object : TranslationCallback {
-                    override fun onTranslationComplete(translatedText: String) {
-                        itemMuscleName.text = translatedText
-                    }
-                })
             if (TranslationConstants.TARGET == "ru") {
                 itemMuscleTarget.text = englishMusclesTextMap[exercise.target] ?: exercise.target
                 itemMuscleEquipment.text =

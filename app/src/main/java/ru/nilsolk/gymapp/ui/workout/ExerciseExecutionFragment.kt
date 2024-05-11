@@ -20,12 +20,13 @@ import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentExerciseExecutionBinding
 import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.repository.model.ExecutionModel
+import ru.nilsolk.gymapp.translation.TextTranslator
+import ru.nilsolk.gymapp.ui.training_program.ChosenProgramFragment
 import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.CountDownDialog
 import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.utils.downloadGifFromURL
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
-import ru.nilsolk.gymapp.ui.training_program.ChosenProgramFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -64,7 +65,7 @@ class ExerciseExecutionFragment : Fragment() {
 
             with(binding) {
                 exerciseGifView.downloadImageFromURL(exerciseItem.gifUrl)
-                exerciseName.text = exerciseItem.name
+                exerciseName.text = TextTranslator().translateExercise(exerciseItem)
             }
         }
 

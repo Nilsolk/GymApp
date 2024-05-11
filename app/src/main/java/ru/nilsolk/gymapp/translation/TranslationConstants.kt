@@ -691,7 +691,7 @@ object TranslationConstants {
         "dumbbell straight leg deadlift" to "Подъем на носках с гантелями",
         "dumbbell sumo pull through" to "Сумо-протяжка с гантелями",
     )
-    val englishWeistBodyExercisesTextMap = mapOf(
+    val englishWaistBodyExercisesTextMap = mapOf(
         "3/4 sit-up" to "Приседание на 3/4",
         "45° side bend" to "Наклон в сторону на 45°",
         "air bike" to "Велосипед в воздухе",

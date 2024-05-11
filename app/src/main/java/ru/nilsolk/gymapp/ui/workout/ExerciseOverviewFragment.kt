@@ -41,16 +41,9 @@ class ExerciseOverviewFragment : Fragment() {
         arguments?.let {
             fragmentType = it.getString("fragmentType")!!
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
-            translator.translate(
-                SOURCE,
-                TARGET,
-                exerciseItem.name,
-                object : TranslationCallback {
-                    override fun onTranslationComplete(translatedText: String) {
-                        exerciseOverviewBinding.exerciseName.text = translatedText
-                    }
 
-                })
+            exerciseOverviewBinding.exerciseName.text = translator.translateExercise(exerciseItem)
+
             exerciseOverviewBinding.equipmentNeeded.text =
                 TranslationConstants.englishEquipmentToRussianMap[exerciseItem.equipment]
                     ?: exerciseItem.equipment
@@ -69,7 +62,8 @@ class ExerciseOverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         exerciseOverviewBinding.letsDoItButton.setOnClickListener {
-            val action = ExerciseOverviewFragmentDirections.actionExerciseOverviewFragmentToExerciseExecutionFragment(
+            val action =
+                ExerciseOverviewFragmentDirections.actionExerciseOverviewFragmentToExerciseExecutionFragment(
                     exerciseItem,
                     fragmentType
                 )

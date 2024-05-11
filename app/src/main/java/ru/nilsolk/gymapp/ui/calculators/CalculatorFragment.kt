@@ -1,17 +1,17 @@
 package ru.nilsolk.gymapp.ui.calculators
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentCalculatorBinding
 
 class CalculatorFragment : Fragment() {
-    private lateinit var fragmentCalculatorBinding : FragmentCalculatorBinding
+    private lateinit var fragmentCalculatorBinding: FragmentCalculatorBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,36 +20,37 @@ class CalculatorFragment : Fragment() {
         fragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
         return fragmentCalculatorBinding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(fragmentCalculatorBinding)
         {
 
-            bodyFatPercentageImage.setOnClickListener{
+            bodyFatPercentageImage.setOnClickListener {
                 val bodyFatAction =
-                    ru.nilsolk.gymapp.fragment.CalculatorFragmentDirections.actionCalculatorFragmentToBodyFatPercentageFragment()
+                    CalculatorFragmentDirections.actionCalculatorFragmentToBodyFatPercentageFragment()
                 Navigation.findNavController(requireView()).navigate(bodyFatAction)
 
             }
-            calorieImage.setOnClickListener{
+            calorieImage.setOnClickListener {
                 val calorieAction =
-                    ru.nilsolk.gymapp.fragment.CalculatorFragmentDirections.actionCalculatorFragmentToCalorieFragment()
+                    CalculatorFragmentDirections.actionCalculatorFragmentToCalorieFragment()
                 Navigation.findNavController(requireView()).navigate(calorieAction)
             }
-            idealWeightImage.setOnClickListener{
+            idealWeightImage.setOnClickListener {
                 val idealWeightAction =
-                    ru.nilsolk.gymapp.fragment.CalculatorFragmentDirections.actionCalculatorFragmentToIdealWeightFragment()
+                    CalculatorFragmentDirections.actionCalculatorFragmentToIdealWeightFragment()
                 Navigation.findNavController(requireView()).navigate(idealWeightAction)
             }
-            jumpingRopeImage.setOnClickListener{
+            jumpingRopeImage.setOnClickListener {
                 val ropeCalorieAction =
-                    ru.nilsolk.gymapp.fragment.CalculatorFragmentDirections.actionCalculatorFragmentToRopeCalorieBurnedFragment()
+                    CalculatorFragmentDirections.actionCalculatorFragmentToRopeCalorieBurnedFragment()
                 Navigation.findNavController(requireView()).navigate(ropeCalorieAction)
             }
-            oneRmImage.setOnClickListener{
+            oneRmImage.setOnClickListener {
                 val oneRmAction =
-                    ru.nilsolk.gymapp.fragment.CalculatorFragmentDirections.actionCalculatorFragmentToOneRmFragment()
+                    CalculatorFragmentDirections.actionCalculatorFragmentToOneRmFragment()
                 Navigation.findNavController(requireView()).navigate(oneRmAction)
             }
         }
