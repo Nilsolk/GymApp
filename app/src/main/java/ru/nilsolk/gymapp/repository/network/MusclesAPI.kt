@@ -11,7 +11,7 @@ import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 interface MusclesAPI {
 
     @Headers(
-        "X-RapidAPI-Key: 7fec0813f2msh8f893d8b05d8a34p1c4932jsna0768d26404a",
+        "X-RapidAPI-Key: adf412e2e9msh71f83cf292ccb3ap195af4jsn9a870e288d5d",
         "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
     )
     @GET("exercises/bodyPart/{bodyPart}")
@@ -21,7 +21,7 @@ interface MusclesAPI {
     ): Single<BodyPartExercises>
 
     @Headers(
-        "X-RapidAPI-Key: 7fec0813f2msh8f893d8b05d8a34p1c4932jsna0768d26404a",
+        "X-RapidAPI-Key: adf412e2e9msh71f83cf292ccb3ap195af4jsn9a870e288d5d",
         "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
     )
     @GET("/exercises/exercise/{id}")

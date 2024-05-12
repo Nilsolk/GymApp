@@ -86,7 +86,6 @@ class CalendarToDoAdapter(
         val textTranslator = TextTranslator()
         val itemBinding = holder.bindingToDo
         val toDoModel = todoArray[holder.adapterPosition]
-
         itemBinding.toDoText.text = textTranslator.translateToDo(toDoModel)
         itemBinding.itemDate.text = toDoModel.selectedDate
         itemBinding.itemDay.text = toDoModel.selectedDay

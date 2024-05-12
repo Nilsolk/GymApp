@@ -1,7 +1,9 @@
 package ru.nilsolk.gymapp.ui.training_program
 
 import android.app.Application
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -15,17 +17,24 @@ import ru.nilsolk.gymapp.repository.db.Exercise
 import ru.nilsolk.gymapp.repository.model.ExerciseProgramModel
 import ru.nilsolk.gymapp.repository.network.FirebaseFirestoreService
 import ru.nilsolk.gymapp.repository.network.MusclesAPIService
+import ru.nilsolk.gymapp.utils.AppPreferences
+import java.time.LocalDate
 
-class ChosenProgramViewModel(application: Application) : AndroidViewModel(application) {
+class ChosenProgramViewModel(application: Application) :
+    AndroidViewModel(application) {
 
     private val firestoreService = FirebaseFirestoreService(application.applicationContext)
     private val musclesAPIService = MusclesAPIService()
     private val exerciseDao = App.database.exerciseDao()
     val exercisesResult = MutableLiveData<List<Exercise>?>()
+    private var appPreferences: AppPreferences? = null
     private var resultProgramModelList = mutableListOf<ExerciseProgramModel>()
     private val disposables = CompositeDisposable()
 
 
+    fun setAppPref(appPref: AppPreferences) {
+        appPreferences = appPref
+    }
 
     fun getProgramExercises(programName: String, programDay: Int) {
         Log.d("LoadDataFromNetwork", "")
@@ -34,20 +43,30 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
             val program = resultProgramModelList.firstOrNull { it.programName == programName }
             if (program != null) {
                 val idsList = when (programDay) {
-                    1 -> program.firstDayIds.split(" ")
-                    2 -> program.secondDayIds.split(" ")
-                    3 -> program.thirdDayIds.split(" ")
-                    4 -> program.fourthDayIds.split(" ")
-                    5 -> program.fifthDayIds.split(" ")
-                    6 -> program.sixthDayIds.split(" ")
-                    else -> emptyList()
+                    1 -> program.firstDayIds.split(" ").associate {
+                        val (key, value) = it.split(":")
+                        key to value.split("/")
+                    }
+
+                    2 -> program.secondDayIds.split(" ").associate {
+                        val (key, value) = it.split(":")
+                        key to value.split("/")
+                    }
+
+                    3 -> program.thirdDayIds.split(" ").associate {
+                        val (key, value) = it.split(":")
+                        key to value.split("/")
+                    }
+
+                    else -> mutableMapOf()
                 }
 
                 val tempList = mutableListOf<Exercise>()
 
                 disposables.addAll(
-                    *idsList.map { id ->
-                        musclesAPIService.getExerciseById(id)
+                    *idsList.map { map ->
+                        Log.d("ID", map.key)
+                        musclesAPIService.getExerciseById(map.key)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ newExercise ->
@@ -60,7 +79,9 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
                                     newExercise.instructions,
                                     newExercise.secondaryMuscles,
                                     newExercise.target,
-                                    programName
+                                    programName,
+                                    map.value[0],
+                                    map.value[1]
                                 )
                                 tempList.add(exercise)
                                 exercisesResult.value = tempList.toList()
@@ -81,12 +102,45 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun removeExercise(exercise: Exercise, programName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             exerciseDao.delete(exercise)
+            updateProgressBar(programName)
             Log.d("Data in room", exerciseDao.getAllExercises(programName).toString())
+            if (exerciseDao.getAllExercises(programName).isEmpty()) {
+                updateProgramDay(programName)
+                updateNextTrainingDay(2, programName)
+//                val lastDay = appPreferences?.getInt("programDay", 1)
+//                appPreferences?.saveInt("programDay", lastDay?.plus(1) ?: 1)
+            }
             exercisesResult.postValue(exerciseDao.getAllExercises(programName))
         }
+    }
+
+    suspend fun updateProgramDay(programName: String) {
+        val day = exerciseDao.getCurrentDay(programName)
+        if (day == 3) {
+            exerciseDao.updateCurrentDay(programName, 1)
+        } else {
+            day?.let { exerciseDao.updateCurrentDay(programName, it.plus(1)) }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun updateNextTrainingDay(restDays: Int, programName: String) {
+        val date = exerciseDao.getExerciseDate(programName)
+        date.let {
+            exerciseDao.updateExerciseDate(
+                programName,
+                LocalDate.parse(it).plusDays(restDays.toLong()).toString()
+            )
+        }
+    }
+
+    suspend fun updateProgressBar(programName: String) {
+        val progress = exerciseDao.getProgress(programName)
+        exerciseDao.updateProgress(programName, progress = progress?.plus(0.1F) ?: 0f)
     }
 
     private fun getProgramExercisesId(
@@ -105,9 +159,9 @@ class ChosenProgramViewModel(application: Application) : AndroidViewModel(applic
                                 snapshot.data!!["firstDayIds"].toString(),
                                 snapshot.data!!["secondDayIds"].toString(),
                                 snapshot.data!!["thirdDayIds"].toString(),
-                                snapshot.data!!["fourthDayIds"].toString(),
-                                snapshot.data!!["fifthDayIds"].toString(),
-                                snapshot.data!!["sixthDayIds"].toString()
+                                snapshot.data!!["instructionsToDo"].toString(),
+                                snapshot.data!!["numDays"].toString(),
+                                snapshot.data!!["numWeeks"].toString(),
                             )
                             tempList.add(program)
                             Log.d("Load data", tempList.toString())

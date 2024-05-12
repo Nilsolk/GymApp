@@ -1,21 +1,28 @@
 package ru.nilsolk.gymapp.ui.workout
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import ru.nilsolk.gymapp.databinding.FragmentWorkoutsDetailBinding
+import ru.nilsolk.gymapp.repository.db.ProgramStatistic
 import ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel
 import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
+import java.time.LocalDate
 
 
 class WorkoutsDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentWorkoutsDetailBinding
+    private val workoutsDetailViewModel: WorkoutsDetailViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,10 +39,22 @@ class WorkoutsDetailFragment : Fragment() {
             binding.startProgramButton.setOnClickListener {
 
                 val appPreferences = AppPreferences(requireContext())
-                appPreferences.saveString("programName", model.workoutName)
-                appPreferences.saveInt("programDay", 1)
+//                appPreferences.saveString("programName", model.workoutName)
+//                appPreferences.saveInt("programDay", 1)
+                workoutsDetailViewModel.insertProgram(
+                    ProgramStatistic(
+                        programName = model.workoutName,
+//                        currentDate = LocalDate.now(),
+                        currentDay = 1,
+                        daysLeft = 60,
+                        exerciseDate = LocalDate.now().toString(),
+                        progress = 0F
+
+                    )
+                )
                 appPreferences.saveBoolean("isDataLoaded", false)
-                val action = WorkoutsDetailFragmentDirections.actionWorkoutsDetailFragmentToChosenProgramFragment()
+                val action =
+                    WorkoutsDetailFragmentDirections.actionWorkoutsDetailFragmentToChosenProgramFragment()
                 requireView().findNavController().navigate(action)
             }
         }

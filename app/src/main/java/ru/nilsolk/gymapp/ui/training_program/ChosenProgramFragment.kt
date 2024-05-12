@@ -1,19 +1,22 @@
 package ru.nilsolk.gymapp.ui.training_program
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
+import ru.nilsolk.gymapp.App
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentChosenProgramBinding
-import ru.nilsolk.gymapp.App
 import ru.nilsolk.gymapp.utils.AppPreferences
+import java.time.LocalDate
 
 class ChosenProgramFragment : Fragment() {
 
@@ -24,6 +27,7 @@ class ChosenProgramFragment : Fragment() {
     private val exerciseDao = App.database.exerciseDao()
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -32,33 +36,65 @@ class ChosenProgramFragment : Fragment() {
             View.VISIBLE
 
         appPreferences = AppPreferences(requireContext())
+        chosenProgramViewModel.setAppPref(appPreferences)
+
         programExercisesAdapter = ChosenProgramAdapter(emptyList(), chosenProgramViewModel)
         binding.chosenProgramRecycler.adapter = programExercisesAdapter
 
 
         val isDataLoaded = appPreferences.getBoolean(IS_DATA_LOADED_KEY)
         Log.d("isDataLoaded", isDataLoaded.toString())
-        val programName = appPreferences.getString("programName", "")
-        val programDay = appPreferences.getInt("programDay", 1)
 
-        binding.trainingProgramName.text = programName
-        binding.progressViewStats.progress = programDay * 10F
-        if (!isDataLoaded) {
-            if (programName.isNotEmpty()) {
-                Log.d("Load from network or cache", "LoadData")
-                chosenProgramViewModel.getProgramExercises(programName, programDay)
-                observeBodyPartExercises()
-
+        var programName: String? = ""
+        var programDay: Int? = 0
+        chosenProgramViewModel.viewModelScope.launch {
+            programName = exerciseDao.getProgramName()
+            programDay = programName?.let {
+                exerciseDao.getCurrentDay(it)
             }
-        } else {
-            chosenProgramViewModel.viewModelScope.launch {
-                val list = exerciseDao.getAllExercises(programName)
-                if (list.isEmpty()) {
-                    binding.chosenProgramRecycler.visibility = View.GONE
-                    binding.endItems.visibility = View.VISIBLE
+            binding.trainingProgramName.text = programName
+            binding.progressViewStats.progress = exerciseDao.getProgress(programName!!)!!
+
+        }
+        chosenProgramViewModel.viewModelScope.launch {
+            Log.d("Log", (programName?.let { exerciseDao.getExerciseDate(it) } == LocalDate.now()
+                .toString()).toString())
+            Log.d("Log now", LocalDate.now().toString())
+            Log.d("Log from db", (programName?.let { exerciseDao.getExerciseDate(it) }.toString()))
+
+            if (exerciseDao.getExerciseDate(programName!!).toString() == LocalDate.now().toString()) {
+
+//        val programName = appPreferences.getString("programName", "")
+//        val programDay = appPreferences.getInt("programDay", 1)
+
+                if (!isDataLoaded) {
+                    if (programName != null) {
+                        Log.d("Load from network or cache", "LoadData")
+                        programDay?.let {
+                            chosenProgramViewModel.getProgramExercises(
+                                programName!!,
+                                it
+                            )
+                        }
+                        observeBodyPartExercises()
+
+                    }
                 } else {
-                    programExercisesAdapter.updateExercises(list)
+                    chosenProgramViewModel.viewModelScope.launch {
+                        val list = programName?.let { exerciseDao.getAllExercises(it) }
+                        if (list != null) {
+                            if (list.isEmpty()) {
+                                binding.chosenProgramRecycler.visibility = View.GONE
+                                binding.endItems.visibility = View.VISIBLE
+                            } else {
+                                programExercisesAdapter.updateExercises(list)
+                            }
+                        }
+                    }
                 }
+            } else {
+                binding.chosenProgramRecycler.visibility = View.GONE
+                binding.endItems.visibility = View.VISIBLE
             }
         }
 

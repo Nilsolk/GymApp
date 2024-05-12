@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import ru.nilsolk.gymapp.databinding.ItemMuscleDetailsBinding
+import ru.nilsolk.gymapp.databinding.ItemMuscleProgramBinding
 import ru.nilsolk.gymapp.repository.db.Exercise
 import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.translation.TextTranslator
@@ -17,10 +17,10 @@ class ChosenProgramAdapter(
     private val viewModel: ChosenProgramViewModel
 ) : RecyclerView.Adapter<ChosenProgramAdapter.ItemHolder>() {
 
-    class ItemHolder(val binding: ItemMuscleDetailsBinding) : RecyclerView.ViewHolder(binding.root)
+    class ItemHolder(val binding: ItemMuscleProgramBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        val itemBinding = ItemMuscleDetailsBinding.inflate(
+        val itemBinding = ItemMuscleProgramBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -34,16 +34,25 @@ class ChosenProgramAdapter(
         with(holder.binding) {
             Log.d("Load data", exercises.toString() + "From adapter")
             val exercise = exercises[position]
-            getImage(itemMuscleGif, exercise.gifUrl)
+            getImage(itemMuscleGifProgram, exercise.gifUrl)
             val textTranslator = TextTranslator()
 
             if (TranslationConstants.TARGET == "ru") {
-                itemMuscleTarget.text =
+                itemMuscleTargetProgram.text =
                     TranslationConstants.englishMusclesTextMap[exercise.target] ?: exercise.target
-                itemMuscleEquipment.text =
+                itemMuscleEquipmentProgram.text =
                     TranslationConstants.englishEquipmentToRussianMap[exercise.equipment]
                         ?: exercise.equipment
+                needSets.text = "Кол-во сетов ${exercise.sets}"
+                needReps.text = "Кол-во повторов ${exercise.reps}"
+            } else {
+                itemMuscleTargetProgram.text = exercise.target
+                itemMuscleEquipmentProgram.text = exercise.equipment
+                needSets.text = "Sets value ${exercise.sets}"
+                needReps.text = "Reps value ${exercise.reps}"
+
             }
+
             val bodyPartExercisesItem = BodyPartExercisesItem(
                 exercise.bodyPart,
                 exercise.equipment,
@@ -54,9 +63,9 @@ class ChosenProgramAdapter(
                 exercise.secondaryMuscles,
                 exercise.target
             )
-            itemMuscleName.text = textTranslator.translateExercise(bodyPartExercisesItem)
+            itemMuscleNameProgram.text = textTranslator.translateExercise(bodyPartExercisesItem)
 
-            muscleDetailLinear.setOnClickListener {
+            muscleDetailLinearProgram.setOnClickListener {
                 val action =
                     ChosenProgramFragmentDirections.actionChosenProgramFragmentToExerciseOverviewFragment(
                         bodyPartExercisesItem,
