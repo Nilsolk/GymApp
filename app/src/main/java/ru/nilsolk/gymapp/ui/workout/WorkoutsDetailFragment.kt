@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentWorkoutsDetailBinding
 import ru.nilsolk.gymapp.repository.db.ProgramStatistic
 import ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel
@@ -39,12 +41,9 @@ class WorkoutsDetailFragment : Fragment() {
             binding.startProgramButton.setOnClickListener {
 
                 val appPreferences = AppPreferences(requireContext())
-//                appPreferences.saveString("programName", model.workoutName)
-//                appPreferences.saveInt("programDay", 1)
                 workoutsDetailViewModel.insertProgram(
                     ProgramStatistic(
                         programName = model.workoutName,
-//                        currentDate = LocalDate.now(),
                         currentDay = 1,
                         daysLeft = 60,
                         exerciseDate = LocalDate.now().toString(),
@@ -55,7 +54,12 @@ class WorkoutsDetailFragment : Fragment() {
                 appPreferences.saveBoolean("isDataLoaded", false)
                 val action =
                     WorkoutsDetailFragmentDirections.actionWorkoutsDetailFragmentToChosenProgramFragment()
-                requireView().findNavController().navigate(action)
+
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.workoutFragment, false)
+                    .build()
+
+                requireView().findNavController().navigate(action, navOptions)
             }
         }
         return binding.root

@@ -37,7 +37,6 @@ class ChosenProgramViewModel(application: Application) :
     }
 
     fun getProgramExercises(programName: String, programDay: Int) {
-        Log.d("LoadDataFromNetwork", "")
         getProgramExercisesId(programName) { programList ->
             resultProgramModelList = programList.toMutableList()
             val program = resultProgramModelList.firstOrNull { it.programName == programName }
@@ -111,12 +110,6 @@ class ChosenProgramViewModel(application: Application) :
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getNextTrainingDay(programName: String) {
-        viewModelScope.launch {
-            val exerciseDay = LocalDate.parse(exerciseDao.getExerciseDate(programName))
-        }
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun removeExercise(exercise: Exercise, programName: String) {
@@ -161,6 +154,7 @@ class ChosenProgramViewModel(application: Application) :
         programName: String,
         callback: (List<ExerciseProgramModel>) -> Unit,
     ) {
+        appPreferences?.saveBoolean(IS_DATA_LOADED_KEY, true)
         viewModelScope.launch {
             val tempList = arrayListOf<ExerciseProgramModel>()
             firestoreService.firestore.collection("popularPrograms").get()
@@ -197,6 +191,10 @@ class ChosenProgramViewModel(application: Application) :
     override fun onCleared() {
         super.onCleared()
         disposables.dispose()
+    }
+
+    companion object {
+        private const val IS_DATA_LOADED_KEY = "isDataLoaded"
     }
 
 

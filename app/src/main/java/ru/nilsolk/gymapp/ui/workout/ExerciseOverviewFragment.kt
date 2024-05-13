@@ -24,7 +24,7 @@ class ExerciseOverviewFragment : Fragment() {
     private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var exerciseOverviewBinding: FragmentExerciseOverviewBinding
     private lateinit var fragmentType: String
-    private lateinit var exerciseRemovedCallback: ExerciseRemovedListener
+    private var exerciseRemovedCallback: ExerciseRemovedListener? = null
     private val translator = TextTranslator()
 
 
@@ -45,7 +45,7 @@ class ExerciseOverviewFragment : Fragment() {
         arguments?.let {
             fragmentType = it.getString("fragmentType")!!
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
-            exerciseRemovedCallback = it.getSerializable("listener") as ExerciseRemovedListener
+            exerciseRemovedCallback = it.getSerializable("listener") as? ExerciseRemovedListener
 
             exerciseOverviewBinding.exerciseName.text = translator.translateExercise(exerciseItem)
 
@@ -67,7 +67,7 @@ class ExerciseOverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         exerciseOverviewBinding.letsDoItButton.setOnClickListener {
             if (fragmentType == ChosenProgramFragment::class.java.name) {
-                exerciseRemovedCallback.onExerciseRemoved()
+                exerciseRemovedCallback?.onExerciseRemoved()
 
             }
             val action =

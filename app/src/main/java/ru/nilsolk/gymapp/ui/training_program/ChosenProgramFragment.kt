@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -74,6 +75,7 @@ class ChosenProgramFragment : Fragment() {
             if (LocalDate.parse(exerciseDao.getExerciseDate(programName))
                     .isEqual(LocalDate.now())
             ) {
+                Log.d("Data loaded", isDataLoaded.toString())
                 if (!isDataLoaded) {
                     Log.d("Load from network or cache", "LoadData")
                     programDay?.let {
@@ -109,10 +111,6 @@ class ChosenProgramFragment : Fragment() {
             result?.let {
                 activity?.runOnUiThread {
                     programExercisesAdapter.updateExercises(it)
-                    appPreferences.saveBoolean(
-                        IS_DATA_LOADED_KEY,
-                        true
-                    )
                 }
             }
         }

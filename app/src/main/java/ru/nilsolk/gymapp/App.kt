@@ -11,7 +11,6 @@ class App : Application() {
     }
 
     override fun onCreate() {
-        AppPreferences(this).saveBoolean("isDataLoaded", false)
         super.onCreate()
         database =
             Room.databaseBuilder(applicationContext, AppDatabase::class.java, "my-database")
