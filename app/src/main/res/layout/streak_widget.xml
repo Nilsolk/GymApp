@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="150dp"
-    android:theme="@style/Theme.EBFitApp.AppWidgetContainer">
+    android:theme="@style/Theme.GymApp.AppWidgetContainer">
 
     <ImageView
         android:layout_width="wrap_content"
