@@ -15,6 +15,8 @@ import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 import ru.nilsolk.gymapp.translation.TextTranslator
 import ru.nilsolk.gymapp.translation.TranslationCallback
 import ru.nilsolk.gymapp.translation.TranslationConstants
+import ru.nilsolk.gymapp.ui.training_program.ChosenProgramFragment
+import java.io.Serializable
 import java.util.Locale
 
 class ExerciseOverviewFragment : Fragment() {
@@ -22,7 +24,9 @@ class ExerciseOverviewFragment : Fragment() {
     private lateinit var exerciseItem: BodyPartExercisesItem
     private lateinit var exerciseOverviewBinding: FragmentExerciseOverviewBinding
     private lateinit var fragmentType: String
+    private lateinit var exerciseRemovedCallback: ExerciseRemovedListener
     private val translator = TextTranslator()
+
 
     @Suppress("DEPRECATION")
     override fun onCreateView(
@@ -41,6 +45,7 @@ class ExerciseOverviewFragment : Fragment() {
         arguments?.let {
             fragmentType = it.getString("fragmentType")!!
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
+            exerciseRemovedCallback = it.getSerializable("listener") as ExerciseRemovedListener
 
             exerciseOverviewBinding.exerciseName.text = translator.translateExercise(exerciseItem)
 
@@ -60,8 +65,11 @@ class ExerciseOverviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         exerciseOverviewBinding.letsDoItButton.setOnClickListener {
+            if (fragmentType == ChosenProgramFragment::class.java.name) {
+                exerciseRemovedCallback.onExerciseRemoved()
+
+            }
             val action =
                 ExerciseOverviewFragmentDirections.actionExerciseOverviewFragmentToExerciseExecutionFragment(
                     exerciseItem,
@@ -98,4 +106,8 @@ class ExerciseOverviewFragment : Fragment() {
         private const val SOURCE = TranslateLanguage.ENGLISH
         private var TARGET = Locale.getDefault().language
     }
+}
+
+interface ExerciseRemovedListener : Serializable {
+    fun onExerciseRemoved()
 }

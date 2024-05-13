@@ -103,6 +103,10 @@
         <argument
             android:name="fragmentType"
             app:argType="string" />
+        <argument
+            android:name="listener"
+            app:argType="ru.nilsolk.gymapp.ui.workout.ExerciseRemovedListener"
+            app:nullable="true" />
 
     </fragment>
     <fragment

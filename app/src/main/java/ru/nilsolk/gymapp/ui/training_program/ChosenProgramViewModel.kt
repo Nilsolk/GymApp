@@ -127,8 +127,6 @@ class ChosenProgramViewModel(application: Application) :
             if (exerciseDao.getAllExercises(programName).isEmpty()) {
                 updateProgramDay(programName)
                 updateNextTrainingDay(2, programName)
-//                val lastDay = appPreferences?.getInt("programDay", 1)
-//                appPreferences?.saveInt("programDay", lastDay?.plus(1) ?: 1)
             }
             exercisesResult.postValue(exerciseDao.getAllExercises(programName))
         }

@@ -53,7 +53,7 @@ class ExercisesAdapter(
                 val action =
                     MusclesDetailFragmentDirections.actionMusclesDetailFragmentToExerciseOverviewFragment(
                         bodyPartExercises[position],
-                        MusclesDetailFragment::class.java.name
+                        MusclesDetailFragment::class.java.name, null
                     )
                 it.findNavController().navigate(action)
             }
