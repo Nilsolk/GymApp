@@ -210,4 +210,6 @@
     <string name="num_of_sets_and_reps">Please enter the number and sets of repetitions.</string>
     <string name="only_your_program_exercises">Only your program exercises</string>
     <string name="the_program_exercises_are_completed_for_today">The program exercises are completed for today</string>
+    <string name="skip_training_day">Skip training day</string>
+    <string name="next_training_day">Next training day</string>
 </resources>

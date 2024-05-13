@@ -192,4 +192,6 @@
     <string name="num_of_sets_and_reps">Пожалуйста, укажите количество и подходов повторений.</string>
     <string name="only_your_program_exercises">Только ваша программа упражнений</string>
     <string name="the_program_exercises_are_completed_for_today">Упражнения по программе на сегодня закончены</string>
+    <string name="skip_training_day">Перенести тренировку</string>
+    <string name="next_training_day">Следующий день тренировки</string>
 </resources>

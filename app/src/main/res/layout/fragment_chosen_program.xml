@@ -1,54 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
-    android:orientation="vertical"
-    tools:context=".ui.training_program.ChosenProgramFragment">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/round_6dp_background"
-        android:backgroundTint="@color/light_gray"
-        android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/revolutiongothic_regular"
-            android:text="@string/your_training_plan_is"
-            android:textColor="@color/silver"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/training_program_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/revolutiongothic_regular"
-            android:textColor="@color/silver"
-            android:textSize="18sp"
-            tools:text="@string/your_training_plan_is" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="24dp"
-        android:background="@drawable/round_6dp_background"
-        android:backgroundTint="@color/light_gray"
+        android:background="@color/gray"
         android:orientation="vertical"
-        android:padding="12dp">
+        tools:context=".ui.training_program.ChosenProgramFragment">
+
+        <LinearLayout
+            android:background="@drawable/round_6dp_background"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_gray"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/revolutiongothic_regular"
+                    android:text="@string/your_training_plan_is"
+                    android:textColor="@color/silver"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/training_program_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/revolutiongothic_regular"
+                    android:textColor="@color/silver"
+                    android:textSize="18sp"
+                    tools:text="@string/your_training_plan_is" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/revolutiongothic_regular"
+                    android:text="@string/next_training_day"
+                    android:textColor="@color/silver"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/nextDayProgram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/revolutiongothic_regular"
+                    android:textColor="@color/silver"
+                    android:textSize="18sp"
+                    tools:text="@string/next_training_day" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="24dp"
+            android:background="@drawable/round_6dp_background"
+            android:backgroundTint="@color/light_gray"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:text="@string/your_progress_in_chosen_training_program"
+                android:textColor="@color/streak"
+                android:textSize="21sp" />
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/progressViewStats"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:progressView_autoAnimate="true"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/blue"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText="your progress"
+                app:progressView_labelTypeface="bold"
+                app:progressView_max="100"
+                app:progressView_padding="1dp"
+                app:progressView_progress="0"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_radius="8dp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,70 +129,52 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="12dp"
             android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:text="@string/your_progress_in_chosen_training_program"
+            android:text="@string/exercises_for_today"
             android:textColor="@color/streak"
             android:textSize="21sp" />
 
-        <com.skydoves.progressview.ProgressView
-            android:id="@+id/progressViewStats"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:progressView_autoAnimate="true"
-            app:progressView_colorBackground="@color/white"
-            app:progressView_colorProgress="@color/blue"
-            app:progressView_labelColorInner="@color/white"
-            app:progressView_labelColorOuter="@color/black"
-            app:progressView_labelSize="13sp"
-            app:progressView_labelSpace="10dp"
-            app:progressView_labelText="your progress"
-            app:progressView_labelTypeface="bold"
-            app:progressView_max="100"
-            app:progressView_padding="1dp"
-            app:progressView_progress="0"
-            app:progressView_progressFromPrevious="true"
-            app:progressView_radius="8dp" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="12dp"
-        android:fontFamily="@font/revolutiongothic_extra_bold"
-        android:text="@string/exercises_for_today"
-        android:textColor="@color/streak"
-        android:textSize="21sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chosenProgramRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_muscle_details" />
-
-    <LinearLayout
-        android:id="@+id/endItems"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/round_6dp_background"
-        android:backgroundTint="@color/light_gray"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:visibility="gone">
-
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chosenProgramRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/revolutiongothic_extra_bold"
-            android:gravity="center"
-            android:text="@string/the_program_exercises_are_completed_for_today"
-            android:textColor="@color/streak"
-            android:textSize="30sp" />
+            android:layout_margin="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_muscle_details" />
+
+        <LinearLayout
+            android:id="@+id/endItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/round_6dp_background"
+            android:backgroundTint="@color/light_gray"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/revolutiongothic_extra_bold"
+                android:gravity="center"
+                android:text="@string/the_program_exercises_are_completed_for_today"
+                android:textColor="@color/streak"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/skipDayProgramButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:background="@color/streak"
+            android:fontFamily="@font/robotobold"
+            android:padding="8dp"
+            android:text="@string/skip_training_day"
+            android:textSize="18sp" />
     </LinearLayout>
-</LinearLayout>
+
+
+</ScrollView>

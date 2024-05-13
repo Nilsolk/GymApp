@@ -24,10 +24,7 @@ interface ExerciseDAO {
     suspend fun insertProgramStatistic(programStatistic: ProgramStatistic)
 
     @Query("SELECT programName FROM program_statistics LIMIT 1")
-    suspend fun getProgramName(): String?
-
-//    @Query("UPDATE program_statistics SET currentDate = :currentDate WHERE programName = :programName")
-//    suspend fun updateCurrentDate(programName: String, currentDate: Date)
+    suspend fun getProgramName(): String
 
     @Query("UPDATE program_statistics SET exerciseDate = :nextExerciseDate WHERE programName = :programName")
     suspend fun updateExerciseDate(programName: String, nextExerciseDate: String)
@@ -41,8 +38,6 @@ interface ExerciseDAO {
     @Query("UPDATE program_statistics SET progress = :progress WHERE programName = :programName")
     suspend fun updateProgress(programName: String, progress: Float)
 
-//    @Query("SELECT currentDate FROM program_statistics WHERE programName = :programName")
-//    suspend fun getCurrentDate(programName: String): Date?
 
     @Query("SELECT exerciseDate FROM program_statistics WHERE programName = :programName")
     suspend fun getExerciseDate(programName: String): String

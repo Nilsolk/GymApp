@@ -103,6 +103,22 @@ class ChosenProgramViewModel(application: Application) :
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
+    fun skipDay(programName: String) {
+        viewModelScope.launch {
+            val exerciseDay = LocalDate.parse(exerciseDao.getExerciseDate(programName))
+            exerciseDao.updateExerciseDate(programName, exerciseDay.plusDays(1L).toString())
+            exercisesResult.value = emptyList()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getNextTrainingDay(programName: String) {
+        viewModelScope.launch {
+            val exerciseDay = LocalDate.parse(exerciseDao.getExerciseDate(programName))
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     fun removeExercise(exercise: Exercise, programName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             exerciseDao.delete(exercise)

@@ -1,4 +1,4 @@
-package ru.nilsolk.gymapp.ui.home
+package ru.nilsolk.gymapp.ui.workout
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.ItemPopularWorkoutsBinding
 import ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel
-import ru.nilsolk.gymapp.ui.workout.WorkoutFragmentDirections
 
 class PopularWorkoutsAdapter(private val popularWorkouts: ArrayList<PopularWorkoutsModel>) : RecyclerView.Adapter<PopularWorkoutsAdapter.ItemHolder>() {
 

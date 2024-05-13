@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.ui.home.BestTrainersAdapter
-import ru.nilsolk.gymapp.ui.home.PopularWorkoutsAdapter
 import ru.nilsolk.gymapp.databinding.FragmentWorkoutBinding
 import ru.nilsolk.gymapp.repository.model.BestTrainersModel
 import ru.nilsolk.gymapp.repository.model.MuscleGroupModel
@@ -46,7 +45,7 @@ class WorkoutFragment : Fragment() {
         muscleGroupsAdapter = MuscleGroupsAdapter(muscleGroups)
         popularWorkoutsAdapter = PopularWorkoutsAdapter(popularWorkouts)
 
-        fragmentWorkoutBinding.bestTrainersRecycler.adapter = bestTrainersAdapter
+//        fragmentWorkoutBinding.bestTrainersRecycler.adapter = bestTrainersAdapter
         fragmentWorkoutBinding.muscleGroupsRecycler.adapter = muscleGroupsAdapter
         fragmentWorkoutBinding.popularWorkoutsRecycler.adapter = popularWorkoutsAdapter
 
@@ -67,12 +66,12 @@ class WorkoutFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun observeBestTrainers() = with(fragmentWorkoutBinding) {
+    private fun observeBestTrainers() {
         workoutViewModel.bestTrainersLiveData.observe(viewLifecycleOwner) { liveBestTrainers ->
             if (liveBestTrainers != null) {
                 bestTrainers.clear()
                 bestTrainers.addAll(liveBestTrainers)
-                bestTrainersRecycler.adapter?.notifyDataSetChanged()
+    //                bestTrainersRecycler.adapter?.notifyDataSetChanged()
             }
         }
     }
