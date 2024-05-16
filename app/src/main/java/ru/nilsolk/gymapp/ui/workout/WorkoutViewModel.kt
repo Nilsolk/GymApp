@@ -22,17 +22,21 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
 
     fun getMuscleGroups() {
         if (muscleGroupLiveData.value == null) {
-            firestoreService.firestore.collection("muscleGroups").get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (snapshot in task.result.documents) {
-                        val muscleGroupModel = MuscleGroupModel(snapshot.data!!["muscle"].toString(), snapshot.data!!["muscleImage"].toString())
-                        muscleTempList.add(muscleGroupModel)
+            firestoreService.firestore.collection("muscleGroups").get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        for (snapshot in task.result.documents) {
+                            val muscleGroupModel = MuscleGroupModel(
+                                snapshot.data!!["muscle"].toString(),
+                                snapshot.data!!["muscleImage"].toString()
+                            )
+                            muscleTempList.add(muscleGroupModel)
+                        }
+                        muscleGroupLiveData.value = muscleTempList
+                    } else {
+                        muscleGroupLiveData.value = null
                     }
-                    muscleGroupLiveData.value = muscleTempList
-                } else {
-                    muscleGroupLiveData.value = null
-                }
-            }.addOnFailureListener {
+                }.addOnFailureListener {
                 muscleGroupLiveData.value = null
                 showErrorToastMessage(it.message.toString())
             }
@@ -42,16 +46,21 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
 
     fun getBestTrainers() {
         if (bestTrainersLiveData.value == null) {
-            firestoreService.firestore.collection("bestTrainers").get().addOnCompleteListener {  query ->
-                if (query.isSuccessful) {
-                    for (snapshot in query.result.documents) {
-                        val bestTrainersModel = BestTrainersModel(snapshot.data!!["profileImageURL"].toString(), snapshot.data!!["username"].toString(), snapshot.data!!["specialization"].toString())
-                        trainersTempList.add(bestTrainersModel)
-                    }
-                    bestTrainersLiveData.value = trainersTempList
-                } else bestTrainersLiveData.value = null
+            firestoreService.firestore.collection("bestTrainers").get()
+                .addOnCompleteListener { query ->
+                    if (query.isSuccessful) {
+                        for (snapshot in query.result.documents) {
+                            val bestTrainersModel = BestTrainersModel(
+                                snapshot.data!!["profileImageURL"].toString(),
+                                snapshot.data!!["username"].toString(),
+                                snapshot.data!!["specialization"].toString()
+                            )
+                            trainersTempList.add(bestTrainersModel)
+                        }
+                        bestTrainersLiveData.value = trainersTempList
+                    } else bestTrainersLiveData.value = null
 
-            }.addOnFailureListener {
+                }.addOnFailureListener {
                 bestTrainersLiveData.value = null
                 showErrorToastMessage(it.message.toString())
             }
@@ -60,19 +69,22 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
 
     fun getPopularWorkouts() {
         if (popularWorkoutsLiveData.value == null) {
-            firestoreService.firestore.collection("popularWorkouts").get().addOnCompleteListener { querySnapshot ->
-                if (querySnapshot.isSuccessful) {
-                    for (snapshot in querySnapshot.result.documents) {
-                        val popularWorkouts = PopularWorkoutsModel(
-                            snapshot.data!!["name"].toString(),
-                            snapshot.data!!["description"].toString(),
-                            snapshot.data!!["imageURL"].toString()
-                        )
-                        workoutsTempList.add(popularWorkouts)
-                    }
-                    popularWorkoutsLiveData.value = workoutsTempList
-                } else popularWorkoutsLiveData.value = null
-            }.addOnFailureListener {
+            firestoreService.firestore.collection("popularWorkouts").get()
+                .addOnCompleteListener { querySnapshot ->
+                    if (querySnapshot.isSuccessful) {
+                        for (snapshot in querySnapshot.result.documents) {
+                            val popularWorkouts = PopularWorkoutsModel(
+                                snapshot.data!!["name"].toString(),
+                                snapshot.data!!["description"].toString(),
+                                snapshot.data!!["imageURL"].toString(),
+                                snapshot.data!!["goal"].toString(),
+                                snapshot.data!!["activityLevel"].toString(),
+                                )
+                            workoutsTempList.add(popularWorkouts)
+                        }
+                        popularWorkoutsLiveData.value = workoutsTempList
+                    } else popularWorkoutsLiveData.value = null
+                }.addOnFailureListener {
                 popularWorkoutsLiveData.value = null
                 showErrorToastMessage(it.message.toString())
             }

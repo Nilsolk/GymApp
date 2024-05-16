@@ -40,7 +40,7 @@
     <string name="train_and_live_the_new_experience_of_exercising_at_home">Train and live the new experience of exercising at home</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="buttonlogin">Login</string>
-    <string name="or_ncreate_account" translatable="false">or\nCreate Account</string>
+    <string name="or_ncreate_account">or\nCreate Account</string>
     <string name="complete_profile">Complete Profile</string>
 
     <!-- Bottom Sheet Layout -->
@@ -212,4 +212,9 @@
     <string name="the_program_exercises_are_completed_for_today">The program exercises are completed for today</string>
     <string name="skip_training_day">Skip training day</string>
     <string name="next_training_day">Next training day</string>
+    <string name="beginner">Beginner</string>
+    <string name="middle">Middle</string>
+    <string name="advanced">Advanced</string>
+    <string name="activity_level">Activity level</string>
+
 </resources>

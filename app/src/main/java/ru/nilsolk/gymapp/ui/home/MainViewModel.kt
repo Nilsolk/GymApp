@@ -33,7 +33,8 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                             height = data["height"].toString().toIntOrNull() ?: 0,
                             weight = data["weight"].toString().toDoubleOrNull() ?: 0.0,
                             targetWeight = data["targetWeight"].toString().toDoubleOrNull() ?: 0.0,
-                            goal = data["goal"].toString()
+                            goal = data["goal"].toString(),
+                            activityLevel = data["activityLevel"].toString()
                         )
                     } else null
                     profileDetails.value = profileDetail
@@ -41,9 +42,9 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                     profileDetails.value = null
                 }
             }.addOnFailureListener {
-            profileDetails.value = null
-            showErrorToastMessage(it.message.toString())
-        }
+                profileDetails.value = null
+                showErrorToastMessage(it.message.toString())
+            }
     }
 
     fun getArticles() {

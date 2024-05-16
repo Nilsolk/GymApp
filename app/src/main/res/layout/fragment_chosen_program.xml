@@ -13,11 +13,11 @@
         tools:context=".ui.training_program.ChosenProgramFragment">
 
         <LinearLayout
-            android:background="@drawable/round_6dp_background"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/round_6dp_background"
             android:backgroundTint="@color/light_gray"
             android:orientation="vertical">
 

@@ -1,5 +1,6 @@
 package ru.nilsolk.gymapp.ui.workout
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ class WorkoutsDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentWorkoutsDetailBinding
     private val workoutsDetailViewModel: WorkoutsDetailViewModel by viewModels()
+    private lateinit var activityLevel: String
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -31,38 +33,72 @@ class WorkoutsDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWorkoutsDetailBinding.inflate(layoutInflater)
+        workoutsDetailViewModel.getProfileDetail()
+        observeProfileDetail()
 
-        arguments.let {
-            @Suppress("DEPRECATION") val model: PopularWorkoutsModel =
-                it!!.getSerializable("workout") as PopularWorkoutsModel
+        arguments?.let {
+            val model: PopularWorkoutsModel =
+                it.getSerializable("workout") as PopularWorkoutsModel
             binding.programImage.downloadImageFromURL(model.imageURL)
             binding.programText.text = model.workoutName
             binding.descriptionText.text = model.description
             binding.startProgramButton.setOnClickListener {
-
-                val appPreferences = AppPreferences(requireContext())
-                workoutsDetailViewModel.insertProgram(
-                    ProgramStatistic(
-                        programName = model.workoutName,
-                        currentDay = 1,
-                        daysLeft = 60,
-                        exerciseDate = LocalDate.now().toString(),
-                        progress = 0F
-
-                    )
-                )
-                appPreferences.saveBoolean("isDataLoaded", false)
-                val action =
-                    WorkoutsDetailFragmentDirections.actionWorkoutsDetailFragmentToChosenProgramFragment()
-
-                val navOptions = NavOptions.Builder()
-                    .setPopUpTo(R.id.workoutFragment, false)
-                    .build()
-
-                requireView().findNavController().navigate(action, navOptions)
+                if (activityLevel != model.activityLevel) {
+                    showActivityLevelMismatchDialog(model)
+                } else {
+                    navigateToChosenProgramFragment(model)
+                }
             }
         }
+
         return binding.root
+    }
+
+    private fun observeProfileDetail() {
+        workoutsDetailViewModel.profileDetails.observe(requireActivity()) { userProfileDetails ->
+            if (userProfileDetails != null) {
+                activityLevel = userProfileDetails.activityLevel.toString()
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun showActivityLevelMismatchDialog(model: PopularWorkoutsModel) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Уведомление")
+        builder.setMessage("Уровень активности программы не совпадает с вашим текущим уровнем активности.")
+        builder.setPositiveButton("Продолжить") { dialog, _ ->
+            dialog.dismiss()
+            navigateToChosenProgramFragment(model)
+        }
+        builder.setNegativeButton("Отмена") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun navigateToChosenProgramFragment(model: PopularWorkoutsModel) {
+        val appPreferences = AppPreferences(requireContext())
+        appPreferences.saveBoolean("isDataLoaded", false)
+
+        workoutsDetailViewModel.insertProgram(
+            ProgramStatistic(
+                programName = model.workoutName,
+                currentDay = 1,
+                daysLeft = 60,
+                exerciseDate = LocalDate.now().toString(),
+                progress = 0F
+            )
+        )
+        val action =
+            WorkoutsDetailFragmentDirections.actionWorkoutsDetailFragmentToChosenProgramFragment()
+
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.workoutFragment, false)
+            .build()
+
+        requireView().findNavController().navigate(action, navOptions)
     }
 
 

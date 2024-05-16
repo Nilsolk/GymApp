@@ -9,5 +9,6 @@ data class ProfileDetailModel(
     var height: Int?,
     var weight: Double?,
     var targetWeight: Double?,
-    var goal: String?
+    var goal: String?,
+    var activityLevel: String?
 )

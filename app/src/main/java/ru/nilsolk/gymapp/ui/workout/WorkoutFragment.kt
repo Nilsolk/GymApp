@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.nilsolk.gymapp.R
-import ru.nilsolk.gymapp.ui.home.BestTrainersAdapter
 import ru.nilsolk.gymapp.databinding.FragmentWorkoutBinding
 import ru.nilsolk.gymapp.repository.model.BestTrainersModel
 import ru.nilsolk.gymapp.repository.model.MuscleGroupModel
 import ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel
+import ru.nilsolk.gymapp.ui.home.BestTrainersAdapter
 
 class WorkoutFragment : Fragment() {
 
@@ -71,7 +71,6 @@ class WorkoutFragment : Fragment() {
             if (liveBestTrainers != null) {
                 bestTrainers.clear()
                 bestTrainers.addAll(liveBestTrainers)
-    //                bestTrainersRecycler.adapter?.notifyDataSetChanged()
             }
         }
     }

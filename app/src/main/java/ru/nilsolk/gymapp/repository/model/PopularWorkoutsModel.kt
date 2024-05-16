@@ -2,4 +2,10 @@ package ru.nilsolk.gymapp.repository.model
 
 import java.io.Serializable
 
-data class PopularWorkoutsModel(val workoutName: String, val description: String, val imageURL: String) : Serializable
+data class PopularWorkoutsModel(
+    val workoutName: String,
+    val description: String,
+    val imageURL: String,
+    val goal: String,
+    val activityLevel: String
+) : Serializable
