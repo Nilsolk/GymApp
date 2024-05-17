@@ -58,8 +58,7 @@ class CalendarAdapter(
             adapterPosition = position
             notifyItemRangeChanged(0, list.size)
 
-            val text = itemList.calendarYear.toString()
-            val date = itemList.calendarDate
+            val text = itemList.calendarYear
             val day = itemList.calendarDay
             isFirstTime = false
             mListener?.onItemClick(text, day)

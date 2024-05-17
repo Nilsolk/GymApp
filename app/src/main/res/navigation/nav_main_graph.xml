@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="ru.nilsolk.gymapp.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment"
@@ -25,7 +25,7 @@
         android:id="@+id/profileFragment"
         android:name="ru.nilsolk.gymapp.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
@@ -40,7 +40,7 @@
         android:id="@+id/workoutFragment"
         android:name="ru.nilsolk.gymapp.ui.workout.WorkoutFragment"
         android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" >
+        tools:layout="@layout/fragment_workout">
         <action
             android:id="@+id/action_workoutFragment_to_workoutsDetailFragment"
             app:destination="@id/workoutsDetailFragment" />
@@ -55,7 +55,7 @@
         android:id="@+id/workoutsDetailFragment"
         android:name="ru.nilsolk.gymapp.ui.workout.WorkoutsDetailFragment"
         android:label="fragment_workouts_detail"
-        tools:layout="@layout/fragment_workouts_detail" >
+        tools:layout="@layout/fragment_workouts_detail">
         <argument
             android:name="workout"
             app:argType="ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel" />
@@ -72,7 +72,7 @@
         android:id="@+id/musclesDetailFragment"
         android:name="ru.nilsolk.gymapp.ui.workout.MusclesDetailFragment"
         android:label="fragment_muscles_detail"
-        tools:layout="@layout/fragment_muscles_detail" >
+        tools:layout="@layout/fragment_muscles_detail">
 
         <argument
             android:name="muscle"
@@ -90,11 +90,11 @@
         android:id="@+id/exerciseOverviewFragment"
         android:name="ru.nilsolk.gymapp.ui.workout.ExerciseOverviewFragment"
         android:label="fragment_exercise_overview"
-        tools:layout="@layout/fragment_exercise_overview" >
+        tools:layout="@layout/fragment_exercise_overview">
 
         <argument
             android:name="exercise"
-            app:argType="ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem"/>
+            app:argType="ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem" />
         <action
             android:id="@+id/action_exerciseOverviewFragment_to_exerciseExecutionFragment"
             app:destination="@id/exerciseExecutionFragment"
@@ -116,7 +116,7 @@
         tools:layout="@layout/fragment_exercise_execution">
         <argument
             android:name="exercise"
-            app:argType="ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem"/>
+            app:argType="ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem" />
         <action
             android:id="@+id/action_exerciseExecutionFragment_to_workoutFragment"
             app:destination="@id/workoutFragment" />
@@ -129,12 +129,16 @@
         <action
             android:id="@+id/action_exerciseExecutionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="listener"
+            app:argType="ru.nilsolk.gymapp.ui.workout.ExerciseRemovedListener"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"
         android:name="ru.nilsolk.gymapp.ui.calculators.CalculatorFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_calculator" >
+        tools:layout="@layout/fragment_calculator">
         <action
             android:id="@+id/action_calculatorFragment_to_idealWeightFragment"
             app:destination="@id/idealWeightFragment" />
@@ -155,7 +159,7 @@
         android:id="@+id/bodyFatPercentageFragment"
         android:name="ru.nilsolk.gymapp.ui.calculators.body_fat_calculator.BodyFatPercentageFragment"
         android:label="fragment_body_fat_percentage"
-        tools:layout="@layout/fragment_body_fat_percentage" >
+        tools:layout="@layout/fragment_body_fat_percentage">
         <action
             android:id="@+id/action_bodyFatPercentageFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
@@ -164,7 +168,7 @@
         android:id="@+id/calorieFragment"
         android:name="ru.nilsolk.gymapp.ui.calculators.day_calorie.CalorieFragment"
         android:label="fragment_calorie"
-        tools:layout="@layout/fragment_calorie" >
+        tools:layout="@layout/fragment_calorie">
         <action
             android:id="@+id/action_calorieFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
@@ -173,7 +177,7 @@
         android:id="@+id/idealWeightFragment"
         android:name="ru.nilsolk.gymapp.ui.calculators.ideal_weight.IdealWeightFragment"
         android:label="fragment_ideal_weight"
-        tools:layout="@layout/fragment_ideal_weight" >
+        tools:layout="@layout/fragment_ideal_weight">
         <action
             android:id="@+id/action_idealWeightFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
@@ -182,7 +186,7 @@
         android:id="@+id/oneRmFragment"
         android:name="ru.nilsolk.gymapp.ui.calculators.one_rm.OneRmFragment"
         android:label="fragment_one_rm"
-        tools:layout="@layout/fragment_one_rm" >
+        tools:layout="@layout/fragment_one_rm">
         <action
             android:id="@+id/action_oneRmFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
@@ -191,7 +195,7 @@
         android:id="@+id/profileEditFragment"
         android:name="ru.nilsolk.gymapp.ui.profile.ProfileEditFragment"
         android:label="fragment_profile_edit"
-        tools:layout="@layout/fragment_profile_edit" >
+        tools:layout="@layout/fragment_profile_edit">
         <action
             android:id="@+id/action_profileEditFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -200,7 +204,7 @@
         android:id="@+id/articleDetailFragment"
         android:name="ru.nilsolk.gymapp.ui.home.ArticleDetailFragment"
         android:label="fragment_article_detail"
-        tools:layout="@layout/fragment_article_detail" >
+        tools:layout="@layout/fragment_article_detail">
         <argument
             android:name="article"
             app:argType="ru.nilsolk.gymapp.repository.model.ArticleModel" />
@@ -209,7 +213,7 @@
         android:id="@+id/ropeCalorieBurnedFragment"
         android:name="ru.nilsolk.gymapp.ui.calculators.calorie_burned.RopeCalorieBurnedFragment"
         android:label="fragment_rope_calorie_burned"
-        tools:layout="@layout/fragment_rope_calorie_burned" >
+        tools:layout="@layout/fragment_rope_calorie_burned">
         <action
             android:id="@+id/action_ropeCalorieBurnedFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
@@ -218,7 +222,7 @@
         android:id="@+id/statisticFragment"
         android:name="ru.nilsolk.gymapp.ui.statistic.StatisticFragment"
         android:label="fragment_statistic"
-        tools:layout="@layout/fragment_statistic" >
+        tools:layout="@layout/fragment_statistic">
         <action
             android:id="@+id/action_statisticFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -227,7 +231,7 @@
         android:id="@+id/chosenProgramFragment"
         android:name="ru.nilsolk.gymapp.ui.training_program.ChosenProgramFragment"
         android:label="fragment_chosen_program"
-        tools:layout="@layout/fragment_chosen_program" >
+        tools:layout="@layout/fragment_chosen_program">
         <action
             android:id="@+id/action_chosenProgramFragment_to_workoutsDetailFragment"
             app:destination="@id/workoutsDetailFragment" />

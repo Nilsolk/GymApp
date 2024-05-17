@@ -66,14 +66,10 @@ class ExerciseOverviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         exerciseOverviewBinding.letsDoItButton.setOnClickListener {
-            if (fragmentType == ChosenProgramFragment::class.java.name) {
-                exerciseRemovedCallback?.onExerciseRemoved()
-
-            }
             val action =
                 ExerciseOverviewFragmentDirections.actionExerciseOverviewFragmentToExerciseExecutionFragment(
                     exerciseItem,
-                    fragmentType
+                    fragmentType, exerciseRemovedCallback
                 )
             findNavController().navigate(action)
         }
@@ -100,7 +96,6 @@ class ExerciseOverviewFragment : Fragment() {
 
             })
     }
-
 
     companion object {
         private const val SOURCE = TranslateLanguage.ENGLISH

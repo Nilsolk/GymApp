@@ -22,6 +22,8 @@ class WorkoutsDetailViewModel(private val application: Application) :
     fun insertProgram(programStatistic: ProgramStatistic) {
         viewModelScope.launch(Dispatchers.IO) {
             exerciseDao.deleteProgramStatisticsTable()
+            exerciseDao.deleteDailyProgramStatisticsTable()
+            exerciseDao.deleteExercisesProgramStatisticsTable()
             exerciseDao.insertProgramStatistic(programStatistic)
         }
     }

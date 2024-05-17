@@ -20,11 +20,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentProfileBinding
 import ru.nilsolk.gymapp.repository.network.FirebaseAuthService
+import ru.nilsolk.gymapp.translation.TranslationConstants
+import ru.nilsolk.gymapp.ui.authentication.AuthenticationActivity
+import ru.nilsolk.gymapp.ui.home.MainViewModel
 import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.CustomProgress
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
-import ru.nilsolk.gymapp.ui.authentication.AuthenticationActivity
-import ru.nilsolk.gymapp.ui.home.MainViewModel
+import java.util.Locale
 import kotlin.math.abs
 
 class ProfileFragment : Fragment() {
@@ -69,7 +71,8 @@ class ProfileFragment : Fragment() {
                     200
                 )
                 it.background = backgroundDrawable
-                val editProfileAction = ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
+                val editProfileAction =
+                    ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment()
                 Navigation.findNavController(requireView()).navigate(editProfileAction)
             }
 
@@ -165,7 +168,12 @@ class ProfileFragment : Fragment() {
                     userProfileDetails.targetWeight!!,
                     userProfileDetails.weight!!
                 )
-                fragmentProfileBinding.goalText.text = "${userProfileDetails.goal}"
+                if (Locale.getDefault().language == "ru") {
+                    fragmentProfileBinding.goalText.text =
+                        TranslationConstants.mapEnglishToRussianGoal[userProfileDetails.goal]
+                            ?: userProfileDetails.goal
+                } else
+                    fragmentProfileBinding.goalText.text = "${userProfileDetails.goal}"
             }
         }
     }

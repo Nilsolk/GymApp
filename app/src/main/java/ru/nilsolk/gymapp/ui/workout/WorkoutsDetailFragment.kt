@@ -15,9 +15,11 @@ import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentWorkoutsDetailBinding
 import ru.nilsolk.gymapp.repository.db.ProgramStatistic
 import ru.nilsolk.gymapp.repository.model.PopularWorkoutsModel
+import ru.nilsolk.gymapp.translation.TranslationConstants
 import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.downloadImageFromURL
 import java.time.LocalDate
+import java.util.Locale
 
 
 class WorkoutsDetailFragment : Fragment() {
@@ -40,7 +42,22 @@ class WorkoutsDetailFragment : Fragment() {
             val model: PopularWorkoutsModel =
                 it.getSerializable("workout") as PopularWorkoutsModel
             binding.programImage.downloadImageFromURL(model.imageURL)
-            binding.programText.text = model.workoutName
+
+            if (Locale.getDefault().language == "ru") {
+                binding.programText.text =
+                    TranslationConstants.mapEnglishToRussianPrograms[model.workoutName]
+                        ?: model.workoutName
+                binding.goal.text =
+                    TranslationConstants.mapEnglishToRussianGoal[model.goal] ?: model.goal
+                binding.activityLevel.text =
+                    TranslationConstants.mapEnglishToRussianLevel[model.activityLevel]
+                        ?: model.activityLevel
+            } else {
+                binding.programText.text = model.workoutName
+                binding.goal.text = model.goal
+                binding.activityLevel.text = model.activityLevel
+            }
+
             binding.descriptionText.text = model.description
             binding.startProgramButton.setOnClickListener {
                 if (activityLevel != model.activityLevel) {

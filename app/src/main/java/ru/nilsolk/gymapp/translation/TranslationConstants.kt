@@ -16,6 +16,25 @@ object TranslationConstants {
         "waist" to "талия"
     )
 
+    val mapEnglishToRussianPrograms = mapOf(
+        "Push Pull Legs" to "Жим, тяга и ноги",
+        "Full Body" to "Тренировка всего тела",
+        "Extreme Fat Loss" to "Экстримальное похудение",
+        "Streight for beginners" to "Сила для новичков",
+    )
+    val mapEnglishToRussianLevel = mapOf(
+        "Beginner" to "Начинающий",
+        "Middle" to "Любитель",
+        "Advanced" to "Продвинутый",
+    )
+    val mapEnglishToRussianGoal = mapOf(
+        "Weight Loss" to "Похудение",
+        "Weight Gain" to "Набор веса",
+        "Increase Endurance" to "Увеличение выносливости",
+        "Build Muscle Mass" to "Наращение мышц",
+        "Improve Flexibility and Balance" to "Увеличение гибкости",
+    )
+
     val mapRussianToEnglishMuscleGroups =
         mapEnglishToRussianMuscleGroups.entries.associate { (key, value) -> value to key }
 

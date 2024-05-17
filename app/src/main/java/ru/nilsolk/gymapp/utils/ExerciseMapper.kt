@@ -1,6 +1,7 @@
 package ru.nilsolk.gymapp.utils
 
 import ru.nilsolk.gymapp.repository.db.Exercise
+import ru.nilsolk.gymapp.repository.db.ExerciseDone
 import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 
 object ExerciseMapper {
@@ -35,6 +36,36 @@ object ExerciseMapper {
             instructions = exercise.instructions,
             secondaryMuscles = exercise.secondaryMuscles,
             target = exercise.target
+        )
+    }
+
+    fun mapToBodyPartExercisesItem(exercise: ExerciseDone): BodyPartExercisesItem {
+        return BodyPartExercisesItem(
+            id = exercise.id,
+            name = exercise.name,
+            gifUrl = exercise.gifUrl,
+            bodyPart = exercise.bodyPart,
+            equipment = exercise.equipment,
+            instructions = exercise.instructions,
+            secondaryMuscles = exercise.secondaryMuscles,
+            target = exercise.target
+        )
+    }
+
+    fun mapToExerciseDone(exercise: Exercise): ExerciseDone {
+        return ExerciseDone(
+            id = exercise.id,
+            name = exercise.name,
+            gifUrl = exercise.gifUrl,
+            bodyPart = exercise.bodyPart,
+            equipment = exercise.equipment,
+            instructions = exercise.instructions,
+            secondaryMuscles = exercise.secondaryMuscles,
+            target = exercise.target,
+            programName = exercise.programName,
+            sets = exercise.sets,
+            reps = exercise.reps,
+            exerciseId = exercise.id
         )
     }
 }

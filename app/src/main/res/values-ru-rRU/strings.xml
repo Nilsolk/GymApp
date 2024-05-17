@@ -199,4 +199,9 @@
     <string name="advanced">Продвинутый</string>
     <string name="middle">Средний</string>
     <string name="activity_level">Уровень подготовки</string>
+    <string name="daily_statistics">"Статистика за день "</string>
+    <string name="reps_stats">"Повторы : "</string>
+    <string name="sets_stats">"Сеты : "</string>
+    <string name="weight_stats">"Вес : "</string>
+    <string name="progress_up_to">Прогресс увиличился на</string>
 </resources>

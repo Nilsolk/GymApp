@@ -8,7 +8,6 @@ data class ProgramStatistic(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val programName: String,
-//    val currentDate: LocalDate,
     val exerciseDate: String,
     val currentDay: Int,
     val daysLeft: Int,

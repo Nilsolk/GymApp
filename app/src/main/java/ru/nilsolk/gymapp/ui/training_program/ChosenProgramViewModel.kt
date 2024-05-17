@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.nilsolk.gymapp.App
+import ru.nilsolk.gymapp.repository.db.DailyProgramStatistic
 import ru.nilsolk.gymapp.repository.db.Exercise
 import ru.nilsolk.gymapp.repository.model.ExerciseProgramModel
 import ru.nilsolk.gymapp.repository.network.FirebaseFirestoreService
@@ -131,6 +132,14 @@ class ChosenProgramViewModel(application: Application) :
             exerciseDao.updateCurrentDay(programName, 1)
         } else {
             day?.let { exerciseDao.updateCurrentDay(programName, it.plus(1)) }
+        }
+    }
+
+    fun getDailyStatistics(date: String, id: Int, callback: (List<DailyProgramStatistic>) -> Unit) {
+        viewModelScope.launch {
+            val dailyStats = exerciseDao.getDailyStatisticsForDateAndProgram(date, id)
+            Log.d("Statistic", dailyStats.toString())
+            callback(dailyStats)
         }
     }
 

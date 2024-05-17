@@ -154,7 +154,7 @@ class ProfileEditFragment() : Fragment() {
         mainViewModel.profileDetails.value?.weight = newWeight
         mainViewModel.profileDetails.value?.targetWeight = newTargetWeight
         mainViewModel.profileDetails.value?.profileImageURL = newImageURI.toString()
-//Bu değeler ne orospu çocuğu çalışsana
+
         println("Age: ${newAge?.toString()}")
         println("Weight: $newWeight")
         println("Target Weight: $newTargetWeight")

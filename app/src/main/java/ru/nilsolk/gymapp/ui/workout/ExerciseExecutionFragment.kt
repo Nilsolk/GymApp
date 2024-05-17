@@ -47,6 +47,7 @@ class ExerciseExecutionFragment : Fragment() {
     private lateinit var customProgress: CustomProgress
     private lateinit var countDownDialog: CountDownDialog
     private lateinit var exerciseItem: BodyPartExercisesItem
+    private var exerciseRemovedCallback: ExerciseRemovedListener? = null
     private val executionViewModel: ExecutionViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -60,6 +61,7 @@ class ExerciseExecutionFragment : Fragment() {
         countDownDialog = CountDownDialog(requireContext())
 
         arguments?.let {
+            exerciseRemovedCallback = it.getSerializable("listener") as? ExerciseRemovedListener
             exerciseItem = it.getSerializable("exercise") as BodyPartExercisesItem
             fragmentType = it.getString("fragmentType")!!
 
@@ -169,9 +171,10 @@ class ExerciseExecutionFragment : Fragment() {
         ).format(Calendar.getInstance().time)
 
         val exerciseProgram =
-            if (fragmentType == ChosenProgramFragment::class.java.name) AppPreferences(
-                requireActivity()
-            ).getString("programName", "None")
+            if (fragmentType == ChosenProgramFragment::class.java.name)
+                AppPreferences(
+                    requireActivity()
+                ).getString("programName", "None")
             else ""
 
 
@@ -185,7 +188,14 @@ class ExerciseExecutionFragment : Fragment() {
             exerciseItem.bodyPart,
             exerciseProgram
         )
-
+        executionViewModel.saveDailyStatistic(
+            exerciseItem,
+            fragmentType,
+            enteredReps.toInt(),
+            enteredSets.toInt(),
+            exerciseRemovedCallback,
+            enteredWeight.toInt()
+        )
         customProgress.show()
         executionViewModel.saveWorkout(exerciseData) { result, message ->
             customProgress.dismiss()

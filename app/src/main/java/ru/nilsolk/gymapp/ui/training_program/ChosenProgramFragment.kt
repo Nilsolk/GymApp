@@ -10,7 +10,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -18,8 +17,10 @@ import kotlinx.coroutines.launch
 import ru.nilsolk.gymapp.App
 import ru.nilsolk.gymapp.R
 import ru.nilsolk.gymapp.databinding.FragmentChosenProgramBinding
+import ru.nilsolk.gymapp.translation.TranslationConstants
 import ru.nilsolk.gymapp.utils.AppPreferences
 import java.time.LocalDate
+import java.util.Locale
 
 class ChosenProgramFragment : Fragment() {
 
@@ -46,20 +47,24 @@ class ChosenProgramFragment : Fragment() {
         programExercisesAdapter = ChosenProgramAdapter(emptyList(), chosenProgramViewModel)
         binding.chosenProgramRecycler.adapter = programExercisesAdapter
 
-
         val isDataLoaded = appPreferences.getBoolean(IS_DATA_LOADED_KEY)
         Log.d("isDataLoaded", isDataLoaded.toString())
 
+        var programId = 0
         chosenProgramViewModel.viewModelScope.launch {
             async(Dispatchers.IO) {
                 programName = exerciseDao.getProgramName()
+                programId = exerciseDao.getProgramIdByName(programName)!!
                 programDay = programName.let {
                     exerciseDao.getCurrentDay(it)
                 }
                 nextDayProgram = exerciseDao.getExerciseDate(programName)
             }.await()
 
-            binding.trainingProgramName.text = programName
+            if (Locale.getDefault().language == "ru") {
+                binding.trainingProgramName.text =
+                    TranslationConstants.mapEnglishToRussianPrograms[programName] ?: programName
+            } else binding.trainingProgramName.text = programName
             binding.progressViewStats.progress = exerciseDao.getProgress(programName)!!
             binding.nextDayProgram.text = nextDayProgram
 
@@ -69,7 +74,18 @@ class ChosenProgramFragment : Fragment() {
                 binding.chosenProgramRecycler.visibility = View.GONE
                 binding.endItems.visibility = View.VISIBLE
                 binding.skipDayProgramButton.visibility = View.GONE
+            }
 
+            binding.todayStatistic.setOnClickListener {
+                observeBodyPartExercises()
+                chosenProgramViewModel.getDailyStatistics(
+                    LocalDate.now().toString(),
+                    programId
+                ) { statistics ->
+                    Log.d("Show statistic", statistics.toString())
+                    val dialogFragment = DailyStatisticDialog.newInstance(statistics)
+                    dialogFragment.show(childFragmentManager, "DailyStatisticDialog")
+                }
             }
 
             if (LocalDate.parse(exerciseDao.getExerciseDate(programName))
@@ -116,8 +132,8 @@ class ChosenProgramFragment : Fragment() {
         }
     }
 
-
     companion object {
         private const val IS_DATA_LOADED_KEY = "isDataLoaded"
+        private const val IS_DATA_ENDED_KEY = "isDataEnded"
     }
 }

@@ -113,7 +113,7 @@
                 app:progressView_labelColorOuter="@color/black"
                 app:progressView_labelSize="13sp"
                 app:progressView_labelSpace="10dp"
-                app:progressView_labelText="your progress"
+                app:progressView_labelText="Ваш прогресс"
                 app:progressView_labelTypeface="bold"
                 app:progressView_max="100"
                 app:progressView_padding="1dp"
@@ -122,6 +122,18 @@
                 app:progressView_radius="8dp" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/todayStatistic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="@color/light_blue_900"
+            android:fontFamily="@font/robotobold"
+            android:padding="8dp"
+            android:text="@string/daily_statistics"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -169,10 +181,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="12dp"
-            android:background="@color/streak"
+            android:backgroundTint="@color/streak"
             android:fontFamily="@font/robotobold"
             android:padding="8dp"
             android:text="@string/skip_training_day"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
 

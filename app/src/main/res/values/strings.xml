@@ -216,5 +216,11 @@
     <string name="middle">Middle</string>
     <string name="advanced">Advanced</string>
     <string name="activity_level">Activity level</string>
+    <string name="daily_statistics">Daily Statistic</string>
+    <string name="daily_stats" translatable="false">Daily stats</string>
+    <string name="reps_stats">Reps :</string>
+    <string name="sets_stats">Sets :</string>
+    <string name="weight_stats">Weight :</string>
+    <string name="progress_up_to">Progress up to :</string>
 
 </resources>

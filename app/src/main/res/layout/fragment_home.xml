@@ -66,15 +66,6 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/round_6dp_background"
-                android:backgroundTint="@color/light_gray"
-                android:padding="10dp"
-                android:src="@drawable/baseline_notifications_none_24" />
-
         </LinearLayout>
 
 
@@ -181,13 +172,13 @@
             android:drawablePadding="8dp"
             android:drawableTint="@color/silver"
             android:hint="@string/search"
-            android:textColorHint="@color/silver"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingVertical="8dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:paddingVertical="8dp"
-            android:maxLines="1"
-            android:inputType="text"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/silver" />
 
 
         <HorizontalScrollView
@@ -222,13 +213,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/articleRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/items_article" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/articleRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/items_article" />
 
             <TextView
                 android:id="@+id/emptyText"
@@ -236,10 +227,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:visibility="gone"
                 android:text="@string/no_results_found_according_to_your_search"
                 android:textColor="@color/silver"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
         </FrameLayout>
     </LinearLayout>
 
