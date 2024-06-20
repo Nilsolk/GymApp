@@ -28,6 +28,7 @@ class WorkoutsDetailFragment : Fragment() {
     private lateinit var binding: FragmentWorkoutsDetailBinding
     private val workoutsDetailViewModel: WorkoutsDetailViewModel by viewModels()
     private lateinit var activityLevel: String
+    private var alertDialog: AlertDialog? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -103,7 +104,13 @@ class WorkoutsDetailFragment : Fragment() {
         builder.setNegativeButton("Отмена") { dialog, _ ->
             dialog.dismiss()
         }
-        builder.show()
+        alertDialog = builder.create()
+        alertDialog?.show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        alertDialog?.dismiss()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -129,6 +136,4 @@ class WorkoutsDetailFragment : Fragment() {
 
         requireView().findNavController().navigate(action, navOptions)
     }
-
-
 }

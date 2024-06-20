@@ -22,12 +22,6 @@ object TranslationConstants {
         "Extreme Fat Loss" to "Экстримальное похудение",
         "Streight for beginners" to "Сила для новичков",
     )
-    val activityEnglishToRussianProgram = mapOf(
-        "Push Pull Legs" to "Жим, тяга и ноги",
-        "Full Body" to "Тренировка всего тела",
-        "Extreme Fat Loss" to "Экстримальное похудение",
-        "Streight for beginners" to "Сила для новичков",
-    )
     val mapEnglishToRussianLevel = mapOf(
         "Beginner" to "Начинающий",
         "Middle" to "Любитель",
