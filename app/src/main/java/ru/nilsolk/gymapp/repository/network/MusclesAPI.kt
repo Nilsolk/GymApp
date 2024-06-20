@@ -10,21 +10,19 @@ import ru.nilsolk.gymapp.repository.model.BodyPartExercisesItem
 
 interface MusclesAPI {
 
-    @Headers(
-        "X-RapidAPI-Key: adf412e2e9msh71f83cf292ccb3ap195af4jsn9a870e288d5d",
-        "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
-    )
+    @Headers(KEY, HOST)
     @GET("exercises/bodyPart/{bodyPart}")
     fun getBodyPartExercises(
         @Path("bodyPart") bodyPart: String,
         @Query("limit") limit: String
     ): Single<BodyPartExercises>
 
-    @Headers(
-        "X-RapidAPI-Key: adf412e2e9msh71f83cf292ccb3ap195af4jsn9a870e288d5d",
-        "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
-    )
+    @Headers(KEY, HOST)
     @GET("/exercises/exercise/{id}")
     fun getExerciseById(@Path("id") bodyPart: String): Single<BodyPartExercisesItem>
 
+    companion object {
+        private const val KEY = "X-RapidAPI-Key: 7fec0813f2msh8f893d8b05d8a34p1c4932jsna0768d26404a"
+        private const val HOST = "X-RapidAPI-Host: exercisedb.p.rapidapi.com"
+    }
 }

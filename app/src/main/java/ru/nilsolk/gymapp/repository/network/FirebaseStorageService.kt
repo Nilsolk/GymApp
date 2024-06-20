@@ -14,7 +14,8 @@ class FirebaseStorageService(private val context: Context) {
 
     fun uploadImage(imageURI: Uri, imageURL: (String?) -> Unit) {
         val uuid = UUID.randomUUID()
-        val reference = firebaseStorage.reference.child("profilePhotos/$currentUserEmail").child("$uuid.jpg")
+        val reference = firebaseStorage.reference
+            .child("profilePhotos/$currentUserEmail").child("$uuid.jpg")
 
         reference.putFile(imageURI).addOnCompleteListener { uploadTask ->
             if (uploadTask.isSuccessful) {

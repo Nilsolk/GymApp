@@ -43,30 +43,6 @@ class WorkoutViewModel(private val application: Application) : AndroidViewModel(
         }
 
     }
-
-    fun getBestTrainers() {
-        if (bestTrainersLiveData.value == null) {
-            firestoreService.firestore.collection("bestTrainers").get()
-                .addOnCompleteListener { query ->
-                    if (query.isSuccessful) {
-                        for (snapshot in query.result.documents) {
-                            val bestTrainersModel = BestTrainersModel(
-                                snapshot.data!!["profileImageURL"].toString(),
-                                snapshot.data!!["username"].toString(),
-                                snapshot.data!!["specialization"].toString()
-                            )
-                            trainersTempList.add(bestTrainersModel)
-                        }
-                        bestTrainersLiveData.value = trainersTempList
-                    } else bestTrainersLiveData.value = null
-
-                }.addOnFailureListener {
-                bestTrainersLiveData.value = null
-                showErrorToastMessage(it.message.toString())
-            }
-        }
-    }
-
     fun getPopularWorkouts() {
         if (popularWorkoutsLiveData.value == null) {
             firestoreService.firestore.collection("popularWorkouts").get()

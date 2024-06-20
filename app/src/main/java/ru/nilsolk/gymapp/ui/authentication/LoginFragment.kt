@@ -100,7 +100,7 @@ class LoginFragment : Fragment() {
                 val sPassword = resetEmailAddress?.text.toString()
                 firebaseAuthService.getForgotPassowrd(sPassword, dialog, customProgress)
             } else {
-                Toast.makeText(requireContext(), "Fill the blank please", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Заполните пустые поля", Toast.LENGTH_SHORT).show()
             }
 
         }

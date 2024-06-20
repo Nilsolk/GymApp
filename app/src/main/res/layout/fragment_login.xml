@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/login_image"
-        android:importantForAccessibility="no" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,16 +19,6 @@
             android:textAlignment="center"
             android:textColor="@color/red"
             android:textSize="50sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/revolutiongothic_light"
-            android:text="@string/train_and_live_the_new_experience_of_exercising_at_home"
-            android:textColor="#FFFFFF"
-            android:textSize="23sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,8 +77,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="35dp">
+            android:layout_marginHorizontal="35dp"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/rememberMeCheckBox"
@@ -112,9 +94,9 @@
                 android:id="@+id/forgotPasswordText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:gravity="end|center"
-                android:layout_marginEnd="5dp"
                 android:text="@string/forgot_password"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

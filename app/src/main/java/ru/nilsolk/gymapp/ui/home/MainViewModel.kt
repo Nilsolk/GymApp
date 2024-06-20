@@ -49,7 +49,8 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
 
     fun getArticles() {
         if (articleLiveData.value == null) {
-            firestoreService.firestore.collection("articles").get().addOnCompleteListener { task ->
+            firestoreService.firestore.collection("articles").get()
+                .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (snapshot in task.result.documents) {
                         val articleData = ArticleModel(

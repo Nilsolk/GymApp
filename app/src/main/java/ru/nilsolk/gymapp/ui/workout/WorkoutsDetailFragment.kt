@@ -3,6 +3,7 @@ package ru.nilsolk.gymapp.ui.workout
 import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,13 +58,24 @@ class WorkoutsDetailFragment : Fragment() {
                 binding.goal.text = model.goal
                 binding.activityLevel.text = model.activityLevel
             }
-
             binding.descriptionText.text = model.description
             binding.startProgramButton.setOnClickListener {
-                if (activityLevel != model.activityLevel) {
-                    showActivityLevelMismatchDialog(model)
+                Log.d("levelActivity", activityLevel)
+                Log.d("levelActivity", model.activityLevel)
+                if (Locale.getDefault().language != "ru") {
+                    if (activityLevel != model.activityLevel) {
+                        showActivityLevelMismatchDialog(model)
+                    } else {
+                        navigateToChosenProgramFragment(model)
+                    }
                 } else {
-                    navigateToChosenProgramFragment(model)
+                    if (activityLevel != (TranslationConstants.mapEnglishToRussianLevel[model.activityLevel]
+                            ?: model.activityLevel)
+                    ) {
+                        showActivityLevelMismatchDialog(model)
+                    } else {
+                        navigateToChosenProgramFragment(model)
+                    }
                 }
             }
         }

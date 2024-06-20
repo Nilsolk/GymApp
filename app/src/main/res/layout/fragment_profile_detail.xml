@@ -175,7 +175,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:text="@string/goal"
+                android:text="@string/activity_level"
                 android:textColor="@color/white"
                 android:textSize="21sp" />
 
@@ -202,7 +202,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/revolutiongothic_extra_bold"
-                android:text="@string/activity_level"
+                android:text="@string/goal"
                 android:textColor="@color/white"
                 android:textSize="21sp" />
 

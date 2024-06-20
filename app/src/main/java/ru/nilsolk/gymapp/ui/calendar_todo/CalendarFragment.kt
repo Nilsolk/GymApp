@@ -123,7 +123,6 @@ class CalendarFragment : Fragment(), CalendarAdapter.onItemClickListener {
             }
 
             if (filteredToDoList.isNotEmpty()) {
-                //There is something on the screen
                 fragmentCalenderBinding.isEmptyText.visibility = View.GONE
                 fragmentCalenderBinding.emptyText.visibility = View.GONE
 

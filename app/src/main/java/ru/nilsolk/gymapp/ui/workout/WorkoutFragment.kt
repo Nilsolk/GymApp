@@ -89,7 +89,6 @@ class WorkoutFragment : Fragment() {
     private fun getWorkoutAllData() {
         workoutViewModel.getPopularWorkouts()
         observePopularWorkouts()
-        workoutViewModel.getBestTrainers()
         observeBestTrainers()
         workoutViewModel.getMuscleGroups()
         observeMuscleGroups()

@@ -45,7 +45,7 @@ class WorkoutsDetailViewModel(private val application: Application) :
                             weight = data["weight"].toString().toDoubleOrNull() ?: 0.0,
                             targetWeight = data["targetWeight"].toString().toDoubleOrNull() ?: 0.0,
                             goal = data["goal"].toString(),
-                            activityLevel = data["activityLevel"].toString()
+                            activityLevel = data["levelActivity"].toString()
                         )
                     } else null
                     profileDetails.value = profileDetail

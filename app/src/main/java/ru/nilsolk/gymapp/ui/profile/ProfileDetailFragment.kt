@@ -53,8 +53,8 @@ class ProfileDetailFragment : Fragment() {
         firebaseStorageService = FirebaseStorageService(requireContext())
         firebaseFirestoreService = FirebaseFirestoreService(requireContext())
 
-        goalsDropDownSettings()
         levelActivityDropDownSettings()
+        goalsDropDownSettings()
         galleryResult()
 
         return fragmentProfileDetailBinding.root
@@ -84,7 +84,7 @@ class ProfileDetailFragment : Fragment() {
 
             startButton.setOnClickListener {
                 if (ageText.text.isNullOrEmpty() || heightText.text.isNullOrEmpty() || weightText.text.isNullOrEmpty() ||
-                    targetWeightText.text.isNullOrEmpty() || goal.isNullOrEmpty() || activityLevel.isNullOrEmpty()
+                    targetWeightText.text.isNullOrEmpty() || goal.isNullOrEmpty() || activityLevel.isNullOrEmpty() || imageURI == null
                 ) {
                     Toast.makeText(
                         requireContext(),
