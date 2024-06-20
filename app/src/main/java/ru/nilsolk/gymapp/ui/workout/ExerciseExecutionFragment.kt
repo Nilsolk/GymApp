@@ -171,11 +171,11 @@ class ExerciseExecutionFragment : Fragment() {
         ).format(Calendar.getInstance().time)
 
         val exerciseProgram =
-            if (fragmentType == ChosenProgramFragment::class.java.name)
+            if (fragmentType == ChosenProgramFragment::class.java.name) {
                 AppPreferences(
                     requireActivity()
                 ).getString("programName", "None")
-            else ""
+            } else ""
 
 
         val exerciseData = ExecutionModel(

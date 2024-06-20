@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken
 import ru.nilsolk.gymapp.App
 import ru.nilsolk.gymapp.databinding.DialogDailyStatisticBinding
 import ru.nilsolk.gymapp.repository.db.DailyProgramStatistic
+import ru.nilsolk.gymapp.utils.AppPreferences
 
 class DailyStatisticDialog : DialogFragment() {
 
@@ -39,7 +40,8 @@ class DailyStatisticDialog : DialogFragment() {
         val listType = object : TypeToken<List<DailyProgramStatistic>>() {}.type
         statistics = Gson().fromJson(statsJson, listType)
         statisticAdapter = DailyStatisticAdapter(statistics, exerciseDAO, viewLifecycleOwner)
-        binding.progressStats.text = "0.3%"
+        binding.progressStats.text =
+            AppPreferences(requireContext()).getString("progress", "0") + "%"
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = statisticAdapter

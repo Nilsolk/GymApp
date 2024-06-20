@@ -61,6 +61,7 @@ class WorkoutsDetailFragment : Fragment() {
             }
             binding.descriptionText.text = model.description
             binding.startProgramButton.setOnClickListener {
+                AppPreferences(requireContext()).saveString("progress", "0")
                 Log.d("levelActivity", activityLevel)
                 Log.d("levelActivity", model.activityLevel)
                 if (Locale.getDefault().language != "ru") {

@@ -1,5 +1,6 @@
 package ru.nilsolk.gymapp.ui.training_program
 
+import android.content.Context
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,12 +13,14 @@ import ru.nilsolk.gymapp.repository.db.Exercise
 import ru.nilsolk.gymapp.translation.TextTranslator
 import ru.nilsolk.gymapp.translation.TranslationConstants
 import ru.nilsolk.gymapp.ui.workout.ExerciseRemovedListener
+import ru.nilsolk.gymapp.utils.AppPreferences
 import ru.nilsolk.gymapp.utils.ExerciseMapper
 import ru.nilsolk.gymapp.utils.getImage
 
 class ChosenProgramAdapter(
     private var exercises: List<Exercise>,
-    private val viewModel: ChosenProgramViewModel
+    private val viewModel: ChosenProgramViewModel,
+    private val context: Context
 ) : RecyclerView.Adapter<ChosenProgramAdapter.ItemHolder>() {
 
     class ItemHolder(val binding: ItemMuscleProgramBinding) : RecyclerView.ViewHolder(binding.root)
@@ -69,6 +72,10 @@ class ChosenProgramAdapter(
                     }
 
                 }
+                val appPref = AppPreferences(context)
+                val oldValue = appPref.getString("progress", "0")
+                val newValue = oldValue.toDouble() + 0.1
+                appPref.saveString("progress", newValue.toString())
 
                 val action =
                     ChosenProgramFragmentDirections.actionChosenProgramFragmentToExerciseOverviewFragment(

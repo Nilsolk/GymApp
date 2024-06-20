@@ -20,7 +20,7 @@ object TranslationConstants {
         "Push Pull Legs" to "Жим, тяга и ноги",
         "Full Body" to "Тренировка всего тела",
         "Extreme Fat Loss" to "Экстримальное похудение",
-        "Streight for beginners" to "Сила для новичков",
+        "Streight for beginers" to "Сила для новичков",
     )
     val mapEnglishToRussianLevel = mapOf(
         "Beginner" to "Начинающий",

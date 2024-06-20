@@ -44,7 +44,8 @@ class ChosenProgramFragment : Fragment() {
         appPreferences = AppPreferences(requireContext())
         chosenProgramViewModel.setAppPref(appPreferences)
 
-        programExercisesAdapter = ChosenProgramAdapter(emptyList(), chosenProgramViewModel)
+        programExercisesAdapter =
+            ChosenProgramAdapter(emptyList(), chosenProgramViewModel, requireContext())
         binding.chosenProgramRecycler.adapter = programExercisesAdapter
 
         val isDataLoaded = appPreferences.getBoolean(IS_DATA_LOADED_KEY)
@@ -65,7 +66,9 @@ class ChosenProgramFragment : Fragment() {
                 binding.trainingProgramName.text =
                     TranslationConstants.mapEnglishToRussianPrograms[programName] ?: programName
             } else binding.trainingProgramName.text = programName
-            binding.progressViewStats.progress = exerciseDao.getProgress(programName)!!
+//          binding.progressViewStats.progress = exerciseDao.getProgress(programName)!!
+            binding.progressViewStats.progress =
+                (AppPreferences(requireContext()).getString("progress", "0")).toFloat()
             binding.nextDayProgram.text = nextDayProgram
 
             binding.skipDayProgramButton.setOnClickListener {
@@ -134,6 +137,5 @@ class ChosenProgramFragment : Fragment() {
 
     companion object {
         private const val IS_DATA_LOADED_KEY = "isDataLoaded"
-        private const val IS_DATA_ENDED_KEY = "isDataEnded"
     }
 }
